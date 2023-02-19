@@ -1,0 +1,134 @@
+[gd_scene load_steps=20 format=3 uid="uid://115nm0igpkg1"]
+
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_ih5y4"]
+[ext_resource type="Resource" uid="uid://cqpvvh53jmaos" path="res://entities/player/player_stats.tres" id="2_h4wqm"]
+[ext_resource type="PackedScene" uid="uid://bg8lgj7n5f7qx" path="res://tools/state_machine/state_machine.tscn" id="3_r4sub"]
+[ext_resource type="Script" path="res://entities/player/player_idle.gd" id="4_noiv7"]
+[ext_resource type="Script" path="res://entities/player/states/player_combat.gd" id="4_qqg14"]
+[ext_resource type="Script" path="res://entities/player/states/player_reflecting.gd" id="5_3x87m"]
+[ext_resource type="Script" path="res://entities/player/states/player_executing_actions.gd" id="5_q5dnb"]
+[ext_resource type="Script" path="res://entities/player/actions/heal_action.gd" id="6_gppil"]
+[ext_resource type="PackedScene" uid="uid://b4kxki07iynps" path="res://entities/player/actions/combat_action.tscn" id="7_emta1"]
+[ext_resource type="Script" path="res://entities/player/actions/use_utility.gd" id="7_lramg"]
+[ext_resource type="PackedScene" uid="uid://0jl6jn2w0dtr" path="res://entities/player/actions/dash_attack.tscn" id="8_eudwt"]
+[ext_resource type="PackedScene" uid="uid://bnp33y8paxu02" path="res://tools/hurtbox/hurtbox.tscn" id="9_ft56c"]
+[ext_resource type="PackedScene" uid="uid://cjcm0om7ugn4d" path="res://entities/player/actions/close_range_attack.tscn" id="10_ccffj"]
+[ext_resource type="PackedScene" uid="uid://btsfillxhkks1" path="res://entities/utilities/teleporter/teleporter.tscn" id="11_nu4pp"]
+[ext_resource type="PackedScene" uid="uid://d3vtahm8nqnc1" path="res://entities/utilities/gravity_bomb/gravity_bomb.tscn" id="12_0a57b"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxlei"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n18ew"]
+size = Vector2(16, 8)
+
+[sub_resource type="GDScript" id="GDScript_x7mg2"]
+script/source = "extends PlayerState
+
+
+func begin(params := {}):
+	pass
+
+func update(delta):
+	var x_direction = Input.get_axis(\"ui_left\", \"ui_right\")
+	var y_direction = Input.get_axis(\"ui_up\", \"ui_down\")
+	var direction = Vector2(x_direction, y_direction)
+	if direction != Vector2.ZERO:
+		player.interact_ray.rotation = direction.angle()
+		player.last_direction = direction
+	player.direction = direction
+	player.velocity = player.direction * player.stats.speed
+	if x_direction != 0 and y_direction != 0:
+		player.velocity = player.velocity / sqrt(2)
+		
+	player.move_and_slide()
+
+func handle_input(event: InputEvent):
+	#interact with NPCs or environment
+	if event.is_action_pressed(\"accept\") and player.interact_ray.is_colliding():
+		state_machine.change_state(\"PlayerIdle\")
+		var interactable = player.interact_ray.get_collider()
+		interactable.on_interact()
+		await interactable.interaction_finished
+		state_machine.change_state(\"PlayerMove\")
+
+func end():
+	player.velocity = Vector2.ZERO
+"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18yi3"]
+radius = 7.0
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+collision_mask = 38
+motion_mode = 1
+script = ExtResource("1_ih5y4")
+stats = ExtResource("2_h4wqm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = SubResource("PlaceholderTexture2D_gxlei")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_n18ew")
+
+[node name="StateMachine" parent="." instance=ExtResource("3_r4sub")]
+initial_state = NodePath("PlayerMove")
+
+[node name="PlayerIdle" type="Node" parent="StateMachine"]
+script = ExtResource("4_noiv7")
+
+[node name="PlayerMove" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_x7mg2")
+
+[node name="PlayerCombat" type="Node" parent="StateMachine/PlayerMove"]
+script = ExtResource("4_qqg14")
+
+[node name="PlayerReflecting" type="Node" parent="StateMachine/PlayerMove/PlayerCombat"]
+script = ExtResource("5_3x87m")
+
+[node name="PlayerExecutingActions" type="Node" parent="StateMachine"]
+script = ExtResource("5_q5dnb")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="UseUtility" parent="Actions" instance=ExtResource("7_emta1")]
+script = ExtResource("7_lramg")
+
+[node name="HealAction" parent="Actions" instance=ExtResource("7_emta1")]
+script = ExtResource("6_gppil")
+
+[node name="DashAttack" parent="Actions" instance=ExtResource("8_eudwt")]
+
+[node name="CloseRangeAttack" parent="Actions" instance=ExtResource("10_ccffj")]
+dist_from_player = 25
+
+[node name="Utilities" type="Node" parent="."]
+
+[node name="Teleporter" parent="Utilities" instance=ExtResource("11_nu4pp")]
+visible = false
+
+[node name="GravityBomb" parent="Utilities" instance=ExtResource("12_0a57b")]
+visible = false
+
+[node name="Hurtbox" parent="." instance=ExtResource("9_ft56c")]
+collision_mask = 8
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_18yi3")
+disabled = true
+
+[node name="ActionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="InteractRay" type="RayCast2D" parent="."]
+position = Vector2(0, 6)
+target_position = Vector2(20, 0)
+collision_mask = 64
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]
+
+[editable path="Hurtbox"]

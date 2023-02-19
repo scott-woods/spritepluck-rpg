@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://0b5aysjv44rw"]
+
+[ext_resource type="Script" path="res://ui/default_ui/default_ui.gd" id="1_fv135"]
+[ext_resource type="PackedScene" uid="uid://b70bm5lkmc140" path="res://ui/textbox/textbox.tscn" id="1_hxuq6"]
+
+[node name="DefaultUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fv135")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 32
+
+[node name="Textbox" parent="MarginContainer" instance=ExtResource("1_hxuq6")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8

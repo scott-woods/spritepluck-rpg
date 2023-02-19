@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp1a5m56hdi3o"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3mhnu"]
+[ext_resource type="PackedScene" uid="uid://bxvexnwbxcxc7" path="res://rooms/random_enemy_room/random_enemy_room.tscn" id="2_a80a6"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_3mhnu")
+FirstRoom = ExtResource("2_a80a6")

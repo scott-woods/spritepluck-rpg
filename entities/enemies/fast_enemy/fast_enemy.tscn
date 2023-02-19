@@ -1,0 +1,91 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6h8uv3qyomo7"]
+
+[ext_resource type="PackedScene" uid="uid://cbofr8lep3htb" path="res://entities/enemies/enemy/enemy.tscn" id="1_1ni5u"]
+[ext_resource type="Script" path="res://entities/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
+[ext_resource type="Resource" uid="uid://pm1nr7jnxi3v" path="res://entities/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
+[ext_resource type="Script" path="res://entities/enemies/fast_enemy/states/fast_enemy_moving.gd" id="5_eut38"]
+[ext_resource type="Script" path="res://entities/enemies/fast_enemy/states/fast_enemy_combat.gd" id="6_667by"]
+[ext_resource type="Script" path="res://entities/enemies/fast_enemy/states/fast_enemy_executing_action.gd" id="6_kaxvg"]
+[ext_resource type="Script" path="res://entities/enemies/fast_enemy/actions/melee_swipe.gd" id="7_oouk3"]
+[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://tools/hitbox/hitbox.tscn" id="7_sm3pt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_np8rf"]
+size = Vector2(10, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae4qh"]
+size = Vector2(10, 7.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es8te"]
+radius = 4.0
+height = 20.0
+
+[sub_resource type="Curve2D" id="Curve2D_owbxd"]
+_data = {
+"points": PackedVector2Array(-5.47389, 2.2955, 5.47389, -2.2955, 8, -10, 0.176576, -4.06127, -0.176576, 4.06127, 15, 0, 5.20903, -1.58919, -5.20903, 1.58919, 8, 10)
+}
+point_count = 3
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7unar"]
+size = Vector2(6, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kl6b"]
+size = Vector2(3, 22)
+
+[node name="FastEnemy" instance=ExtResource("1_1ni5u")]
+script = ExtResource("1_tbe72")
+action_cooldown = 1.0
+stats = ExtResource("3_4m0rc")
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color(0.490196, 0.0941176, 0.0941176, 1)
+texture = SubResource("PlaceholderTexture2D_np8rf")
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(0, 6.75)
+shape = SubResource("RectangleShape2D_ae4qh")
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_es8te")
+
+[node name="EnemyCombat" parent="StateMachine" index="0"]
+script = ExtResource("6_667by")
+
+[node name="EnemyMoving" parent="StateMachine/EnemyCombat" index="0"]
+script = ExtResource("5_eut38")
+
+[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" index="1"]
+script = ExtResource("6_kaxvg")
+
+[node name="MeleeSwipe" type="Node" parent="Actions" index="0"]
+script = ExtResource("7_oouk3")
+
+[node name="HealthBar" parent="." index="5"]
+offset_left = -7.0
+offset_top = -16.0
+offset_right = 7.0
+offset_bottom = -13.0
+
+[node name="MeleePath" type="Path2D" parent="." index="6"]
+curve = SubResource("Curve2D_owbxd")
+
+[node name="MeleePathFollow" type="PathFollow2D" parent="MeleePath" index="0"]
+position = Vector2(8, -10)
+rotation = -0.397079
+
+[node name="Melee" parent="MeleePath/MeleePathFollow" index="0" instance=ExtResource("7_sm3pt")]
+visible = false
+collision_layer = 8
+damage = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MeleePath/MeleePathFollow/Melee" index="0"]
+modulate = Color(0.141176, 0.176471, 0.258824, 1)
+position = Vector2(-2.98023e-08, -8.48528)
+texture = SubResource("PlaceholderTexture2D_7unar")
+
+[node name="Collision" parent="MeleePath/MeleePathFollow/Melee" index="1"]
+position = Vector2(0, -8.48528)
+shape = SubResource("RectangleShape2D_2kl6b")
+disabled = true
+
+[editable path="Hurtbox"]
+[editable path="MeleePath/MeleePathFollow/Melee"]

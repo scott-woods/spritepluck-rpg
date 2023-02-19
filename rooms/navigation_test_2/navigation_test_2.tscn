@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbut8ociwabjm"]
+
+[ext_resource type="Script" path="res://rooms/navigation_test_2/navigation_test_2.gd" id="1_ivq7j"]
+[ext_resource type="PackedScene" uid="uid://b6h8uv3qyomo7" path="res://entities/enemies/fast_enemy/fast_enemy.tscn" id="1_rplux"]
+[ext_resource type="PackedScene" uid="uid://115nm0igpkg1" path="res://entities/player/player.tscn" id="2_o5ie0"]
+[ext_resource type="PackedScene" uid="uid://dlsfy48ubm5db" path="res://entities/enemies/test_enemy/test_enemy.tscn" id="4_sek64"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8i10g"]
+vertices = PackedVector2Array(311, -81, 421, -68, 399, 78, 257, 230, 188, 236, 83, 229, -218, 180, -200, 5, -130, -208, 146, -164, 404, 194)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(5, 6, 7, 8, 9, 0), PackedInt32Array(3, 2, 10)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-200, 5, -218, 180, 83, 229, 188, 236, 257, 230, 404, 194, 399, 78, 421, -68, 311, -81, 146, -164, -130, -208)])
+
+[node name="NavigationTest2" type="Node2D"]
+script = ExtResource("1_ivq7j")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_8i10g")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="TestEnemy" parent="TileMap" instance=ExtResource("4_sek64")]
+position = Vector2(114, 44)
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="TileMap/TestEnemy"]
+estimate_radius = false
+radius = 20.0
+
+[node name="FastEnemy" parent="TileMap" instance=ExtResource("1_rplux")]
+position = Vector2(139, 152)
+collision_mask = 39
+
+[node name="NavigationAgent" parent="TileMap/FastEnemy" index="7"]
+radius = 10.0
+
+[node name="Player" parent="TileMap" instance=ExtResource("2_o5ie0")]
+
+[editable path="TileMap/FastEnemy"]
+[editable path="TileMap/FastEnemy/Hurtbox"]
+[editable path="TileMap/FastEnemy/MeleePath/MeleePathFollow/Melee"]

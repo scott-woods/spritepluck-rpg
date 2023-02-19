@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlsfy48ubm5db"]
+
+[ext_resource type="PackedScene" uid="uid://cbofr8lep3htb" path="res://entities/enemies/enemy/enemy.tscn" id="1_eaksi"]
+[ext_resource type="Script" path="res://entities/enemies/test_enemy/test_enemy.gd" id="1_ir432"]
+[ext_resource type="Resource" uid="uid://d7rumsxrsjr2" path="res://entities/enemies/test_enemy/test_enemy.tres" id="3_4b4oh"]
+[ext_resource type="Script" path="res://entities/enemies/test_enemy/states/test_enemy_combat.gd" id="4_o5ubj"]
+[ext_resource type="Script" path="res://entities/enemies/enemy/states/test_enemy_moving.gd" id="5_4symy"]
+[ext_resource type="Script" path="res://entities/enemies/test_enemy/states/test_enemy_executing_action.gd" id="5_tm4vg"]
+[ext_resource type="PackedScene" uid="uid://cpd4qiv5nq0u8" path="res://entities/enemies/test_enemy/actions/radial_shot.tscn" id="7_3fwef"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mbi6o"]
+size = Vector2(24, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ywnf"]
+size = Vector2(24, 19)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f07e3"]
+radius = 12.0
+height = 48.0
+
+[node name="TestEnemy" instance=ExtResource("1_eaksi")]
+script = ExtResource("1_ir432")
+action_delay = 1.5
+stats = ExtResource("3_4b4oh")
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color(0.49, 0.0931, 0.0931, 1)
+texture = SubResource("PlaceholderTexture2D_mbi6o")
+
+[node name="Collision" parent="." index="1"]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_7ywnf")
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_f07e3")
+
+[node name="EnemyCombat" parent="StateMachine" index="0"]
+script = ExtResource("4_o5ubj")
+
+[node name="EnemyMoving" parent="StateMachine/EnemyCombat" index="0"]
+script = ExtResource("5_4symy")
+
+[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" index="1"]
+script = ExtResource("5_tm4vg")
+
+[node name="RadialShot" parent="Actions" index="0" instance=ExtResource("7_3fwef")]
+
+[node name="ActionTimer" type="Timer" parent="." index="5"]
+one_shot = true
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -14.0
+offset_top = -32.0
+offset_right = 14.0
+offset_bottom = -26.0
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]
+
+[editable path="Hurtbox"]

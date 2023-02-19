@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://pm1nr7jnxi3v"]
+
+[ext_resource type="Script" path="res://character_stats.gd" id="1_ubbo5"]
+
+[resource]
+script = ExtResource("1_ubbo5")
+hp = 1
+max_hp = 1
+speed = 75
+invincible_time = 1.5

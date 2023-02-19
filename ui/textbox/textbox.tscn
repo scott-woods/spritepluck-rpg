@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b70bm5lkmc140"]
+
+[ext_resource type="Texture2D" uid="uid://cr6oe3nb0jp8w" path="res://ui/textbox/textbox.png" id="1_ga6dh"]
+[ext_resource type="Theme" uid="uid://caf1bdo0q1br5" path="res://ui/themes/default_theme.tres" id="1_r8mh3"]
+[ext_resource type="Script" path="res://ui/textbox/textbox.gd" id="2_rt6iv"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_whxki"]
+
+[node name="Textbox" type="PanelContainer"]
+theme = ExtResource("1_r8mh3")
+script = ExtResource("2_rt6iv")
+
+[node name="Texture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_ga6dh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Sprite" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="DialogueLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "test"
+visible_characters_behavior = 1
+script = ExtResource("4_whxki")
+seconds_per_step = 0.04
+
+[connection signal="spoke" from="MarginContainer/HBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]

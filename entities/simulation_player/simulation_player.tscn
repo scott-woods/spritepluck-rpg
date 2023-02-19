@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://fd3onkmiknmt"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qkivu"]
+size = Vector2(16, 32)
+
+[node name="SimulationPlayer" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.27451)
+texture = SubResource("PlaceholderTexture2D_qkivu")

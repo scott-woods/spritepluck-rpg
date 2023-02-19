@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cer1iwocg2i5y"]
+
+[ext_resource type="Script" path="res://targeting/line_selector/line_selector.gd" id="1_74inq"]
+
+[node name="LineSelector" type="Line2D"]
+process_mode = 3
+width = 2.0
+script = ExtResource("1_74inq")

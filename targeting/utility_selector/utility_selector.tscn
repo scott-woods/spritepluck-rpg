@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://x0u1g4tv650h"]
+
+[ext_resource type="Script" path="res://targeting/utility_selector/utility_selector.gd" id="1_4stdc"]
+
+[node name="UtilitySelector" type="Node"]
+process_mode = 3
+script = ExtResource("1_4stdc")

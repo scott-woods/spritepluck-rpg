@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4kxki07iynps"]
+
+[ext_resource type="Script" path="res://entities/player/actions/combat_action.gd" id="1_1lqwd"]
+
+[node name="CombatAction" type="Node"]
+process_mode = 3
+script = ExtResource("1_1lqwd")
