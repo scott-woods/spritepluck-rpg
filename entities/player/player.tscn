@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://entities/player/player_idle.gd" id="4_noiv7"]
 [ext_resource type="Script" path="res://entities/player/states/player_combat.gd" id="4_qqg14"]
 [ext_resource type="Script" path="res://entities/player/states/player_reflecting.gd" id="5_3x87m"]
+[ext_resource type="Script" path="res://entities/player/states/player_move.gd" id="5_i5muh"]
 [ext_resource type="Script" path="res://entities/player/states/player_executing_actions.gd" id="5_q5dnb"]
 [ext_resource type="Script" path="res://entities/player/actions/heal_action.gd" id="6_gppil"]
 [ext_resource type="PackedScene" uid="uid://b4kxki07iynps" path="res://entities/player/actions/combat_action.tscn" id="7_emta1"]
@@ -21,40 +22,6 @@ size = Vector2(16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n18ew"]
 size = Vector2(16, 8)
-
-[sub_resource type="GDScript" id="GDScript_x7mg2"]
-script/source = "extends PlayerState
-
-
-func begin(params := {}):
-	pass
-
-func update(delta):
-	var x_direction = Input.get_axis(\"ui_left\", \"ui_right\")
-	var y_direction = Input.get_axis(\"ui_up\", \"ui_down\")
-	var direction = Vector2(x_direction, y_direction)
-	if direction != Vector2.ZERO:
-		player.interact_ray.rotation = direction.angle()
-		player.last_direction = direction
-	player.direction = direction
-	player.velocity = player.direction * player.stats.speed
-	if x_direction != 0 and y_direction != 0:
-		player.velocity = player.velocity / sqrt(2)
-		
-	player.move_and_slide()
-
-func handle_input(event: InputEvent):
-	#interact with NPCs or environment
-	if event.is_action_pressed(\"accept\") and player.interact_ray.is_colliding():
-		state_machine.change_state(\"PlayerIdle\")
-		var interactable = player.interact_ray.get_collider()
-		interactable.on_interact()
-		await interactable.interaction_finished
-		state_machine.change_state(\"PlayerMove\")
-
-func end():
-	player.velocity = Vector2.ZERO
-"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18yi3"]
 radius = 7.0
@@ -81,7 +48,7 @@ initial_state = NodePath("PlayerMove")
 script = ExtResource("4_noiv7")
 
 [node name="PlayerMove" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_x7mg2")
+script = ExtResource("5_i5muh")
 
 [node name="PlayerCombat" type="Node" parent="StateMachine/PlayerMove"]
 script = ExtResource("4_qqg14")
@@ -118,7 +85,6 @@ collision_mask = 8
 
 [node name="Collision" parent="Hurtbox" index="0"]
 shape = SubResource("CapsuleShape2D_18yi3")
-disabled = true
 
 [node name="ActionTimer" type="Timer" parent="."]
 one_shot = true

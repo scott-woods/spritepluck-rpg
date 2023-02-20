@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbut8ociwabjm"]
+[gd_scene load_steps=6 format=3 uid="uid://dbvhu5gdkjpek"]
 
 [ext_resource type="Script" path="res://rooms/navigation_test_2/navigation_test_2.gd" id="1_ivq7j"]
 [ext_resource type="PackedScene" uid="uid://b6h8uv3qyomo7" path="res://entities/enemies/fast_enemy/fast_enemy.tscn" id="1_rplux"]
@@ -33,7 +33,7 @@ position = Vector2(139, 152)
 collision_mask = 39
 
 [node name="NavigationAgent" parent="TileMap/FastEnemy" index="7"]
-radius = 10.0
+max_speed = 100.0
 
 [node name="Player" parent="TileMap" instance=ExtResource("2_o5ie0")]
 

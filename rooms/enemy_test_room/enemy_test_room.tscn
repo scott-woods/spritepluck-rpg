@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c61w2vfhhx5aw"]
+[gd_scene load_steps=9 format=3 uid="uid://c61w2vfhhx5aw"]
 
 [ext_resource type="Script" path="res://rooms/enemy_test_room/enemy_test_room.gd" id="1_lfga5"]
 [ext_resource type="PackedScene" uid="uid://b6h8uv3qyomo7" path="res://entities/enemies/fast_enemy/fast_enemy.tscn" id="2_2g7p4"]
@@ -6,9 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://tools/combat_manager/combat_manager.tscn" id="2_ybtq6"]
 [ext_resource type="PackedScene" uid="uid://cxtoxbmu4x383" path="res://ui/combat_ui/combat_ui.tscn" id="3_8ogx0"]
 [ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://tools/camera/camera.tscn" id="4_rw27w"]
+[ext_resource type="PackedScene" uid="uid://dlsfy48ubm5db" path="res://entities/enemies/test_enemy/test_enemy.tscn" id="5_38ens"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_a2wky"]
+vertices = PackedVector2Array(0, 0, 416, 0, 416, 272, 0, 272)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 416, 0, 416, 272, 0, 272)])
 
 [node name="EnemyTestRoom" type="Node2D"]
-position = Vector2(16, 0)
 script = ExtResource("1_lfga5")
 enemy_scene = ExtResource("2_2g7p4")
 
@@ -40,6 +45,13 @@ layer_2/tile_data = PackedInt32Array(1114112, 131072, 3, 1114113, 131072, 3, 111
 [node name="Utilities" type="Node" parent="TileMap"]
 
 [node name="Enemies" type="Node" parent="TileMap"]
+
+[node name="TestEnemy" parent="TileMap/Enemies" instance=ExtResource("5_38ens")]
+position = Vector2(208, 128)
+collision_mask = 7
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="TileMap"]
+navigation_polygon = SubResource("NavigationPolygon_a2wky")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

@@ -1,10 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxvexnwbxcxc7"]
+[gd_scene load_steps=7 format=3 uid="uid://bxvexnwbxcxc7"]
 
 [ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://tools/combat_manager/combat_manager.tscn" id="1_g3ypt"]
 [ext_resource type="Script" path="res://rooms/random_enemy_room/random_enemy_room.gd" id="1_orqro"]
 [ext_resource type="PackedScene" uid="uid://cxtoxbmu4x383" path="res://ui/combat_ui/combat_ui.tscn" id="2_1efys"]
 [ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://tools/camera/camera.tscn" id="3_6x6gk"]
 [ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="3_014r7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2s34u"]
+vertices = PackedVector2Array(0, 0, 400, 0, 400, 272, 0, 272)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 400, 0, 400, 272, 0, 272)])
 
 [node name="RandomEnemyRoom" type="Node2D"]
 script = ExtResource("1_orqro")
@@ -15,6 +20,9 @@ max_dist_from_player = 150
 min_neighbor_distance = 50
 
 [node name="CombatManager" parent="." instance=ExtResource("1_g3ypt")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_2s34u")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true

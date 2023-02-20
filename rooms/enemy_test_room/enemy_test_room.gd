@@ -20,7 +20,7 @@ var player : Player
 func _ready():
 	player = Player.instantiate()
 	player.init(utilities, combat_ui, camera)
-	player.global_position = player_spawn_marker.position
+	player.global_position = player_spawn_marker.global_position
 	tilemap.add_child(player)
 	combat_manager.init(player, enemies, utilities, combat_ui, camera, tilemap)
 	camera.set_target(player, true)
@@ -31,6 +31,6 @@ func _unhandled_input(event):
 		if combat_manager.in_combat == false:
 			var new_enemy = enemy_scene.instantiate()
 			new_enemy.init(player)
-			new_enemy.global_position = enemy_spawn_marker.position
+			new_enemy.global_position = enemy_spawn_marker.global_position
 			enemies.add_child(new_enemy)
 			combat_manager.start_combat()

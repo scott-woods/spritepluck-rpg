@@ -63,4 +63,4 @@ func _unhandled_input(event):
 func init_enemy_type_array():
 	enemy_types.append(FastEnemy)
 	enemy_types.append(Ranger)
-	#enemy_types.append(TestEnemy)
+	enemy_types.append(TestEnemy)

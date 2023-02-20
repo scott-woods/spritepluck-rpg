@@ -38,7 +38,6 @@ func start_combat():
 	in_combat = true
 	MusicPlayer.play_music(MusicPlayer.SPICY)
 	player.enter_combat_state()
-	player.start_attack_timer()
 	get_tree().call_group("enemies", "enter_combat_state")
 	combat_ui.show()
 	combat_ui.enter_combat_state()
