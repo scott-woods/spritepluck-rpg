@@ -16,7 +16,8 @@ bg_color = Color(0.133333, 0.74902, 0.156863, 1)
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 y_sort_enabled = true
 collision_layer = 2
-collision_mask = 7
+collision_mask = 5
+motion_mode = 1
 script = ExtResource("1_mpssh")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -54,9 +55,12 @@ show_percentage = false
 
 [node name="NavigationAgent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 5.0
+neighbor_distance = 100.0
+time_horizon = 2.0
 
 [connection signal="health_changed" from="." to="." method="_on_health_changed"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="StateMachine/EnemyCombat/EnemyMoving/NavigationTimer" to="StateMachine/EnemyCombat/EnemyMoving" method="_on_navigation_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent" to="StateMachine/EnemyCombat/EnemyMoving" method="_on_navigation_agent_velocity_computed"]
 
 [editable path="Hurtbox"]

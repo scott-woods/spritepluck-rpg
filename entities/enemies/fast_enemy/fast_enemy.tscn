@@ -32,6 +32,7 @@ size = Vector2(6, 22)
 size = Vector2(3, 22)
 
 [node name="FastEnemy" instance=ExtResource("1_1ni5u")]
+position = Vector2(0, -3)
 script = ExtResource("1_tbe72")
 action_cooldown = 1.0
 stats = ExtResource("3_4m0rc")
@@ -41,7 +42,7 @@ modulate = Color(0.490196, 0.0941176, 0.0941176, 1)
 texture = SubResource("PlaceholderTexture2D_np8rf")
 
 [node name="Collision" parent="." index="1"]
-position = Vector2(0, 6.75)
+position = Vector2(0, 7)
 shape = SubResource("RectangleShape2D_ae4qh")
 
 [node name="Collision" parent="Hurtbox" index="0"]
@@ -64,6 +65,7 @@ offset_left = -7.0
 offset_top = -16.0
 offset_right = 7.0
 offset_bottom = -13.0
+metadata/_edit_use_anchors_ = true
 
 [node name="MeleePath" type="Path2D" parent="." index="6"]
 curve = SubResource("Curve2D_owbxd")

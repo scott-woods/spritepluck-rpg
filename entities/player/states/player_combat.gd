@@ -2,9 +2,6 @@ class_name PlayerCombat
 extends PlayerMove
 
 
-func update(delta):
-	super(delta)
-
 func handle_input(event: InputEvent):
 	if event.is_action_pressed("accept"):
 		player.drop_utility()

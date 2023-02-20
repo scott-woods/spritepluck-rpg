@@ -47,4 +47,4 @@ func _on_action_timer_timeout():
 	var action = actions[randi_range(0, actions.size() -1)]
 	await action.execute()
 	action_timer.start()
-	state_machine.change_state("EnemyCombat/EnemyMoving")
+	state_machine.change_state("EnemyCombat")

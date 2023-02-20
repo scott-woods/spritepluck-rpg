@@ -22,6 +22,7 @@ height = 48.0
 script = ExtResource("1_ir432")
 action_delay = 1.5
 stats = ExtResource("3_4b4oh")
+can_move = false
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color(0.49, 0.0931, 0.0931, 1)
