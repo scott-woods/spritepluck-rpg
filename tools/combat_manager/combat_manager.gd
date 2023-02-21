@@ -4,7 +4,7 @@ extends Node
 
 signal player_queued
 
-const SimulationPlayer = preload("res://entities/simulation_player/simulation_player.tscn")
+@export var SimulationPlayer : PackedScene
 
 var player : Player
 var enemies : Node

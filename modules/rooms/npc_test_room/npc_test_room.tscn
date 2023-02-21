@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://pf3mhu23mwyi"]
+
+[ext_resource type="Script" path="res://modules/rooms/npc_test_room/npc_test_room.gd" id="1_7pqdj"]
+[ext_resource type="PackedScene" uid="uid://bcvev14r5vc33" path="res://modules/characters/npcs/test_npc/test_npc.tscn" id="2_fqp81"]
+[ext_resource type="PackedScene" uid="uid://dd85h4jkw7fwg" path="res://modules/characters/player/player.tscn" id="2_g1sri"]
+[ext_resource type="PackedScene" uid="uid://0b5aysjv44rw" path="res://ui/default_ui/default_ui.tscn" id="2_rjdsb"]
+
+[node name="NPCTestRoom" type="Node2D"]
+script = ExtResource("1_7pqdj")
+Player = ExtResource("2_g1sri")
+
+[node name="Map" type="TileMap" parent="."]
+y_sort_enabled = true
+format = 2
+
+[node name="TestNPC" parent="Map" groups=["npcs"] instance=ExtResource("2_fqp81")]
+position = Vector2(100, 38)
+
+[node name="NPCs" type="Node" parent="Map"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="DefaultUI" parent="UI" instance=ExtResource("2_rjdsb")]

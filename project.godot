@@ -17,20 +17,20 @@ config/icon="res://assets/icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://resources/default_bus_layout.tres"
+buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
 
 [autoload]
 
-SoundPlayer="*res://tools/sound_player/sound_player.tscn"
-MusicPlayer="*res://tools/music_player/music_player.tscn"
+SoundPlayer="*res://globals/sound_player/sound_player.tscn"
+MusicPlayer="*res://globals/music_player/music_player.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Fonts="*res://globals/fonts.gd"
-Portraits="*res://globals/portraits.gd"
-TextboxManager="*res://tools/textbox_manager/textbox_manager.gd"
+TextboxManager="*res://globals/textbox_manager.gd"
+Fonts="*res://globals/fonts/fonts.tscn"
+Portraits="*res://globals/portraits/portraits.tscn"
 
 [dialogue_manager]
 
-states=["Fonts", "Portraits", "TextboxManager", "SoundPlayer"]
+states=["Fonts", "TextboxManager", "SoundPlayer", "Portraits", "MusicPlayer"]
 
 [display]
 

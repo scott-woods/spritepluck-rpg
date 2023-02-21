@@ -1,0 +1,30 @@
+[gd_scene load_steps=11 format=3 uid="uid://dtctq30y2xllk"]
+
+[ext_resource type="Script" path="res://globals/sound_player/sound_player.gd" id="1_rwmts"]
+[ext_resource type="AudioStream" uid="uid://d2kkbvyiihie1" path="res://assets/audio/sounds/yes.wav" id="2_kha5w"]
+[ext_resource type="AudioStream" uid="uid://d4aj5o3dfqsus" path="res://assets/audio/sounds/player_hurt.wav" id="3_c402g"]
+[ext_resource type="AudioStream" uid="uid://clila2esuk5fe" path="res://assets/audio/sounds/dash_attack.wav" id="4_kkcjr"]
+[ext_resource type="AudioStream" uid="uid://e4ixqj7tccul" path="res://assets/audio/sounds/use_teleporter.wav" id="5_eyk25"]
+[ext_resource type="AudioStream" uid="uid://b73s2u8smcsul" path="res://assets/audio/sounds/heal.wav" id="6_d5p5f"]
+[ext_resource type="AudioStream" uid="uid://dcnsdv6c5ypqv" path="res://assets/audio/sounds/enemy_hurt.wav" id="7_qkywd"]
+[ext_resource type="AudioStream" uid="uid://bnnjvn4lfc5nq" path="res://assets/audio/sounds/menu_move.wav" id="8_krhpw"]
+[ext_resource type="AudioStream" uid="uid://b5lyss3d83q2i" path="res://assets/audio/sounds/menu_select.wav" id="9_taw4h"]
+[ext_resource type="AudioStream" uid="uid://dtni8pne3a48w" path="res://assets/audio/sounds/squeesh.wav" id="10_s2j37"]
+
+[node name="SoundPlayer" type="Node"]
+process_mode = 3
+script = ExtResource("1_rwmts")
+TYLER_YES = ExtResource("2_kha5w")
+PLAYER_HURT = ExtResource("3_c402g")
+DASH_ATTACK = ExtResource("4_kkcjr")
+USE_TELEPORTER = ExtResource("5_eyk25")
+HEAL = ExtResource("6_d5p5f")
+ENEMY_HURT = ExtResource("7_qkywd")
+MENU_MOVE = ExtResource("8_krhpw")
+MENU_SELECT = ExtResource("9_taw4h")
+ACTION_BAR_READY = ExtResource("2_kha5w")
+DEFAULT_TEXT = ExtResource("2_kha5w")
+SQUEESH = ExtResource("10_s2j37")
+TEST_NPC_TEXT = ExtResource("10_s2j37")
+
+[node name="AudioPlayers" type="Node" parent="."]

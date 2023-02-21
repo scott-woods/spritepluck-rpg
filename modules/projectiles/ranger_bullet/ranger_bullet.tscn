@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://d3qspx00kp3pw" path="res://entities/projectiles/projectile.tscn" id="1_qkx2o"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_bkidv"]
+size = Vector2(4, 10)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8xjo4"]
+radius = 1.0
+height = 8.0
+
+[node name="RangerBullet" instance=ExtResource("1_qkx2o")]
+collision_layer = 8
+speed = 400
+damage = 1
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource("PlaceholderTexture2D_bkidv")
+
+[node name="Collision" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_8xjo4")

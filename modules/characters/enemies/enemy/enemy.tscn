@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://modules/characters/enemies/enemy/enemy.gd" id="1_mrf3q"]
+[ext_resource type="PackedScene" uid="uid://bnp33y8paxu02" path="res://tools/hurtbox/hurtbox.tscn" id="2_35jwq"]
+[ext_resource type="PackedScene" uid="uid://bg8lgj7n5f7qx" path="res://tools/state_machine/state_machine.tscn" id="3_10v2a"]
+[ext_resource type="PackedScene" path="res://modules/characters/enemies/enemy/states/enemy_state.tscn" id="4_hgdyb"]
+[ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/enemy_combat.gd" id="5_nl6fl"]
+[ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/enemy_moving.gd" id="6_mwkmu"]
+[ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/enemy_executing_action.gd" id="7_qpg2m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcgck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqh6m"]
+bg_color = Color(0.133333, 0.74902, 0.156863, 1)
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_mrf3q")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_35jwq")]
+collision_layer = 2
+collision_mask = 16
+
+[node name="StateMachine" parent="." instance=ExtResource("3_10v2a")]
+initial_state = NodePath("EnemyCombat")
+
+[node name="EnemyCombat" parent="StateMachine" instance=ExtResource("4_hgdyb")]
+script = ExtResource("5_nl6fl")
+
+[node name="EnemyMoving" parent="StateMachine/EnemyCombat" instance=ExtResource("4_hgdyb")]
+script = ExtResource("6_mwkmu")
+
+[node name="NavigationTimer" type="Timer" parent="StateMachine/EnemyCombat/EnemyMoving"]
+wait_time = 0.1
+
+[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" instance=ExtResource("4_hgdyb")]
+script = ExtResource("7_qpg2m")
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_right = 4.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hcgck")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nqh6m")
+show_percentage = false
+
+[node name="NavigationAgent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+neighbor_distance = 100.0
+time_horizon = 2.0
+
+[connection signal="health_changed" from="." to="." method="_on_health_changed"]
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="StateMachine/EnemyCombat/EnemyMoving/NavigationTimer" to="StateMachine/EnemyCombat/EnemyMoving" method="_on_navigation_timer_timeout"]
+[connection signal="velocity_computed" from="NavigationAgent" to="StateMachine/EnemyCombat/EnemyMoving" method="_on_navigation_agent_velocity_computed"]
+
+[editable path="Hurtbox"]

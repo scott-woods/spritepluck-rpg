@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://modules/characters/player/player_stats.gd" id="1_whwtm"]
+
+[resource]
+script = ExtResource("1_whwtm")
+max_utility_drops = 3
+action_bar_time = 8
+max_actions = 3
+reflection_time = 0.1
+hp = 3
+max_hp = 3
+speed = 140
+invincible_time = 1.5

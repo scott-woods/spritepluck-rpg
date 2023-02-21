@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://chsgems0eo4yj"]
+
+[ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/actions/radial_shot.gd" id="1_gqrs0"]
+[ext_resource type="PackedScene" uid="uid://d2onwpcu5o2vx" path="res://modules/projectiles/test_enemy_bullet/test_enemy_bullet.tscn" id="2_jcenj"]
+
+[node name="RadialShot" type="Node"]
+script = ExtResource("1_gqrs0")
+TestEnemyBullet = ExtResource("2_jcenj")

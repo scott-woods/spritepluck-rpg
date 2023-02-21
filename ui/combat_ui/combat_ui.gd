@@ -5,7 +5,7 @@ extends Control
 signal action_selected(action)
 signal end_turn_selected
 
-const ActionButton = preload("res://ui/combat_ui/action_button.tscn")
+@export var ActionButton : PackedScene
 
 @onready var action_bar : ProgressBar = $ActionBar
 @onready var black_overlay : ColorRect = $BlackOverlay
@@ -33,7 +33,7 @@ func init(player):
 	player.current_utility_changed.connect(_on_player_current_utility_changed)
 	player.attack_timer_finished.connect(_on_player_attack_timer_finished)
 	player_health_label.text = "HP: " + str(player.stats.hp)
-	utility_label.text = "Utility: " + player.current_utility.label
+	utility_label.text = "Utility: " + player.current_utility.utility_label
 
 func _process(delta):
 	action_bar.value = player.action_timer.wait_time - player.action_timer.time_left
@@ -129,10 +129,6 @@ func _on_misc_button_pressed():
 	misc_options.get_children()[0].grab_focus()
 
 
-func _on_yes_button_pressed():
-	SoundPlayer.play_sound(SoundPlayer.TYLER_YES)
-
-
 #called when an action is selected
 func _on_action_button_selected(action):
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
@@ -177,5 +173,5 @@ func _on_end_turn_button_pressed():
 	emit_signal("end_turn_selected")
 	
 
-func _on_player_current_utility_changed(utility):
-	utility_label.text = "Utility: " + utility.label
+func _on_player_current_utility_changed(utility : UtilityResource):
+	utility_label.text = "Utility: " + utility.utility_label

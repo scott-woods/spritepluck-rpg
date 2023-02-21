@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerUtilities" load_steps=4 format=3 uid="uid://c7xrnjlktrfjd"]
+
+[ext_resource type="Resource" path="res://modules/utilities/teleporter/teleporter.tres" id="1_qxd1w"]
+[ext_resource type="Script" path="res://modules/characters/player/player_utilities.gd" id="1_xahgd"]
+[ext_resource type="Resource" path="res://modules/utilities/gravity_bomb/gravity_bomb.tres" id="2_0vug7"]
+
+[resource]
+script = ExtResource("1_xahgd")
+content = Array[Resource]([ExtResource("1_qxd1w"), ExtResource("2_0vug7")])

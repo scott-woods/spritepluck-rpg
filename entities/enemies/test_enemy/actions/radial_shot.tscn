@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cpd4qiv5nq0u8"]
-
-[ext_resource type="Script" path="res://entities/enemies/test_enemy/actions/radial_shot.gd" id="1_gqrs0"]
-
-[node name="RadialShot" type="Node"]
-script = ExtResource("1_gqrs0")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://modules/characters/character_stats.gd" id="1_5mbtu"]
+
+[resource]
+script = ExtResource("1_5mbtu")
+hp = 1
+max_hp = 1
+speed = 40
+invincible_time = 1.5

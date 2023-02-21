@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://modules/characters/player/player.tscn" id="1_4sufy"]
+[ext_resource type="Script" path="res://modules/rooms/camera_test_room/camera_test_room.gd" id="1_kqqqa"]
+[ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://tools/camera/camera.tscn" id="2_i54sy"]
+[ext_resource type="PackedScene" path="res://modules/characters/npcs/test_npc/test_npc.tscn" id="4_3bomh"]
+
+[node name="CameraTestRoom" type="Node2D"]
+script = ExtResource("1_kqqqa")
+
+[node name="Player" parent="." instance=ExtResource("1_4sufy")]
+
+[node name="CustomCamera" parent="." node_paths=PackedStringArray("target") instance=ExtResource("2_i54sy")]
+target = NodePath("../Player")
+
+[node name="TestNPC" parent="." instance=ExtResource("4_3bomh")]
+position = Vector2(154, 57)
+
+[node name="TestNPC2" parent="." instance=ExtResource("4_3bomh")]
+position = Vector2(329, 184)
+
+[node name="TestNPC3" parent="." instance=ExtResource("4_3bomh")]
+position = Vector2(100, 148)
+
+[node name="TestNPC4" parent="." instance=ExtResource("4_3bomh")]
+position = Vector2(257, 84)

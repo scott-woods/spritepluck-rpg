@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" uid="uid://8vetc0tjkgcf" path="res://modules/utilities/utility/utility.tscn" id="1_1ipe4"]
+[ext_resource type="Script" path="res://modules/utilities/gravity_bomb/gravity_bomb.gd" id="1_5dw88"]
+[ext_resource type="Texture2D" uid="uid://bcqvarcc836ii" path="res://modules/characters/npcs/test_npc/portraits/test_npc_big.png" id="2_2x424"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qaqcj"]
+size = Vector2(8, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_akgxl"]
+radius = 75.0
+
+[node name="GravityBomb" instance=ExtResource("1_1ipe4")]
+script = ExtResource("1_5dw88")
+
+[node name="Sprite" parent="." index="0"]
+texture = SubResource("PlaceholderTexture2D_qaqcj")
+
+[node name="Radius" type="Sprite2D" parent="." index="1"]
+modulate = Color(1, 1, 1, 0.219608)
+position = Vector2(1.5, 5.49999)
+scale = Vector2(2.42188, 2.45312)
+texture = ExtResource("2_2x424")
+
+[node name="EffectArea" type="Area2D" parent="." index="2"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea" index="0"]
+shape = SubResource("CircleShape2D_akgxl")

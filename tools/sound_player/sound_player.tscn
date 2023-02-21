@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dufgy3qm00nt4"]
-
-[ext_resource type="Script" path="res://tools/sound_player/sound_player.gd" id="1_rwmts"]
-
-[node name="SoundPlayer" type="Node"]
-process_mode = 3
-script = ExtResource("1_rwmts")
-
-[node name="AudioPlayers" type="Node" parent="."]

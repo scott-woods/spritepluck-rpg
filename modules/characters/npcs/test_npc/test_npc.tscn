@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcvev14r5vc33"]
+
+[ext_resource type="Script" path="res://modules/characters/npcs/test_npc/test_npc.gd" id="1_w7nb4"]
+[ext_resource type="Resource" uid="uid://d0d324dbdnq7r" path="res://modules/characters/npcs/test_npc/dialogue/bad.dialogue" id="2_nioa8"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u8low"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ec2"]
+size = Vector2(16, 8)
+
+[node name="TestNPC" type="StaticBody2D"]
+y_sort_enabled = true
+collision_layer = 96
+script = ExtResource("1_w7nb4")
+Bad = ExtResource("2_nioa8")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture = SubResource("PlaceholderTexture2D_u8low")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_h0ec2")

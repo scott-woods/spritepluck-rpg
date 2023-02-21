@@ -4,7 +4,7 @@ extends Line2D
 
 signal line_selected(points)
 
-const SimulationPlayer = preload("res://entities/simulation_player/simulation_player.tscn")
+@export var SimulationPlayer : PackedScene
 
 var radius : int
 var direction : Vector2

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://gsqllo0f7em7"]
+
+[ext_resource type="Script" path="res://modules/characters/enemies/ranger/actions/snipe.gd" id="1_bty4x"]
+
+[node name="Snipe" type="Node"]
+script = ExtResource("1_bty4x")
+
+[node name="DelayTimer" type="Timer" parent="."]
+wait_time = 1.5

@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0h1u54a6bia5"]
+
+[ext_resource type="Script" path="res://globals/fonts/fonts.gd" id="1_f0d6v"]
+[ext_resource type="FontFile" uid="uid://u4s87p5tqlol" path="res://assets/fonts/dynastium.ttf" id="2_1toj6"]
+[ext_resource type="FontFile" uid="uid://e2jpxberyov4" path="res://assets/fonts/dtm_mono.otf" id="3_q8qbr"]
+
+[node name="Fonts" type="Node"]
+script = ExtResource("1_f0d6v")
+DYNASTIUM = ExtResource("2_1toj6")
+DTM_MONO = ExtResource("3_q8qbr")

@@ -1,0 +1,14 @@
+[remap]
+
+importer="dialogue_manager_compiler_5"
+type="Resource"
+uid="uid://d0d324dbdnq7r"
+path="res://.godot/imported/bad.dialogue-6f43ae75dd7a43e45e37fec085bdb131.tres"
+
+[deps]
+
+source_file="res://modules/characters/npcs/test_npc/dialogue/bad.dialogue"
+dest_files=["res://.godot/imported/bad.dialogue-6f43ae75dd7a43e45e37fec085bdb131.tres"]
+
+[params]
+
