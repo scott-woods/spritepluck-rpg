@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3]
 
 [ext_resource type="Script" path="res://modules/rooms/test_room/test_room.gd" id="1_tmp6x"]
-[ext_resource type="PackedScene" path="res://modules/characters/player/player.tscn" id="1_udd45"]
-[ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://tools/combat_manager/combat_manager.tscn" id="2_3leop"]
+[ext_resource type="PackedScene" uid="uid://dd85h4jkw7fwg" path="res://modules/characters/player/player.tscn" id="1_udd45"]
+[ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://modules/combat_manager/combat_manager.tscn" id="2_3leop"]
 [ext_resource type="Texture2D" uid="uid://bxe414k4xd1ly" path="res://modules/rooms/test_room/Stardew-Spring-Outdoors.png" id="2_h268r"]
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_xt5uq"]
 [ext_resource type="PackedScene" uid="uid://cxtoxbmu4x383" path="res://ui/combat_ui/combat_ui.tscn" id="4_v28ds"]
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="6_eyg6j"]
-[ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://tools/camera/camera.tscn" id="6_pkyow"]
-[ext_resource type="PackedScene" path="res://modules/characters/enemies/ranger/ranger.tscn" id="7_fc3gg"]
+[ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://modules/camera/camera.tscn" id="6_pkyow"]
+[ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="7_fc3gg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vo48r"]
 texture = ExtResource("2_h268r")

@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="UtilityResource" load_steps=3 format=3]
-
-[ext_resource type="Script" path="res://modules/utilities/utility/utility_resource.gd" id="1_ddohv"]
-[ext_resource type="PackedScene" uid="uid://ct5kwmoa3mkon" path="res://modules/utilities/teleporter/teleporter.tscn" id="2_x4jey"]
-
-[resource]
-script = ExtResource("1_ddohv")
-utility_scene = ExtResource("2_x4jey")
-utility_label = "Teleporter"

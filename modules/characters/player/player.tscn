@@ -1,9 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://dd85h4jkw7fwg"]
+[gd_scene load_steps=18 format=3 uid="uid://7v7tbapy5kyg"]
 
 [ext_resource type="Script" path="res://modules/characters/player/player.gd" id="1_83bp2"]
 [ext_resource type="Resource" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
-[ext_resource type="Resource" uid="uid://c7xrnjlktrfjd" path="res://modules/characters/player/player_utilities.tres" id="3_6rti1"]
-[ext_resource type="PackedScene" uid="uid://bg8lgj7n5f7qx" path="res://tools/state_machine/state_machine.tscn" id="4_twu7o"]
+[ext_resource type="Resource" uid="uid://d28eu0e8hlhr7" path="res://modules/characters/player/player_utilities.tres" id="3_6rti1"]
+[ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="4_twu7o"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_idle.gd" id="5_slfjc"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_move.gd" id="6_sdv7x"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_combat.gd" id="7_p3p7f"]
@@ -12,8 +12,8 @@
 [ext_resource type="PackedScene" path="res://modules/characters/player/actions/combat_action.tscn" id="10_3bgmd"]
 [ext_resource type="Script" path="res://modules/characters/player/actions/use_utility.gd" id="11_y4j04"]
 [ext_resource type="Script" path="res://modules/characters/player/actions/heal_action.gd" id="12_5hnox"]
-[ext_resource type="PackedScene" uid="uid://dm5fxkj6sy5g8" path="res://modules/characters/player/actions/dash_attack.tscn" id="13_k87f8"]
-[ext_resource type="PackedScene" uid="uid://bnp33y8paxu02" path="res://tools/hurtbox/hurtbox.tscn" id="15_dkfnl"]
+[ext_resource type="PackedScene" uid="uid://7nfyom0wjf4b" path="res://modules/characters/player/actions/dash_attack.tscn" id="13_k87f8"]
+[ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="15_dkfnl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxlei"]
 size = Vector2(16, 32)

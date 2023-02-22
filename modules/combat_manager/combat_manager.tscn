@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3pf3f67v6iia"]
+
+[ext_resource type="Script" path="res://modules/combat_manager/combat_manager.gd" id="1_chu0d"]
+[ext_resource type="PackedScene" uid="uid://fd3onkmiknmt" path="res://modules/simulation_player/simulation_player.tscn" id="2_rw036"]
+
+[node name="CombatManager" type="Node"]
+script = ExtResource("1_chu0d")
+SimulationPlayer = ExtResource("2_rw036")

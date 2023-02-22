@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1liw1h5o0fhp"]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://modules/rooms/enemy_test_room/enemy_test_room.gd" id="1_lfga5"]
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="2_2g7p4"]
 [ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="2_54v63"]
-[ext_resource type="PackedScene" uid="uid://dd85h4jkw7fwg" path="res://modules/characters/player/player.tscn" id="2_en0xd"]
-[ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://tools/combat_manager/combat_manager.tscn" id="2_ybtq6"]
+[ext_resource type="PackedScene" path="res://modules/characters/player/player.tscn" id="2_en0xd"]
+[ext_resource type="PackedScene" uid="uid://c4i2hpxrkwnbi" path="res://modules/combat_manager/combat_manager.tscn" id="2_ybtq6"]
 [ext_resource type="PackedScene" uid="uid://cxtoxbmu4x383" path="res://ui/combat_ui/combat_ui.tscn" id="3_8ogx0"]
-[ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://tools/camera/camera.tscn" id="4_rw27w"]
+[ext_resource type="PackedScene" uid="uid://gyk36ss15x8f" path="res://modules/camera/camera.tscn" id="4_rw27w"]
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="5_38ens"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_a2wky"]

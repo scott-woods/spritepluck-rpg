@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/rooms/npc_test_room/npc_test_room.gd" id="1_7pqdj"]
 [ext_resource type="PackedScene" uid="uid://bcvev14r5vc33" path="res://modules/characters/npcs/test_npc/test_npc.tscn" id="2_fqp81"]
-[ext_resource type="PackedScene" uid="uid://dd85h4jkw7fwg" path="res://modules/characters/player/player.tscn" id="2_g1sri"]
+[ext_resource type="PackedScene" path="res://modules/characters/player/player.tscn" id="2_g1sri"]
 [ext_resource type="PackedScene" uid="uid://0b5aysjv44rw" path="res://ui/default_ui/default_ui.tscn" id="2_rjdsb"]
 
 [node name="NPCTestRoom" type="Node2D"]

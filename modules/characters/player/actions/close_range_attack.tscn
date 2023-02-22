@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://entities/player/actions/combat_action.tscn" id="1_m1yej"]
 [ext_resource type="Script" path="res://modules/characters/player/actions/close_range_attack.gd" id="2_pqhe8"]
-[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://tools/hitbox/hitbox.tscn" id="3_ri20f"]
+[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://modules/hitbox/hitbox.tscn" id="3_ri20f"]
 
 [sub_resource type="Curve2D" id="Curve2D_63ks6"]
 _data = {

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="PackedScene" uid="uid://8vetc0tjkgcf" path="res://modules/utilities/utility/utility.tscn" id="1_1ipe4"]
-[ext_resource type="Script" path="res://modules/utilities/gravity_bomb/gravity_bomb.gd" id="1_5dw88"]
+[ext_resource type="PackedScene" path="res://modules/characters/player/utilities/utility/utility.tscn" id="1_1ipe4"]
+[ext_resource type="Script" path="res://modules/characters/player/utilities/gravity_bomb/gravity_bomb.gd" id="1_5dw88"]
 [ext_resource type="Texture2D" uid="uid://bcqvarcc836ii" path="res://modules/characters/npcs/test_npc/portraits/test_npc_big.png" id="2_2x424"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qaqcj"]

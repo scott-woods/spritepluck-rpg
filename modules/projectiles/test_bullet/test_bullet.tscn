@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://modules/projectiles/test_bullet/test_bullet.gd" id="1_bjyke"]
-[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://tools/hitbox/hitbox.tscn" id="2_8sgmm"]
+[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://modules/hitbox/hitbox.tscn" id="2_8sgmm"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_myi0n"]
 size = Vector2(8, 8)

@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnwgnq2twdr7"]
+[gd_scene load_steps=3 format=3]
 
-[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://tools/hitbox/hitbox.tscn" id="1_d4wgr"]
+[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://modules/hitbox/hitbox.tscn" id="1_d4wgr"]
 [ext_resource type="Script" path="res://modules/projectiles/projectile/projectile.gd" id="2_e0cba"]
 
 [node name="Projectile" instance=ExtResource("1_d4wgr")]

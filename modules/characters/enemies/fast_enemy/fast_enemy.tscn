@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3]
+[gd_scene load_steps=15 format=3 uid="uid://dafj2ld6w3ikc"]
 
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_combat.gd" id="6_667by"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_executing_action.gd" id="6_kaxvg"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.gd" id="7_oouk3"]
-[ext_resource type="PackedScene" uid="uid://dqxgohkyv1380" path="res://tools/hitbox/hitbox.tscn" id="7_sm3pt"]
+[ext_resource type="PackedScene" uid="uid://cnwyh247c35yk" path="res://modules/hitbox/hitbox.tscn" id="7_sm3pt"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_np8rf"]
 size = Vector2(10, 22)
