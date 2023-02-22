@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://gsqllo0f7em7"]
+[gd_scene load_steps=3 format=3 uid="uid://gsqllo0f7em7"]
 
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/actions/snipe.gd" id="1_bty4x"]
+[ext_resource type="PackedScene" uid="uid://ywprxfxo0gha" path="res://modules/projectiles/ranger_bullet/ranger_bullet.tscn" id="2_bqyps"]
 
 [node name="Snipe" type="Node"]
 script = ExtResource("1_bty4x")
+RangerBullet = ExtResource("2_bqyps")
 
 [node name="DelayTimer" type="Timer" parent="."]
 wait_time = 1.5

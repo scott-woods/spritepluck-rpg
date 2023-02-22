@@ -12,8 +12,7 @@ const FILTER_SPEED := .25
 @onready var audio_stream_player : AudioStreamPlayer = $AudioStreamPlayer
 
 func play_music(music):
-	var stream = load(music)
-	audio_stream_player.stream = stream
+	audio_stream_player.stream = music
 	audio_stream_player.play()
 
 func apply_filter():

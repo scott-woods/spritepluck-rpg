@@ -6,3 +6,5 @@
 [node name="Main" type="Node"]
 script = ExtResource("1_3mhnu")
 FirstRoom = ExtResource("2_a80a6")
+
+[node name="World" type="Node2D" parent="."]
