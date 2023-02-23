@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://7v7tbapy5kyg"]
+[gd_scene load_steps=19 format=3 uid="uid://7v7tbapy5kyg"]
 
 [ext_resource type="Script" path="res://modules/characters/player/player.gd" id="1_83bp2"]
-[ext_resource type="Resource" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
+[ext_resource type="Resource" uid="uid://cq7ye0ptoqdqn" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
 [ext_resource type="Resource" uid="uid://d28eu0e8hlhr7" path="res://modules/characters/player/player_utilities.tres" id="3_6rti1"]
 [ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="4_twu7o"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_idle.gd" id="5_slfjc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://modules/characters/player/states/player_executing_actions.gd" id="9_hhoor"]
 [ext_resource type="PackedScene" path="res://modules/characters/player/actions/combat_action.tscn" id="10_3bgmd"]
 [ext_resource type="Script" path="res://modules/characters/player/actions/use_utility.gd" id="11_y4j04"]
+[ext_resource type="PackedScene" uid="uid://jk0yenufpt3y" path="res://modules/targeting/utility_selector/utility_selector.tscn" id="12_3j75s"]
 [ext_resource type="Script" path="res://modules/characters/player/actions/heal_action.gd" id="12_5hnox"]
 [ext_resource type="PackedScene" uid="uid://7nfyom0wjf4b" path="res://modules/characters/player/actions/dash_attack.tscn" id="13_k87f8"]
 [ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="15_dkfnl"]
@@ -62,7 +63,7 @@ script = ExtResource("9_hhoor")
 
 [node name="UseUtility" parent="Actions" instance=ExtResource("10_3bgmd")]
 script = ExtResource("11_y4j04")
-UtilitySelector = null
+UtilitySelector = ExtResource("12_3j75s")
 
 [node name="HealAction" parent="Actions" instance=ExtResource("10_3bgmd")]
 script = ExtResource("12_5hnox")

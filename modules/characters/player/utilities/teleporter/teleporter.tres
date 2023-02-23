@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UtilityResource" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="UtilityResource" load_steps=3 format=3 uid="uid://cj0840684jupc"]
 
 [ext_resource type="Script" path="res://modules/characters/player/utilities/utility/utility_resource.gd" id="1_ddohv"]
 [ext_resource type="PackedScene" path="res://modules/characters/player/utilities/teleporter/teleporter.tscn" id="2_x4jey"]
