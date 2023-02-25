@@ -9,6 +9,9 @@ signal start_turn_button_pressed
 signal current_utility_changed(utility)
 signal finished_executing_actions
 
+const ACTION_DELAY = .25
+const TIME_BETWEEN_ACTIONS = .25
+
 @onready var collision : CollisionShape2D = $Collision
 @onready var sprite : Sprite2D = $Sprite
 @onready var hurtbox : Area2D = $Hurtbox
@@ -19,9 +22,7 @@ signal finished_executing_actions
 @export var stats : PlayerStats
 @export var utilities : Array[Resource]
 @export var attacks : Array[Resource]
-
-const action_delay = .25
-const time_between_actions = .5
+@export var specials : Array[Resource]
 
 var direction := Vector2(1, 0)
 var last_direction := Vector2(1, 0)
@@ -29,16 +30,6 @@ var queued_actions : Array
 var is_invincible := false
 var current_utility : UtilityResource
 var dropped_utilities : Array
-
-var map_utilities #reference to utilities node in map
-var combat_ui : CombatUI
-var camera : Camera
-
-#called when instantiated, before _ready
-func init(utilities, combat_ui, camera):
-	self.map_utilities = utilities
-	self.combat_ui = combat_ui
-	self.camera = camera
 
 func _ready():
 	if utilities.size() > 0:
@@ -54,6 +45,9 @@ func start_dodge_phase():
 	emit_signal("action_timer_started", action_timer)
 	
 func exit_combat_state():
+	for utility in dropped_utilities:
+		utility.queue_free()
+		dropped_utilities.erase(utility)
 	action_timer.stop()
 	state_machine.change_state("PlayerMove")
 
@@ -78,10 +72,10 @@ func queue_action(action : CombatAction):
 
 func execute_actions():
 	state_machine.change_state("PlayerExecutingActions")
-	await get_tree().create_timer(action_delay).timeout
+	await get_tree().create_timer(ACTION_DELAY).timeout
 	for action in queued_actions:
 		await action.execute()
-		await get_tree().create_timer(time_between_actions).timeout
+		await get_tree().create_timer(TIME_BETWEEN_ACTIONS).timeout
 		action.queue_free()
 	queued_actions.clear()
 	dropped_utilities.clear()

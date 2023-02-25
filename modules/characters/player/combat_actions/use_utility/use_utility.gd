@@ -5,10 +5,6 @@ extends CombatAction
 
 var selected_utility
 
-func _ready():
-	label = "Use Utility"
-	type = "MISC"
-
 func check_availability():
 	#if no utilities are on map, disable
 	if player.map_utilities.get_children().size() == 0:

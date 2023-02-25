@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://407wdynbq2ld"]
+[gd_scene load_steps=18 format=3 uid="uid://407wdynbq2ld"]
 
 [ext_resource type="Script" path="res://modules/characters/player/player.gd" id="1_83bp2"]
 [ext_resource type="Resource" uid="uid://c76urhxjx2tl0" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://b3ddjqocdiism" path="res://modules/characters/player/combat_actions/player_attacks/close_range_attack/close_range_attack.tres" id="5_mdelj"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_idle.gd" id="5_slfjc"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_move.gd" id="6_sdv7x"]
+[ext_resource type="Resource" uid="uid://c17rng62esjjb" path="res://modules/characters/player/combat_actions/special_actions/heal/heal.tres" id="7_6nyvf"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_combat.gd" id="7_p3p7f"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_reflecting.gd" id="8_rkp5y"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_executing_actions.gd" id="9_hhoor"]
@@ -31,6 +32,7 @@ script = ExtResource("1_83bp2")
 stats = ExtResource("2_be3m8")
 utilities = Array[Resource]([ExtResource("3_yr2sr"), ExtResource("4_bc37g")])
 attacks = Array[Resource]([ExtResource("4_nu0ib"), ExtResource("5_mdelj")])
+specials = Array[Resource]([ExtResource("7_6nyvf")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true

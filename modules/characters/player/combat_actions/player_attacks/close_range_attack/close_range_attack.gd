@@ -15,10 +15,6 @@ var simulation_player
 var direction = Vector2.RIGHT
 var origin : Vector2
 
-func _ready():
-	label = "Close Range Attack"
-	type = "ATTACK"
-
 func _unhandled_input(event):
 	super(event)
 	if in_setup:

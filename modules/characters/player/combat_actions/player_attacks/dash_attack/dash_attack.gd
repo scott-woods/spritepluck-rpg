@@ -9,10 +9,6 @@ extends PlayerAttack
 @export var radius : int
 var points
 
-func _ready():
-	label = "Dash Attack"
-	type = "ATTACK"
-
 func setup(simulation_player):
 	in_setup = true
 	var line_selector = LineSelector.instantiate()

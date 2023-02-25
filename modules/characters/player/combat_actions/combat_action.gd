@@ -5,8 +5,6 @@ extends Node2D
 signal setup_finished(can_continue)
 
 var player : Player
-var label
-var type
 var camera : Camera
 var enabled
 var in_setup = false
@@ -25,9 +23,9 @@ func check_availability():
 	enabled = true
 
 func setup(simulation_player):
-	print("%s missing overwrite of the setup method" % label)
+	print("%s missing overwrite of the setup method")
 	return false
 
 func execute():
-	print("%s missing overwrite of the execute method" % label)
+	print("%s missing overwrite of the execute method")
 	return false

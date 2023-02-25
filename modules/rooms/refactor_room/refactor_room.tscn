@@ -1,15 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5ctwn10q0m34"]
+[gd_scene load_steps=12 format=3 uid="uid://qs68eec7vhuw"]
 
 [ext_resource type="Script" path="res://modules/rooms/refactor_room/refactor_room.gd" id="1_806ux"]
 [ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_ogmso"]
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_euhik"]
-[ext_resource type="AudioStream" uid="uid://cfbaq4aibcyt3" path="res://assets/audio/music/spicy.ogg" id="3_qsitr"]
 [ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="3_yikt6"]
-[ext_resource type="PackedScene" uid="uid://u0n42vi1h5a8" path="res://modules/combat_manager_2/combat_manager_2.tscn" id="3_ymbpe"]
 [ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="4_a0nhw"]
 [ext_resource type="PackedScene" uid="uid://l31ck38gimwi" path="res://modules/camera/camera.tscn" id="5_faoai"]
 [ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="5_l7oe4"]
-[ext_resource type="PackedScene" uid="uid://eu2k6p3oiigr" path="res://ui/combat_ui_2/combat_ui_2.tscn" id="7_5gm8y"]
+[ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="7_5gm8y"]
+[ext_resource type="PackedScene" uid="uid://d07t8fkd5nupg" path="res://modules/combat_manager/combat_manager.tscn" id="7_tvkg2"]
+[ext_resource type="PackedScene" uid="uid://eae3uik2yex2" path="res://ui/default_ui/default_ui.tscn" id="10_mk6l0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_o5wjr"]
 vertices = PackedVector2Array(0, 0, 400, 0, 400, 272, 0, 272)
@@ -22,9 +22,8 @@ Player = ExtResource("2_ogmso")
 TestEnemy = ExtResource("3_euhik")
 FastEnemy = ExtResource("4_a0nhw")
 Ranger = ExtResource("5_l7oe4")
-combat_music = ExtResource("3_qsitr")
 
-[node name="CombatManager2" parent="." instance=ExtResource("3_ymbpe")]
+[node name="CombatManager" parent="." instance=ExtResource("7_tvkg2")]
 
 [node name="Map" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -49,8 +48,6 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(1114112, 131072, 3, 1114113, 131072, 3, 1114114, 131072, 3, 1114115, 131072, 3, 1114116, 131072, 3, 1114117, 131072, 3, 1114118, 131072, 3, 1114119, 131072, 3, 1114120, 131072, 3, 1114121, 131072, 3, 1114122, 131072, 3, 1114123, 131072, 3, 1114124, 131072, 3, 1114125, 131072, 3, 1114126, 131072, 3, 1114127, 131072, 3, 1114128, 131072, 3, 1114129, 131072, 3, 1114130, 131072, 3, 1114131, 131072, 3, 1114132, 131072, 3, 1114133, 131072, 3, 1114134, 131072, 3, 1114135, 131072, 3, 1114136, 131072, 3)
 
-[node name="Enemies" type="Node" parent="Map"]
-
 [node name="PlayerSpawnMarker" type="Marker2D" parent="."]
 position = Vector2(192, 160)
 
@@ -62,8 +59,10 @@ position = Vector2(392, 257)
 
 [node name="Camera" parent="." instance=ExtResource("5_faoai")]
 
-[node name="CombatUI2" parent="." instance=ExtResource("7_5gm8y")]
+[node name="CombatUI" parent="." instance=ExtResource("7_5gm8y")]
 visible = false
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_o5wjr")
+
+[node name="DefaultUI" parent="." instance=ExtResource("10_mk6l0")]
