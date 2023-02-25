@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://54j1g24pysqh"]
+
+[ext_resource type="Script" path="res://modules/characters/character_stats.gd" id="1_xxu53"]
+
+[resource]
+script = ExtResource("1_xxu53")
+hp = 1
+max_hp = 1
+speed = 80
+invincible_time = 0.0

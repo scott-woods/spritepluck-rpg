@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctmcmvjyoy6xv"]
-
-[ext_resource type="Script" path="res://ui/combat_ui/action_button.gd" id="1_k7us7"]
-
-[node name="ActionButton" type="Button"]
-script = ExtResource("1_k7us7")

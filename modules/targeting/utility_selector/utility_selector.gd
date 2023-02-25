@@ -18,7 +18,7 @@ func init(utils : Array, player : Player, camera : Camera):
 	selected_utility = utilities[0]
 	emit_signal("utility_focused", selected_utility)
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_pressed("ui_right"):
 		selected_utility.unfocus()
 		var index = utilities.find(selected_utility)

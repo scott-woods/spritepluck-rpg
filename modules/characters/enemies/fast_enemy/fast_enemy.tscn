@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
-[ext_resource type="Resource" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
+[ext_resource type="Resource" uid="uid://bctvxnahehvnr" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_moving.gd" id="5_eut38"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_combat.gd" id="6_667by"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_executing_action.gd" id="6_kaxvg"]

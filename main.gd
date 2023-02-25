@@ -1,15 +1,15 @@
 extends Node
 
 
-@export var FirstRoom : PackedScene
+@export var default_room : PackedScene
 
 @onready var world : Node2D = $World
+
+var room : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	world.queue_free()
-	var room = FirstRoom.instantiate()
-	room.name = "World"
-	world = room
-	add_child(world)
+	
+	room = default_room.instantiate()
+	world.add_child(room)

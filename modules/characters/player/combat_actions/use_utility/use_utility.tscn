@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy3t01lvf4eu6"]
+
+[ext_resource type="PackedScene" uid="uid://yn6ep5f83icu" path="res://modules/characters/player/combat_actions/combat_action.tscn" id="1_hn88d"]
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/use_utility/use_utility.gd" id="2_6jnhp"]
+[ext_resource type="PackedScene" uid="uid://jk0yenufpt3y" path="res://modules/targeting/utility_selector/utility_selector.tscn" id="3_1labh"]
+
+[node name="UseUtility" instance=ExtResource("1_hn88d")]
+script = ExtResource("2_6jnhp")
+UtilitySelector = ExtResource("3_1labh")

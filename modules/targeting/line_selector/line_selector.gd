@@ -12,19 +12,20 @@ var end_point : Vector2
 var speed = 200
 var simulation_player
 var center
+var global_origin : Vector2
 
-func init(initial_direction, center, simulation_player, radius : int):
+func init(initial_direction, simulation_player, radius : int):
 	self.direction = initial_direction
-	self.center = center
 	self.simulation_player = simulation_player
+	global_origin = simulation_player.position
 	self.radius = radius
 	return self
 	
 func _ready():
-	add_point(center)
+	add_point(Vector2.ZERO)
 	var end_point = direction * radius
-	add_point(center + end_point)
-	simulation_player.global_position = center + end_point
+	add_point(end_point)
+	simulation_player.position = global_origin + end_point
 
 func _input(event):
 	if event.is_action_pressed("accept"):
@@ -38,5 +39,5 @@ func _process(delta):
 		var new_point = Vector2(radius * cos(angle), radius * sin(angle))
 		direction = new_point.normalized()
 		remove_point(1)
-		add_point(center + new_point)
-		simulation_player.global_position = center + new_point
+		add_point(new_point)
+		simulation_player.position = global_origin + new_point

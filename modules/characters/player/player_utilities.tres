@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="PlayerUtilities" load_steps=4 format=3 uid="uid://d28eu0e8hlhr7"]
-
-[ext_resource type="Resource" uid="uid://cj0840684jupc" path="res://modules/characters/player/utilities/teleporter/teleporter.tres" id="1_qxd1w"]
-[ext_resource type="Script" path="res://modules/characters/player/player_utilities.gd" id="1_xahgd"]
-[ext_resource type="Resource" uid="uid://bfiljbs187xf" path="res://modules/characters/player/utilities/gravity_bomb/gravity_bomb.tres" id="2_0vug7"]
-
-[resource]
-script = ExtResource("1_xahgd")
-content = Array[Resource]([ExtResource("1_qxd1w"), ExtResource("2_0vug7")])
