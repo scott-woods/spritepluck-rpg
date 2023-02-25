@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="2_54v63"]
 [ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_en0xd"]
 [ext_resource type="PackedScene" uid="uid://d07t8fkd5nupg" path="res://modules/combat_manager/combat_manager.tscn" id="2_ybtq6"]
-[ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="3_1u36p"]
+[ext_resource type="PackedScene" uid="uid://c8u56vxjpye0m" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_psgre"]
 [ext_resource type="PackedScene" uid="uid://l31ck38gimwi" path="res://modules/camera/camera.tscn" id="4_rw27w"]
 [ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="8_40qyt"]
 
@@ -16,7 +16,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 416, 0, 416, 272,
 [node name="EnemyTestRoom" type="Node2D"]
 script = ExtResource("1_lfga5")
 Player = ExtResource("2_en0xd")
-enemy_scene = ExtResource("3_1u36p")
+enemy_scene = ExtResource("3_psgre")
 
 [node name="Map" type="TileMap" parent="."]
 y_sort_enabled = true

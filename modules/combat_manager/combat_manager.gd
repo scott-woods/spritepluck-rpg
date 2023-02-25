@@ -2,8 +2,9 @@ class_name CombatManager
 extends Node
 
 
-signal action_queued
+signal action_queued(player : Player)
 signal combat_ended
+signal turn_phase_started(player : Player)
 signal turn_phase_ended
 signal action_setup_canceled
 
@@ -31,16 +32,12 @@ func setup(player : Player, combat_ui : CombatUI, camera : Camera, map : TileMap
 	combat_ui.action_selected.connect(_on_combat_ui_action_selected)
 	combat_ui.use_utility_selected.connect(_on_combat_ui_use_utility_selected)
 	combat_ui.end_turn_button_pressed.connect(_on_combat_ui_end_turn_button_pressed)
-#	combat_ui.attack_selected.connect(_on_combat_ui_attack_selected)
-#	combat_ui.use_utility_selected.connect(_on_combat_ui_use_utility_selected)
-#	combat_ui.item_selected.connect(_on_combat_ui_item_selected)
-#	combat_ui.special_selected.connect(_on_combat_ui_special_selected)
-#	combat_ui.end_turn_button_pressed.connect(_on_combat_ui_end_turn_button_pressed)
 	
 	self.camera = camera
 	
 	self.map = map
 
+#called once at the beginning of combat
 func start_combat(combat_music : AudioStream = null):
 	if combat_music == null:
 		combat_music = default_combat_music
@@ -53,17 +50,19 @@ func start_combat(combat_music : AudioStream = null):
 		enemy.died.connect(_on_enemy_died)
 		enemy.enter_combat_state()
 	start_dodge_phase()
-	
+
+#called to start dodge phase
 func start_dodge_phase():
 	player.start_dodge_phase()
 
+#called once to end combat
 func end_combat():
 	in_combat = false
 	player.exit_combat_state()
-	combat_ui.end_combat()
 	MusicPlayer.stop_music()
 	emit_signal("combat_ended")
-	
+
+#setup a combat action after selection from ui
 func setup_action(action : CombatAction):
 	action.init(player, camera)
 	action.position = simulation_player.position
@@ -77,7 +76,7 @@ func setup_action(action : CombatAction):
 				end_turn_phase()
 			else:
 				camera.set_target(simulation_player)
-				emit_signal("action_queued")
+				emit_signal("action_queued", player)
 		else:
 			camera.set_target(simulation_player)
 			simulation_player.position = current_position
@@ -85,8 +84,17 @@ func setup_action(action : CombatAction):
 			emit_signal("action_setup_canceled")
 	)
 	action.setup(simulation_player)
-	
 
+#called when playeris ready to start queuing actions
+func start_turn_phase():
+	get_tree().paused = true
+	MusicPlayer.apply_filter()
+	simulation_player = SimulationPlayer.instantiate()
+	simulation_player.position = player.position
+	map.add_child(simulation_player)
+	emit_signal("turn_phase_started", player)
+
+#called when player is done queuing actions
 func end_turn_phase():
 	simulation_player.queue_free()
 	get_tree().paused = false
@@ -97,11 +105,7 @@ func end_turn_phase():
 
 
 func _on_player_start_turn_button_pressed():
-	get_tree().paused = true
-	MusicPlayer.apply_filter()
-	simulation_player = SimulationPlayer.instantiate()
-	simulation_player.position = player.position
-	map.add_child(simulation_player)
+	start_turn_phase()
 	
 func _on_player_finished_executing_actions():
 	get_tree().call_group("utilities", "queue_free")

@@ -5,7 +5,7 @@
 
 [node name="Projectile" instance=ExtResource("1_d4wgr")]
 script = ExtResource("2_e0cba")
-speed = null
+speed = 0
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 

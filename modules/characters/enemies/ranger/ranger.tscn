@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://d18di0xuv174k"]
 
-[ext_resource type="PackedScene" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_aummh"]
+[ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_aummh"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/ranger.gd" id="2_o8ha1"]
-[ext_resource type="Resource" path="res://modules/characters/enemies/ranger/ranger.tres" id="3_rgyy8"]
+[ext_resource type="Resource" uid="uid://ckm2in5p2yn1b" path="res://modules/characters/enemies/ranger/ranger.tres" id="3_rgyy8"]
 [ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/ranger_moving.gd" id="5_pn4me"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/states/ranger_combat.gd" id="6_d0k1f"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/states/ranger_executing_action.gd" id="7_7s232"]

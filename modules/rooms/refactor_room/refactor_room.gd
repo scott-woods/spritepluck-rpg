@@ -78,6 +78,7 @@ func start_combat():
 func end_combat():
 	combat_ui.hide()
 	default_ui.show()
+	enemies.clear()
 
 
 func _on_enemy_player_spotted():

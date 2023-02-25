@@ -22,9 +22,13 @@ func reflect():
 	if get_collision_layer_value(4):
 		set_collision_layer_value(4, false)
 		set_collision_layer_value(5, true)
+		set_collision_mask_value(1, false)
+		set_collision_mask_value(2, true)
 	elif get_collision_layer_value(5):
 		set_collision_layer_value(5, false)
 		set_collision_layer_value(4, true)
+		set_collision_mask_value(1, true)
+		set_collision_mask_value(2, false)
 	direction *= -1
 	rotate(deg_to_rad(180))
 	velocity = direction * speed

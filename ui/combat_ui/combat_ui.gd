@@ -31,6 +31,14 @@ func _input(event):
 		if action_menu.visible:
 			if attacks_container.visible == true:
 				attacks_container.hide()
+				for action_button in actions_container.get_children():
+					action_button.set_focus_mode(Control.FOCUS_ALL)
+				var button = button_press_sequence.pop_back()
+				button.grab_focus()
+			if specials_container.visible == true:
+				specials_container.hide()
+				for action_button in actions_container.get_children():
+					action_button.set_focus_mode(Control.FOCUS_ALL)
 				var button = button_press_sequence.pop_back()
 				button.grab_focus()
 
@@ -42,7 +50,6 @@ func setup(player : Player, combat_manager : CombatManager):
 	player.current_utility_changed.connect(_on_player_current_utility_changed)
 	player.action_timer_started.connect(_on_player_action_timer_started)
 	player.action_timer.timeout.connect(_on_player_action_timer_timeout)
-	player.start_turn_button_pressed.connect(_on_player_start_turn_button_pressed)
 	
 	#setup attack buttons from player data
 	if player.attacks:
@@ -63,20 +70,45 @@ func setup(player : Player, combat_manager : CombatManager):
 			specials_container.add_child(button)
 			
 	#connect to combat manager signals
+	combat_manager.turn_phase_started.connect(_on_combat_manager_turn_phase_started)
 	combat_manager.action_setup_canceled.connect(_on_combat_manager_action_setup_canceled)
 	combat_manager.turn_phase_ended.connect(_on_combat_manager_turn_phase_ended)
 	combat_manager.action_queued.connect(_on_combat_manager_action_queued)
+	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
 
-func end_combat():
-	action_bar.reset()
+func update_buttons(player : Player):
+	var buttons_to_enable : Array
+	var buttons_to_disable : Array
+	
+	#no checks on attack button
+	buttons_to_enable.append(attack_button)
+	
+	#utility button
+	if player.dropped_utilities.size() < 1:
+		buttons_to_disable.append(utility_button)
+	else:
+		buttons_to_enable.append(utility_button)
+	
+	#TODO: item button
+	buttons_to_enable.append(item_button)
+	
+	#no checks on special button
+	buttons_to_enable.append(special_button)
+	
+	#end turn button
+	if player.queued_actions.size() < 1:
+		buttons_to_disable.append(end_turn_button)
+	else:
+		buttons_to_enable.append(end_turn_button)
+	
+	#enable or disable action menu buttons
+	for button in buttons_to_enable:
+		button.disabled = false
+		button.set_focus_mode(Control.FOCUS_ALL)
+	for button in buttons_to_disable:
+		button.disabled = true
+		button.set_focus_mode(Control.FOCUS_NONE)
 
-
-func _on_player_start_turn_button_pressed():
-	overlay.show()
-	action_menu.show()
-	attacks_container.hide()
-	specials_container.hide()
-	attack_button.grab_focus()
 
 func _on_player_health_changed(new_health):
 	player_hp_label.text = "HP: " + str(new_health)
@@ -96,6 +128,8 @@ func _on_player_action_timer_timeout():
 func _on_attack_button_pressed():
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
 	button_press_sequence.append(attack_button)
+	for button in actions_container.get_children():
+		button.set_focus_mode(Control.FOCUS_NONE)
 	attacks_container.show()
 	attacks_container.get_children()[0].grab_focus()
 
@@ -112,6 +146,8 @@ func _on_item_button_pressed():
 func _on_special_button_pressed():
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
 	button_press_sequence.append(special_button)
+	for button in actions_container.get_children():
+		button.set_focus_mode(Control.FOCUS_NONE)
 	specials_container.show()
 	specials_container.get_children()[0].grab_focus()
 
@@ -137,19 +173,36 @@ func _on_special_selected(special):
 	action_menu.hide()
 	emit_signal("action_selected", special)
 
+#called when action setup is canceled
 func _on_combat_manager_action_setup_canceled():
 	action_menu.show()
 	var button = button_press_sequence.pop_back()
 	button.grab_focus()
 
+#called when turn phase starts
+func _on_combat_manager_turn_phase_started(player : Player):
+	update_buttons(player)
+	overlay.show()
+	action_menu.show()
+	attacks_container.hide()
+	specials_container.hide()
+	attack_button.grab_focus()
+
+#called when turn phase ends
 func _on_combat_manager_turn_phase_ended():
 	button_press_sequence.clear()
 	action_bar.reset()
 	overlay.hide()
 	
-func _on_combat_manager_action_queued():
+#called after queuing action but not ending turn
+func _on_combat_manager_action_queued(player : Player):
+	update_buttons(player)
 	action_menu.show()
 	button_press_sequence.clear()
 	attacks_container.hide()
 	specials_container.hide()
 	attack_button.grab_focus()
+
+#called when combat is over
+func _on_combat_manager_combat_ended():
+	action_bar.reset()
