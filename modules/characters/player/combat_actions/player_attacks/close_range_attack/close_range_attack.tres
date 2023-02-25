@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CombatActionResource" load_steps=3 format=3 uid="uid://b3ddjqocdiism"]
+
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/combat_action_resource.gd" id="1_jdt4i"]
+[ext_resource type="PackedScene" uid="uid://c4cyt8b0s6puh" path="res://modules/characters/player/combat_actions/player_attacks/close_range_attack/close_range_attack.tscn" id="1_ldgv6"]
+
+[resource]
+script = ExtResource("1_jdt4i")
+scene = ExtResource("1_ldgv6")
+label = "Melee"

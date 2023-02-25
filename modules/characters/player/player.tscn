@@ -1,18 +1,17 @@
-[gd_scene load_steps=18 format=3 uid="uid://7v7tbapy5kyg"]
+[gd_scene load_steps=17 format=3 uid="uid://407wdynbq2ld"]
 
 [ext_resource type="Script" path="res://modules/characters/player/player.gd" id="1_83bp2"]
-[ext_resource type="Resource" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
-[ext_resource type="Resource" uid="uid://d28eu0e8hlhr7" path="res://modules/characters/player/player_utilities.tres" id="3_6rti1"]
+[ext_resource type="Resource" uid="uid://c76urhxjx2tl0" path="res://modules/characters/player/player_stats.tres" id="2_be3m8"]
+[ext_resource type="Resource" uid="uid://dapb42r8i68vq" path="res://modules/characters/player/utilities/teleporter/teleporter.tres" id="3_yr2sr"]
+[ext_resource type="Resource" uid="uid://cmdbcdf2ivcey" path="res://modules/characters/player/utilities/gravity_bomb/gravity_bomb.tres" id="4_bc37g"]
+[ext_resource type="Resource" uid="uid://bl7uukxdete4b" path="res://modules/characters/player/combat_actions/player_attacks/dash_attack/dash_attack.tres" id="4_nu0ib"]
 [ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="4_twu7o"]
+[ext_resource type="Resource" uid="uid://b3ddjqocdiism" path="res://modules/characters/player/combat_actions/player_attacks/close_range_attack/close_range_attack.tres" id="5_mdelj"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_idle.gd" id="5_slfjc"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_move.gd" id="6_sdv7x"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_combat.gd" id="7_p3p7f"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_reflecting.gd" id="8_rkp5y"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_executing_actions.gd" id="9_hhoor"]
-[ext_resource type="PackedScene" path="res://modules/characters/player/actions/combat_action.tscn" id="10_3bgmd"]
-[ext_resource type="Script" path="res://modules/characters/player/actions/use_utility.gd" id="11_y4j04"]
-[ext_resource type="Script" path="res://modules/characters/player/actions/heal_action.gd" id="12_5hnox"]
-[ext_resource type="PackedScene" uid="uid://7nfyom0wjf4b" path="res://modules/characters/player/actions/dash_attack.tscn" id="13_k87f8"]
 [ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="15_dkfnl"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxlei"]
@@ -30,7 +29,8 @@ collision_mask = 38
 motion_mode = 1
 script = ExtResource("1_83bp2")
 stats = ExtResource("2_be3m8")
-utilities = ExtResource("3_6rti1")
+utilities = Array[Resource]([ExtResource("3_yr2sr"), ExtResource("4_bc37g")])
+attacks = Array[Resource]([ExtResource("4_nu0ib"), ExtResource("5_mdelj")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
@@ -57,17 +57,6 @@ script = ExtResource("8_rkp5y")
 
 [node name="PlayerExecutingActions" type="Node" parent="StateMachine"]
 script = ExtResource("9_hhoor")
-
-[node name="Actions" type="Node" parent="."]
-
-[node name="UseUtility" parent="Actions" instance=ExtResource("10_3bgmd")]
-script = ExtResource("11_y4j04")
-UtilitySelector = null
-
-[node name="HealAction" parent="Actions" instance=ExtResource("10_3bgmd")]
-script = ExtResource("12_5hnox")
-
-[node name="DashAttack" parent="Actions" instance=ExtResource("13_k87f8")]
 
 [node name="Hurtbox" parent="." instance=ExtResource("15_dkfnl")]
 collision_mask = 8

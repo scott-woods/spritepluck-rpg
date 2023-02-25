@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpd6q2mn6fo16"]
+
+[ext_resource type="PackedScene" uid="uid://bk5usq4hvx8tr" path="res://modules/characters/player/combat_actions/player_attacks/player_attack.tscn" id="1_6m1e7"]
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/player_attacks/dash_attack/dash_attack.gd" id="2_a81w0"]
+[ext_resource type="PackedScene" uid="uid://cnwyh247c35yk" path="res://modules/hitbox/hitbox.tscn" id="3_1a520"]
+[ext_resource type="PackedScene" uid="uid://jtoidaatelm8" path="res://modules/targeting/line_selector/line_selector.tscn" id="3_j04ry"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn3io"]
+radius = 6.0
+
+[node name="DashAttack" instance=ExtResource("1_6m1e7")]
+script = ExtResource("2_a81w0")
+LineSelector = ExtResource("3_j04ry")
+dash_time = 0.1
+radius = 100
+
+[node name="Hitbox" parent="." index="0" instance=ExtResource("3_1a520")]
+visible = false
+collision_layer = 16
+collision_mask = 2
+damage = 1
+
+[node name="Collision" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_nn3io")
+disabled = true
+
+[editable path="Hitbox"]

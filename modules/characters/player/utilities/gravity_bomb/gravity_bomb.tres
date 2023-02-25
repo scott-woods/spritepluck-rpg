@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UtilityResource" load_steps=3 format=3]
+[gd_resource type="Resource" script_class="UtilityResource" load_steps=3 format=3 uid="uid://cmdbcdf2ivcey"]
 
 [ext_resource type="Script" path="res://modules/characters/player/utilities/utility/utility_resource.gd" id="1_s3idt"]
 [ext_resource type="PackedScene" path="res://modules/characters/player/utilities/gravity_bomb/gravity_bomb.tscn" id="2_g1uxt"]

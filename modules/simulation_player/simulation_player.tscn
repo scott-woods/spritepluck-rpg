@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://fd3onkmiknmt"]
+[gd_scene load_steps=3 format=3 uid="uid://fd3onkmiknmt"]
+
+[ext_resource type="Script" path="res://modules/simulation_player/simulation_player.gd" id="1_muhmk"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qkivu"]
 size = Vector2(16, 32)
@@ -6,3 +8,4 @@ size = Vector2(16, 32)
 [node name="SimulationPlayer" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.27451)
 texture = SubResource("PlaceholderTexture2D_qkivu")
+script = ExtResource("1_muhmk")

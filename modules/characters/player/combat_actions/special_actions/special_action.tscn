@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnoiswsp2uytd"]
+
+[ext_resource type="PackedScene" uid="uid://yn6ep5f83icu" path="res://modules/characters/player/combat_actions/combat_action.tscn" id="1_n6lua"]
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/special_actions/special_action.gd" id="2_lgpwl"]
+
+[node name="SpecialAction" instance=ExtResource("1_n6lua")]
+script = ExtResource("2_lgpwl")

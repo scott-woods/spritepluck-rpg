@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddc84ka0o0ff4"]
+
+[ext_resource type="Script" path="res://ui/action_bar/action_bar.gd" id="1_6eyxn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2247"]
+bg_color = Color(0.721569, 0.721569, 0.721569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jqepx"]
+bg_color = Color(0.109804, 0.741176, 0.121569, 1)
+
+[sub_resource type="Animation" id="Animation_sm7jf"]
+resource_name = "ACTION_BAR_FLASH"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.509804, 0.509804, 0.509804, 1), Color(1, 1, 1, 1), Color(0.509804, 0.509804, 0.509804, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2ytw4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqpao"]
+_data = {
+"ACTION_BAR_FLASH": SubResource("Animation_sm7jf"),
+"RESET": SubResource("Animation_2ytw4")
+}
+
+[node name="ActionBar" type="ProgressBar"]
+offset_right = 320.0
+offset_bottom = 16.0
+theme_override_styles/background = SubResource("StyleBoxFlat_e2247")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jqepx")
+step = 0.001
+show_percentage = false
+script = ExtResource("1_6eyxn")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kqpao")
+}

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://yn6ep5f83icu"]
+
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/combat_action.gd" id="1_1lqwd"]
+
+[node name="CombatAction" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_1lqwd")

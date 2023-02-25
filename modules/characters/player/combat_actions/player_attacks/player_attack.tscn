@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk5usq4hvx8tr"]
+
+[ext_resource type="PackedScene" uid="uid://yn6ep5f83icu" path="res://modules/characters/player/combat_actions/combat_action.tscn" id="1_fr6gu"]
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/player_attacks/player_attack.gd" id="2_lp8md"]
+
+[node name="PlayerAttack" instance=ExtResource("1_fr6gu")]
+script = ExtResource("2_lp8md")

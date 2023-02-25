@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CombatActionResource" load_steps=3 format=3 uid="uid://c17rng62esjjb"]
+
+[ext_resource type="PackedScene" uid="uid://bve7fcjyky2cw" path="res://modules/characters/player/combat_actions/special_actions/heal/heal.tscn" id="1_8vmjw"]
+[ext_resource type="Script" path="res://modules/characters/player/combat_actions/combat_action_resource.gd" id="1_s5d05"]
+
+[resource]
+script = ExtResource("1_s5d05")
+scene = ExtResource("1_8vmjw")
+label = "Heal"

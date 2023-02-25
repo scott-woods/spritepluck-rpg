@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://c5c35f3w40x2r"]
 
 [ext_resource type="Script" path="res://modules/characters/player/utilities/utility/utility.gd" id="1_cfadl"]
 
-[node name="Utility" type="Node2D"]
+[node name="Utility" type="Node2D" groups=["utilities"]]
 script = ExtResource("1_cfadl")
 
 [node name="Sprite" type="Sprite2D" parent="."]

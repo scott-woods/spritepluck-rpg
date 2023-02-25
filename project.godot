@@ -27,6 +27,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 TextboxManager="*res://globals/textbox_manager.gd"
 Fonts="*res://globals/fonts/fonts.tscn"
 Portraits="*res://globals/portraits/portraits.tscn"
+Events="*res://globals/events.gd"
 
 [dialogue_manager]
 

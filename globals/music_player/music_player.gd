@@ -2,6 +2,7 @@ extends Node
 
 
 @export var SPICY : AudioStream
+@export var THE_BAY : AudioStream
 
 const MIN_FILTER_CUTOFF_HZ := 2500
 const MAX_FILTER_CUTOFF_HZ := 8000

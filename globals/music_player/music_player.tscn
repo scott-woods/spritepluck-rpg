@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://mvsfbmok3l4c"]
+[gd_scene load_steps=4 format=3 uid="uid://mvsfbmok3l4c"]
 
 [ext_resource type="Script" path="res://globals/music_player/music_player.gd" id="1_yohgq"]
 [ext_resource type="AudioStream" uid="uid://cfbaq4aibcyt3" path="res://assets/audio/music/spicy.ogg" id="2_wc4h7"]
+[ext_resource type="AudioStream" uid="uid://d1r0hqldu72uf" path="res://assets/audio/music/the_bay.ogg" id="3_6ddtd"]
 
 [node name="MusicPlayer" type="Node"]
 process_mode = 3
 script = ExtResource("1_yohgq")
 SPICY = ExtResource("2_wc4h7")
+THE_BAY = ExtResource("3_6ddtd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
