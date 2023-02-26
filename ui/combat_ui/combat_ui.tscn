@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7wc166dmd3bt"]
+[gd_scene load_steps=5 format=3 uid="uid://b7wc166dmd3bt"]
 
 [ext_resource type="Script" path="res://ui/combat_ui/combat_ui.gd" id="1_5yh5o"]
 [ext_resource type="PackedScene" uid="uid://ddc84ka0o0ff4" path="res://ui/action_bar/action_bar.tscn" id="2_0gfoe"]
 [ext_resource type="PackedScene" uid="uid://cb68yhwwtef2a" path="res://ui/combat_button/combat_button.tscn" id="3_0epli"]
+[ext_resource type="PackedScene" uid="uid://mgxl6k4semvm" path="res://ui/action_ready_icon/action_ready_icon.tscn" id="3_dlwv5"]
 
 [node name="CombatUI" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_5yh5o")
 CombatButton = ExtResource("3_0epli")
+ActionReadyIcon = ExtResource("3_dlwv5")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 3
@@ -118,6 +120,15 @@ text = "HP: "
 [node name="UtilityLabel" type="Label" parent="Container/PlayerInfoContainer"]
 layout_mode = 2
 text = "Utility:"
+
+[node name="ActionReadyIconContainer" type="HBoxContainer" parent="Container"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 48.0
+offset_right = 160.0
+offset_bottom = 48.0
+alignment = 1
 
 [connection signal="focus_entered" from="Container/ActionMenu/HBoxContainer/ActionsContainer/AttackButton" to="." method="_on_attack_button_focus_entered"]
 [connection signal="pressed" from="Container/ActionMenu/HBoxContainer/ActionsContainer/AttackButton" to="." method="_on_attack_button_pressed"]

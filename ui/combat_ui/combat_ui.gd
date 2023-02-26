@@ -7,6 +7,7 @@ signal use_utility_selected
 signal end_turn_button_pressed
 
 @export var CombatButton : PackedScene
+@export var ActionReadyIcon : PackedScene
 
 @onready var action_bar : ActionBar = $Container/ActionBar
 @onready var overlay : ColorRect = $Container/Overlay
@@ -23,8 +24,10 @@ signal end_turn_button_pressed
 @onready var end_turn_button = $Container/ActionMenu/HBoxContainer/ActionsContainer/EndTurnButton
 @onready var attacks_container : VBoxContainer = $Container/ActionMenu/HBoxContainer/AttacksContainer
 @onready var specials_container : VBoxContainer = $Container/ActionMenu/HBoxContainer/SpecialsContainer
+@onready var action_ready_icon_container : HBoxContainer = $Container/ActionReadyIconContainer
 
 var button_press_sequence : Array
+var action_ready_icons : Array
 
 func _input(event):
 	if event.is_action_pressed("cancel"):
@@ -50,6 +53,13 @@ func setup(player : Player, combat_manager : CombatManager):
 	player.current_utility_changed.connect(_on_player_current_utility_changed)
 	player.action_timer_started.connect(_on_player_action_timer_started)
 	player.action_timer.timeout.connect(_on_player_action_timer_timeout)
+	player.actions_increased.connect(_on_player_actions_increased)
+	
+	#create action ready icons
+	while action_ready_icons.size() < player.stats.max_actions:
+		var icon = ActionReadyIcon.instantiate()
+		action_ready_icons.append(icon)
+		action_ready_icon_container.add_child(icon)
 	
 	#setup attack buttons from player data
 	if player.attacks:
@@ -124,6 +134,10 @@ func _on_player_action_timer_started(action_timer : Timer):
 
 func _on_player_action_timer_timeout():
 	action_bar.flash()
+	
+func _on_player_actions_increased(number_of_actions):
+	var icon = action_ready_icons[number_of_actions - 1]
+	icon.activate()
 
 func _on_attack_button_pressed():
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
@@ -190,12 +204,16 @@ func _on_combat_manager_turn_phase_started(player : Player):
 
 #called when turn phase ends
 func _on_combat_manager_turn_phase_ended():
+	for icon in action_ready_icons:
+		icon.deactivate()
 	button_press_sequence.clear()
 	action_bar.reset()
 	overlay.hide()
 	
 #called after queuing action but not ending turn
 func _on_combat_manager_action_queued(player : Player):
+	var icon = action_ready_icons[player.max_actions_this_turn - player.queued_actions.size()]
+	icon.deactivate()
 	update_buttons(player)
 	action_menu.show()
 	button_press_sequence.clear()

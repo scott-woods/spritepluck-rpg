@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/rooms/refactor_room/refactor_room.gd" id="1_806ux"]
 [ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_ogmso"]
-[ext_resource type="PackedScene" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_euhik"]
+[ext_resource type="PackedScene" uid="uid://c8u56vxjpye0m" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_euhik"]
 [ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="3_yikt6"]
 [ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="4_a0nhw"]
 [ext_resource type="PackedScene" uid="uid://l31ck38gimwi" path="res://modules/camera/camera.tscn" id="5_faoai"]

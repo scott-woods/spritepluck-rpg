@@ -6,7 +6,7 @@
 script = ExtResource("1_whwtm")
 max_utility_drops = 3
 action_bar_time = 8
-max_actions = 3
+max_actions = 5
 reflection_time = 0.1
 hp = 3
 max_hp = 3

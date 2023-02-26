@@ -72,7 +72,7 @@ func setup_action(action : CombatAction):
 		await get_tree().process_frame
 		if success:
 			player.queue_action(action)
-			if player.queued_actions.size() == player.stats.max_actions:
+			if player.queued_actions.size() == player.max_actions_this_turn:
 				end_turn_phase()
 			else:
 				camera.set_target(simulation_player)
