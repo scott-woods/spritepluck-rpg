@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://mgxl6k4semvm"]
+
+[ext_resource type="Script" path="res://ui/action_ready_icon/action_ready_icon.gd" id="1_03taa"]
+
+[node name="ActionReadyIcon" type="ColorRect"]
+custom_minimum_size = Vector2(16, 16)
+size_flags_horizontal = 6
+script = ExtResource("1_03taa")
