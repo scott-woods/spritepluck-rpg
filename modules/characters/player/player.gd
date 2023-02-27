@@ -39,6 +39,12 @@ func _ready():
 	if utilities.size() > 0:
 		current_utility = utilities[0]
 	action_timer.wait_time = MAX_ACTION_TIME
+	
+	#connect to scene manager
+	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)
+	if SceneManager.transitioning:
+		await SceneManager.scene_change_finished
+	state_machine.change_state("PlayerMove")
 
 #called once when combat starts
 func enter_combat_state():
@@ -149,3 +155,6 @@ func _on_hurtbox_area_entered(area):
 #action timer finished
 func _on_action_timer_timeout():
 	SoundPlayer.play_sound(SoundPlayer.ACTION_BAR_READY)
+
+func _on_scene_manager_scene_change_started(scene):
+	state_machine.change_state("PlayerIdle")

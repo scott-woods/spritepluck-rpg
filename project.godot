@@ -28,6 +28,7 @@ TextboxManager="*res://globals/textbox_manager.gd"
 Fonts="*res://globals/fonts/fonts.tscn"
 Portraits="*res://globals/portraits/portraits.tscn"
 Events="*res://globals/events.gd"
+SceneManager="*res://globals/scene_manager/scene_manager.tscn"
 
 [dialogue_manager]
 
