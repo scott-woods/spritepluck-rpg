@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://c80imew0ehth0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3mhnu"]
-[ext_resource type="PackedScene" uid="uid://qs68eec7vhuw" path="res://modules/rooms/refactor_room/refactor_room.tscn" id="2_5najy"]
+[ext_resource type="PackedScene" uid="uid://d106rwbh08gta" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.tscn" id="2_xrw06"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3mhnu")
-default_room = ExtResource("2_5najy")
+default_room = ExtResource("2_xrw06")
 
 [node name="World" type="Node2D" parent="."]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c61di70f3r436"]
+
+[ext_resource type="Script" path="res://modules/exit_area/exit_area.gd" id="1_akjgn"]
+
+[node name="ExitArea" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_akjgn")
+target_spawn = null
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

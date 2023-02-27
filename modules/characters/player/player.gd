@@ -36,6 +36,7 @@ var dropped_utilities : Array
 var max_actions_this_turn = 0
 
 func _ready():
+	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)
 	if utilities.size() > 0:
 		current_utility = utilities[0]
 	action_timer.wait_time = MAX_ACTION_TIME
@@ -149,3 +150,6 @@ func _on_hurtbox_area_entered(area):
 #action timer finished
 func _on_action_timer_timeout():
 	SoundPlayer.play_sound(SoundPlayer.ACTION_BAR_READY)
+
+func _on_scene_manager_scene_change_started(scene):
+	state_machine.change_state("PlayerIdle")
