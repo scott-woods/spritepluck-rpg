@@ -75,11 +75,11 @@ func start_dodge_phase():
 	timer.timeout.connect(func():
 		max_actions_this_turn += 1
 		emit_signal("actions_increased", max_actions_this_turn)
-		if max_actions_this_turn < stats.max_actions:
+		if max_actions_this_turn < stats.max_actions and not action_timer.is_stopped():
 			timer.start()
 	)
 	timer.start()
-	
+
 	while not Input.is_action_just_pressed("space"):
 		await get_tree().process_frame
 	
@@ -118,6 +118,8 @@ func execute_actions():
 	state_machine.change_state("PlayerExecutingActions")
 	await get_tree().create_timer(ACTION_DELAY).timeout
 	for action in queued_actions:
+		if state_machine.current_state.name != "PlayerExecutingActions":
+			break
 		await action.execute()
 		await get_tree().create_timer(TIME_BETWEEN_ACTIONS).timeout
 		action.queue_free()
