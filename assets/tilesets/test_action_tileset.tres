@@ -1,8 +1,8 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cmkmctdnp03li"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dj1l5fgk0wftn"]
 
 [ext_resource type="Texture2D" uid="uid://iw3ewhd35s6n" path="res://assets/tilesets/test_action_tileset.png" id="1_m66yh"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6nby1"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_isovt"]
 texture = ExtResource("1_m66yh")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -29,87 +29,50 @@ texture = ExtResource("1_m66yh")
 2:2/0/physics_layer_0/angular_velocity = 0.0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:3/0 = 0
-0:3/0/y_sort_origin = 8
 0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:4/0 = 0
-0:4/0/terrain_set = 0
 0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:4/0/physics_layer_0/angular_velocity = 0.0
-0:4/0/terrains_peering_bit/bottom_right_corner = 0
 1:4/0 = 0
-1:4/0/terrain_set = 0
 1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:4/0/physics_layer_0/angular_velocity = 0.0
-1:4/0/terrains_peering_bit/bottom_right_corner = 0
-1:4/0/terrains_peering_bit/bottom_side = 0
-1:4/0/terrains_peering_bit/bottom_left_corner = 0
 2:4/0 = 0
-2:4/0/terrain_set = 0
 2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:4/0/physics_layer_0/angular_velocity = 0.0
-2:4/0/terrains_peering_bit/bottom_left_corner = 0
 0:5/0 = 0
-0:5/0/terrain_set = 0
 0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:5/0/physics_layer_0/angular_velocity = 0.0
-0:5/0/terrains_peering_bit/right_side = 0
-0:5/0/terrains_peering_bit/bottom_right_corner = 0
-0:5/0/terrains_peering_bit/top_right_corner = 0
 1:5/0 = 0
-1:5/0/terrain_set = 0
-1:5/0/terrain = 0
 1:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:5/0/physics_layer_0/angular_velocity = 0.0
-1:5/0/terrains_peering_bit/right_side = 0
-1:5/0/terrains_peering_bit/bottom_right_corner = 0
-1:5/0/terrains_peering_bit/bottom_side = 0
-1:5/0/terrains_peering_bit/bottom_left_corner = 0
-1:5/0/terrains_peering_bit/left_side = 0
-1:5/0/terrains_peering_bit/top_left_corner = 0
-1:5/0/terrains_peering_bit/top_side = 0
-1:5/0/terrains_peering_bit/top_right_corner = 0
 2:5/0 = 0
-2:5/0/terrain_set = 0
 2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:5/0/physics_layer_0/angular_velocity = 0.0
-2:5/0/terrains_peering_bit/bottom_left_corner = 0
-2:5/0/terrains_peering_bit/left_side = 0
-2:5/0/terrains_peering_bit/top_left_corner = 0
 0:6/0 = 0
-0:6/0/terrain_set = 0
 0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:6/0/physics_layer_0/angular_velocity = 0.0
-0:6/0/terrains_peering_bit/top_right_corner = 0
 1:6/0 = 0
-1:6/0/terrain_set = 0
 1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:6/0/physics_layer_0/angular_velocity = 0.0
-1:6/0/terrains_peering_bit/top_left_corner = 0
-1:6/0/terrains_peering_bit/top_side = 0
-1:6/0/terrains_peering_bit/top_right_corner = 0
 2:6/0 = 0
-2:6/0/terrain_set = 0
 2:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:6/0/physics_layer_0/angular_velocity = 0.0
-2:6/0/terrains_peering_bit/top_left_corner = 0
-2:3/0 = 0
-2:3/0/modulate = Color(1, 0.188235, 0.188235, 0.635294)
-2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:3/0/physics_layer_0/angular_velocity = 0.0
-2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/size_in_atlas = Vector2i(1, 4)
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 24)
-1:0/0/y_sort_origin = -8
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 0
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
-terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/name = "blue_floor"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_6nby1")
+sources/0 = SubResource("TileSetAtlasSource_isovt")

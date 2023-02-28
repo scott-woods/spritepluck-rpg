@@ -12,7 +12,10 @@ var points
 func setup(simulation_player):
 	in_setup = true
 	var line_selector = LineSelector.instantiate()
-	line_selector.init(player.last_direction, simulation_player, radius)
+	var init_direction = player.last_direction
+	if init_direction.x != 0 and init_direction.y != 0:
+		init_direction = init_direction / sqrt(2)
+	line_selector.init(init_direction, simulation_player, radius)
 	add_child(line_selector)
 	points = await line_selector.line_selected
 	line_selector.queue_free()

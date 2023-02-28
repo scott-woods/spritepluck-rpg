@@ -8,3 +8,6 @@ process_mode = 3
 width = 2.0
 script = ExtResource("1_74inq")
 SimulationPlayer = ExtResource("2_bje37")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 4

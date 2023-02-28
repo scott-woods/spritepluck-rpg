@@ -35,7 +35,7 @@ func setup(simulation_player):
 	)
 	
 	#get only utils that haven't already been queued
-	var utils = get_tree().get_nodes_in_group("utilities").duplicate()
+	var utils = get_tree().get_nodes_in_group("utilities")
 	for util in utils:
 		if util.queued:
 			utils.erase(util)

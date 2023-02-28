@@ -12,7 +12,7 @@ signal actions_increased(number_of_actions)
 
 const ACTION_DELAY = .25
 const TIME_BETWEEN_ACTIONS = .25
-const MIN_ACTION_TIME : float = 5
+const MIN_ACTION_TIME : float = 1
 const MAX_ACTION_TIME : float = 12
 
 @onready var collision : CollisionShape2D = $Collision
@@ -71,6 +71,7 @@ func start_dodge_phase():
 	var timer : Timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = time
+	timer.one_shot = true
 	timer.timeout.connect(func():
 		max_actions_this_turn += 1
 		emit_signal("actions_increased", max_actions_this_turn)

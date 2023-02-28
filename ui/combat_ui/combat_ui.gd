@@ -94,7 +94,14 @@ func update_buttons(player : Player):
 	buttons_to_enable.append(attack_button)
 	
 	#utility button
-	if player.dropped_utilities.size() < 1:
+	var utils = get_tree().get_nodes_in_group("utilities")
+	var available_utils : Array
+	for util in utils:
+		if not util.queued:
+			available_utils.append(util)
+	if available_utils.size() < 1:
+		buttons_to_disable.append(utility_button)
+	elif player.dropped_utilities.size() < 1:
 		buttons_to_disable.append(utility_button)
 	else:
 		buttons_to_enable.append(utility_button)
@@ -137,7 +144,8 @@ func _on_player_action_timer_timeout():
 	
 func _on_player_actions_increased(number_of_actions):
 	var icon = action_ready_icons[number_of_actions - 1]
-	icon.activate()
+	if icon:
+		icon.activate()
 
 func _on_attack_button_pressed():
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
