@@ -28,3 +28,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EffectArea" index="0"]
 shape = SubResource("CircleShape2D_akgxl")
+
+[node name="Timer" type="Timer" parent="." index="3"]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

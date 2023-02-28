@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://db2s6g72l2cyv"]
 
 [ext_resource type="Script" path="res://modules/characters/character_stats.gd" id="1_l1bat"]
 
@@ -8,3 +8,4 @@ hp = 2
 max_hp = 2
 speed = null
 invincible_time = 1.5
+grounded = true

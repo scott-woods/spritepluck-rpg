@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_eaksi"]
 [ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/test_enemy.gd" id="1_ir432"]
-[ext_resource type="Resource" path="res://modules/characters/enemies/test_enemy/test_enemy.tres" id="3_4b4oh"]
+[ext_resource type="Resource" uid="uid://db2s6g72l2cyv" path="res://modules/characters/enemies/test_enemy/test_enemy.tres" id="3_4b4oh"]
 [ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/states/test_enemy_combat.gd" id="4_o5ubj"]
 [ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/test_enemy_moving.gd" id="5_4symy"]
 [ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/states/test_enemy_executing_action.gd" id="5_tm4vg"]

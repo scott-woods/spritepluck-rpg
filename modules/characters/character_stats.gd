@@ -5,6 +5,7 @@ extends Resource
 @export var max_hp : int
 @export var speed : int
 @export var invincible_time : float
+@export var grounded : bool
 
 #Make a copy of this resource, so each new enemy gets a unique one
 func copy() -> CharacterStats:

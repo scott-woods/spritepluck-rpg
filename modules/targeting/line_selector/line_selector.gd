@@ -26,10 +26,9 @@ func init(initial_direction, simulation_player, radius : int):
 	
 func _ready():
 	add_point(Vector2.ZERO)
+	add_point(Vector2.ZERO)
 	var end_point = direction * radius
-	add_point(end_point)
 	raycast.target_position = end_point
-	simulation_player.position = global_origin + end_point
 
 func _input(event):
 	if event.is_action_pressed("accept"):
