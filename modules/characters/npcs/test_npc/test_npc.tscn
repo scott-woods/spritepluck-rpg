@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcvev14r5vc33"]
+[gd_scene load_steps=7 format=3 uid="uid://bcvev14r5vc33"]
 
 [ext_resource type="Script" path="res://modules/characters/npcs/test_npc/test_npc.gd" id="1_w7nb4"]
 [ext_resource type="Resource" uid="uid://d0d324dbdnq7r" path="res://modules/characters/npcs/test_npc/dialogue/bad.dialogue" id="2_nioa8"]
+[ext_resource type="PackedScene" uid="uid://rua4tfeob34u" path="res://modules/interactable/interactable.tscn" id="3_3bcua"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_u8low"]
 size = Vector2(16, 32)
@@ -9,9 +10,12 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ec2"]
 size = Vector2(16, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tvmy"]
+size = Vector2(16, 16)
+
 [node name="TestNPC" type="StaticBody2D"]
 y_sort_enabled = true
-collision_layer = 96
+collision_layer = 32
 script = ExtResource("1_w7nb4")
 Bad = ExtResource("2_nioa8")
 
@@ -23,3 +27,12 @@ texture = SubResource("PlaceholderTexture2D_u8low")
 y_sort_enabled = true
 position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_h0ec2")
+
+[node name="Interactable" parent="." instance=ExtResource("3_3bcua")]
+dialogue = Array[Resource]([ExtResource("2_nioa8")])
+
+[node name="Collision" parent="Interactable" index="0"]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_5tvmy")
+
+[editable path="Interactable"]

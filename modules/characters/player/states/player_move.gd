@@ -25,8 +25,8 @@ func handle_input(event: InputEvent):
 	#interact with NPCs or environment
 	if event.is_action_pressed("accept") and player.interact_ray.is_colliding():
 		state_machine.change_state("PlayerIdle")
-		var interactable = player.interact_ray.get_collider()
-		interactable.on_interact()
+		var interactable = player.interact_ray.get_collider() as Interactable
+		interactable.interact()
 		await interactable.interaction_finished
 		state_machine.change_state("PlayerMove")
 

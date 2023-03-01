@@ -8,6 +8,7 @@ signal interaction_finished
 
 @onready var sprite : Sprite2D = $Sprite
 @onready var collision : CollisionShape2D = $Collision
+@onready var interactable : Interactable = $Interactable
 
 var interactions
 

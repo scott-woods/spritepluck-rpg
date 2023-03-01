@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://rua4tfeob34u"]
+
+[ext_resource type="Script" path="res://modules/interactable/interactable.gd" id="1_lswt6"]
+
+[node name="Interactable" type="Area2D"]
+collision_layer = 64
+script = ExtResource("1_lswt6")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
