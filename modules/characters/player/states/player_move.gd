@@ -13,9 +13,11 @@ func physics_update(delta):
 		player.interact_ray.rotation = direction.angle()
 		player.last_direction = direction
 	player.direction = direction
-	player.velocity = player.direction * player.stats.speed
+	var target_velocity = player.direction * player.stats.speed
 	if x_direction != 0 and y_direction != 0:
-		player.velocity = player.velocity / sqrt(2)
+		target_velocity = target_velocity / sqrt(2)
+	player.velocity += (target_velocity - player.velocity) * player.FRICTION
+	#player.velocity = player.direction * player.stats.speed
 		
 	player.move_and_slide()
 

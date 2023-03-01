@@ -2,12 +2,11 @@ class_name Camera
 extends Node2D
 
 
-const SMOOTH_FACTOR = 4
+const SMOOTH_FACTOR = 16
 const SNAP_DISTANCE = 2
 
 @export var target : Node2D
-
-var smoothing_enabled = true
+@export var smoothing_enabled = true
 
 func _ready():
 	if target:

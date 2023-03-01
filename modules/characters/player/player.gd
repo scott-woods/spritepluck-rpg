@@ -14,6 +14,7 @@ const ACTION_DELAY = .25
 const TIME_BETWEEN_ACTIONS = .25
 const MIN_ACTION_TIME : float = 1
 const MAX_ACTION_TIME : float = 12
+const FRICTION : float = .36
 
 @onready var collision : CollisionShape2D = $Collision
 @onready var sprite : Sprite2D = $Sprite
