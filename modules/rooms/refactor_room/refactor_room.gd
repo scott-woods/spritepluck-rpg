@@ -37,7 +37,7 @@ func _ready():
 				spawn_position = spawn.position
 				break
 	player.position = spawn_position
-	map.add_child(player)
+	add_child(player)
 	
 	#camera setup
 	camera.set_target(player, true)

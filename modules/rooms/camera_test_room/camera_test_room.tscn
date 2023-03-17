@@ -9,8 +9,13 @@ script = ExtResource("1_kqqqa")
 
 [node name="Player" parent="." instance=ExtResource("1_4sufy")]
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="TestNPC" parent="." instance=ExtResource("4_3bomh")]
 position = Vector2(154, 57)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="TestNPC"]
 
 [node name="TestNPC2" parent="." instance=ExtResource("4_3bomh")]
 position = Vector2(329, 184)
@@ -20,3 +25,6 @@ position = Vector2(100, 148)
 
 [node name="TestNPC4" parent="." instance=ExtResource("4_3bomh")]
 position = Vector2(257, 84)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(154, 57)

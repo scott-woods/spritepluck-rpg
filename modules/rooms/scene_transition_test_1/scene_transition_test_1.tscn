@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/default_ui/default_ui.gd" id="1_l2c3q"]
 [ext_resource type="Script" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.gd" id="1_xdfnu"]
-[ext_resource type="TileSet" uid="uid://cmkmctdnp03li" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
+[ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
 [ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_dw4u1"]
 [ext_resource type="PackedScene" uid="uid://l31ck38gimwi" path="res://modules/camera/camera.tscn" id="2_miee2"]
 [ext_resource type="PackedScene" uid="uid://c61di70f3r436" path="res://modules/exit_area/exit_area.tscn" id="4_cljks"]
@@ -46,5 +46,6 @@ spawn_id = "from_refactor_room"
 script = ExtResource("1_l2c3q")
 
 [node name="Camera" parent="." instance=ExtResource("2_miee2")]
+smoothing_enabled = false
 
 [editable path="Map/ExitArea"]

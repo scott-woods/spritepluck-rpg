@@ -12,21 +12,18 @@
 [ext_resource type="Resource" uid="uid://c17rng62esjjb" path="res://modules/characters/player/combat_actions/special_actions/heal/heal.tres" id="7_6nyvf"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_combat.gd" id="7_p3p7f"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_reflecting.gd" id="8_rkp5y"]
+[ext_resource type="Texture2D" uid="uid://crvrqcno8itdc" path="res://modules/characters/player/sprites/puppet_sheet.png" id="8_sefnn"]
 [ext_resource type="Script" path="res://modules/characters/player/states/player_executing_actions.gd" id="9_hhoor"]
 [ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="15_dkfnl"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gxlei"]
-size = Vector2(16, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n18ew"]
-size = Vector2(16, 8)
+size = Vector2(16, 12.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_18yi3"]
-radius = 7.0
+radius = 5.0
+height = 52.0
 
 [node name="Player" type="CharacterBody2D"]
-y_sort_enabled = true
-position = Vector2(0, -8)
 collision_mask = 38
 motion_mode = 1
 script = ExtResource("1_83bp2")
@@ -36,11 +33,10 @@ attacks = Array[Resource]([ExtResource("4_nu0ib"), ExtResource("5_mdelj")])
 specials = Array[Resource]([ExtResource("7_6nyvf")])
 
 [node name="Sprite" type="Sprite2D" parent="."]
-y_sort_enabled = true
-texture = SubResource("PlaceholderTexture2D_gxlei")
+position = Vector2(0, -26)
+texture = ExtResource("8_sefnn")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_n18ew")
 
 [node name="StateMachine" parent="." instance=ExtResource("4_twu7o")]
@@ -62,6 +58,7 @@ script = ExtResource("8_rkp5y")
 script = ExtResource("9_hhoor")
 
 [node name="Hurtbox" parent="." instance=ExtResource("15_dkfnl")]
+position = Vector2(0, -23)
 collision_mask = 8
 
 [node name="Collision" parent="Hurtbox" index="0"]
@@ -71,7 +68,7 @@ shape = SubResource("CapsuleShape2D_18yi3")
 one_shot = true
 
 [node name="InteractRay" type="RayCast2D" parent="."]
-position = Vector2(0, 6)
+position = Vector2(0, -26)
 target_position = Vector2(20, 0)
 collision_mask = 64
 hit_from_inside = true

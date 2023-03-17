@@ -1,10 +1,41 @@
-[gd_scene load_steps=3 format=3 uid="uid://c80imew0ehth0"]
+[gd_scene load_steps=5 format=3 uid="uid://c80imew0ehth0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3mhnu"]
-[ext_resource type="PackedScene" uid="uid://d106rwbh08gta" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.tscn" id="2_xrw06"]
+[ext_resource type="Shader" path="res://main.gdshader" id="3_df2sb"]
+[ext_resource type="PackedScene" uid="uid://qs68eec7vhuw" path="res://modules/rooms/refactor_room/refactor_room.tscn" id="3_j7w10"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0n50"]
+shader = ExtResource("3_df2sb")
+shader_parameter/cam_offset = Vector2(0, 0)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3mhnu")
-default_room = ExtResource("2_xrw06")
+default_room = ExtResource("3_j7w10")
 
-[node name="World" type="Node2D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+process_mode = 3
+material = SubResource("ShaderMaterial_c0n50")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -321.0
+offset_top = -181.0
+offset_right = 321.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(642, 362)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="World" type="Node2D" parent="SubViewportContainer/SubViewport"]
+process_mode = 1

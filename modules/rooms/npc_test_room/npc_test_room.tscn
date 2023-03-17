@@ -6,16 +6,19 @@
 [ext_resource type="PackedScene" uid="uid://eae3uik2yex2" path="res://ui/default_ui/default_ui.tscn" id="2_rjdsb"]
 
 [node name="NPCTestRoom" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_7pqdj")
 Player = ExtResource("2_g1sri")
 
-[node name="Map" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
 format = 2
+layer_0/name = "Floor"
+layer_0/y_sort_enabled = true
 
-[node name="TestNPC" parent="Map" groups=["npcs"] instance=ExtResource("2_fqp81")]
-position = Vector2(100, 38)
+[node name="TestNPC" parent="TileMap" groups=["npcs"] instance=ExtResource("2_fqp81")]
 
-[node name="NPCs" type="Node" parent="Map"]
+[node name="Player" parent="TileMap" instance=ExtResource("2_g1sri")]
+position = Vector2(29, 5)
 
 [node name="DefaultUI" parent="." instance=ExtResource("2_rjdsb")]

@@ -2,11 +2,14 @@ class_name DefaultUI
 extends CanvasLayer
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+@onready var textbox : Textbox = $Container/MarginContainer/Textbox
+
+func setup(interactables : Array):
+	for interactable in interactables:
+		interactable.interaction_started.connect(_on_interactable_interaction_started)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_interactable_interaction_started(dialogue : DialogueResource, dialogue_title : String):
+	textbox.show()
+	await textbox.read(dialogue, dialogue_title)
+	textbox.hide()

@@ -12,3 +12,4 @@ hp = 3
 max_hp = 3
 speed = 150
 invincible_time = 0.5
+grounded = false

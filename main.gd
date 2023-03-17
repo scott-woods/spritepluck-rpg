@@ -3,7 +3,9 @@ extends Node
 
 @export var default_room : PackedScene
 
-@onready var world : Node2D = $World
+@onready var viewport_container = $SubViewportContainer
+@onready var viewport = $SubViewportContainer/SubViewport
+@onready var world : Node2D = $SubViewportContainer/SubViewport/World
 
 var current_room : Node2D
 
@@ -11,6 +13,9 @@ var current_room : Node2D
 func _ready():
 	#new random seed
 	randomize()
+	
+	ViewportManager.viewport_container = viewport_container
+	ViewportManager.viewport = viewport
 	
 	#connect to signals
 	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)

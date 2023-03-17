@@ -30,10 +30,11 @@ Fonts="*res://globals/fonts/fonts.tscn"
 Portraits="*res://globals/portraits/portraits.tscn"
 Events="*res://globals/events.gd"
 SceneManager="*res://globals/scene_manager/scene_manager.tscn"
+ViewportManager="*res://globals/viewport_manager.gd"
 
 [dialogue_manager]
 
-states=["Fonts", "TextboxManager", "SoundPlayer", "Portraits", "MusicPlayer"]
+general/states=["Fonts", "TextboxManager", "SoundPlayer", "Portraits", "MusicPlayer"]
 
 [display]
 
@@ -128,6 +129,11 @@ cancel={
 2d_physics/layer_5="PlayerAttacks"
 2d_physics/layer_6="NPCs"
 2d_physics/layer_7="Interactables"
+
+[physics]
+
+common/physics_ticks_per_second=144
+common/physics_jitter_fix=0.0
 
 [rendering]
 
