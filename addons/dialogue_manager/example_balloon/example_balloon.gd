@@ -31,12 +31,13 @@ var dialogue_line: DialogueLine:
 		
 		# Remove any previous responses
 		for child in responses_menu.get_children():
-			child.free()
+			responses_menu.remove_child(child)
+			child.queue_free()
 		
 		dialogue_line = next_dialogue_line
 		
 		character_label.visible = not dialogue_line.character.is_empty()
-		character_label.text = dialogue_line.character
+		character_label.text = tr(dialogue_line.character, "dialogue")
 		
 		dialogue_label.modulate.a = 0
 		dialogue_label.custom_minimum_size.x = dialogue_label.get_parent().size.x - 1
@@ -86,7 +87,7 @@ func _ready() -> void:
 	balloon.hide()
 	balloon.custom_minimum_size.x = balloon.get_viewport_rect().size.x
 	
-	Engine.get_singleton("DialogueManager").mutation.connect(_on_mutation)
+	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
@@ -169,7 +170,7 @@ func handle_resize() -> void:
 ### Signals
 
 
-func _on_mutation() -> void:
+func _on_mutated(mutation: Dictionary) -> void:
 	is_waiting_for_input = false
 	will_hide_balloon = true
 	get_tree().create_timer(0.1).timeout.connect(func():

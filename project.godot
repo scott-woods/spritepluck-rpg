@@ -24,13 +24,13 @@ buses/default_bus_layout="res://assets/audio/default_bus_layout.tres"
 
 SoundPlayer="*res://globals/sound_player/sound_player.tscn"
 MusicPlayer="*res://globals/music_player/music_player.tscn"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 TextboxManager="*res://globals/textbox_manager.gd"
 Fonts="*res://globals/fonts/fonts.tscn"
 Portraits="*res://globals/portraits/portraits.tscn"
 Events="*res://globals/events.gd"
 SceneManager="*res://globals/scene_manager/scene_manager.tscn"
 ViewportManager="*res://globals/viewport_manager.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
@@ -119,6 +119,10 @@ cancel={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://modules/characters/npcs/test_npc/dialogue/bad.dialogue")
 
 [layer_names]
 
