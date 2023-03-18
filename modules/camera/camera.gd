@@ -25,7 +25,10 @@ func _ready():
 
 func _physics_process(delta):
 	if target:
-		global_position = target.global_position
+		if smoothing_enabled:
+			global_position = lerp(global_position, target.global_position, delta * SMOOTH_FACTOR)
+		else:
+			global_position = target.global_position
 #	if target:
 #		actual_cam_pos = target.global_position
 ##		var cam_pos = lerp(actual_cam_pos, target.global_position, 1)
