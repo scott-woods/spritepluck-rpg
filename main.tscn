@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://c80imew0ehth0"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_3mhnu"]
+[ext_resource type="PackedScene" uid="uid://d106rwbh08gta" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.tscn" id="2_4036i"]
 [ext_resource type="Shader" path="res://main.gdshader" id="3_df2sb"]
-[ext_resource type="PackedScene" uid="uid://qs68eec7vhuw" path="res://modules/rooms/refactor_room/refactor_room.tscn" id="3_j7w10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c0n50"]
 shader = ExtResource("3_df2sb")
@@ -10,7 +10,7 @@ shader_parameter/cam_offset = Vector2(0, 0)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3mhnu")
-default_room = ExtResource("3_j7w10")
+default_room = ExtResource("2_4036i")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 process_mode = 3

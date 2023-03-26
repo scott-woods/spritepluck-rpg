@@ -17,7 +17,7 @@ const MAX_ACTION_TIME : float = 12
 const FRICTION : float = .36
 
 @onready var collision : CollisionShape2D = $Collision
-@onready var sprite : Sprite2D = $Sprite
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox : Area2D = $Hurtbox
 @onready var state_machine : StateMachine = $StateMachine
 @onready var action_timer = $ActionTimer
@@ -64,6 +64,7 @@ func start_dodge_phase():
 	await get_tree().create_timer(MIN_ACTION_TIME).timeout
 	max_actions_this_turn += 1
 	emit_signal("actions_increased", max_actions_this_turn)
+	SoundPlayer.play_sound(SoundPlayer.DASH_ATTACK)
 	
 	#keep adding max actions until max is reached or start turn is pressed
 	var remaining_time : float = MAX_ACTION_TIME - MIN_ACTION_TIME
@@ -76,6 +77,7 @@ func start_dodge_phase():
 	timer.timeout.connect(func():
 		max_actions_this_turn += 1
 		emit_signal("actions_increased", max_actions_this_turn)
+		SoundPlayer.play_sound(SoundPlayer.DASH_ATTACK)
 		if max_actions_this_turn < stats.max_actions and not action_timer.is_stopped():
 			timer.start()
 	)

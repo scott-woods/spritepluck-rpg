@@ -2,11 +2,10 @@ class_name Room
 extends Node2D
 
 
-@export var Player : PackedScene
-
 @onready var map : TileMap = $Map
 @onready var camera : Camera = $Camera
 @onready var spawn_point_container : Node = $Map/SpawnPointContainer
+@onready var default_spawn_point : PlayerSpawnPoint = $Map/SpawnPointContainer/DefaultSpawnPoint
 
 var player : Player
 
