@@ -43,9 +43,6 @@ func _ready():
 	
 	#connect to scene manager
 	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)
-	if SceneManager.transitioning:
-		await SceneManager.scene_change_finished
-	state_machine.change_state("PlayerMove")
 
 #called once when combat starts
 func enter_combat_state():

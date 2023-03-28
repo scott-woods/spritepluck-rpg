@@ -225,15 +225,13 @@ vframes = 4
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -26)
 sprite_frames = SubResource("SpriteFrames_8wr1l")
-animation = &"RUN_UP"
-frame = 1
-frame_progress = 0.239426
+animation = &"IDLE_DOWN"
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_n18ew")
 
 [node name="StateMachine" parent="." instance=ExtResource("4_twu7o")]
-initial_state = NodePath("PlayerIdle")
+initial_state = NodePath("PlayerMove")
 
 [node name="PlayerIdle" type="Node" parent="StateMachine"]
 script = ExtResource("5_slfjc")

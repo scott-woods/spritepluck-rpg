@@ -31,6 +31,7 @@ Events="*res://globals/events.gd"
 SceneManager="*res://globals/scene_manager/scene_manager.tscn"
 ViewportManager="*res://globals/viewport_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Game="*res://globals/game.gd"
 
 [dialogue_manager]
 

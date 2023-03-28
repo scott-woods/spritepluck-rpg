@@ -12,14 +12,23 @@ extends Node2D
 var player : Player
 
 func _ready():
-	player = Player.instantiate()
+	start()
+
+func start():
+	spawn_player()
+	camera.set_target(player, true)
+
+func spawn_player():
+	player = Game.player
 	var spawn_position = default_spawn_point.position
 	if SceneManager.current_spawn_point:
 		for spawn in spawn_point_container.get_children():
 			if spawn.spawn_id == SceneManager.current_spawn_point:
 				spawn_position = spawn.position
 				break
+	player.reparent(map, false)
 	player.position = spawn_position
-	map.add_child(player)
-	
-	camera.set_target(player, true)
+	if SceneManager.transitioning:
+		player.state_machine.change_state("PlayerIdle")
+		await SceneManager.scene_change_finished
+	player.state_machine.change_state("PlayerMove")

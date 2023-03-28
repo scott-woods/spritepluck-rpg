@@ -15,19 +15,11 @@ var enemies : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#instantiate player
-	player = Player.instantiate() as Player
-	var spawn_position = default_spawn_point.position
-	if SceneManager.current_spawn_point:
-		for spawn in spawn_point_container.get_children():
-			if spawn.spawn_id == SceneManager.current_spawn_point:
-				spawn_position = spawn.position
-				break
-	player.position = spawn_position
-	map.add_child(player)
+	super()
 
-	camera.set_target(player)
-	
+func start():
+	spawn_player()
+	camera.set_target(player, true)
 	#combat manager setup
 	combat_manager.setup(player, combat_ui, camera, map)
 	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
@@ -37,8 +29,8 @@ func _ready():
 	
 	if SceneManager.transitioning:
 		await SceneManager.scene_change_finished
-		spawn_enemies()
-		start_combat()
+	spawn_enemies()
+	start_combat()
 
 func spawn_enemies():
 	var enemy_num = randi_range(MIN_ENEMIES, MAX_ENEMIES)
