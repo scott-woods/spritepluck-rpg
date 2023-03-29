@@ -7,6 +7,7 @@ extends Node
 @onready var viewport_container = $SubViewportContainer
 @onready var viewport = $SubViewportContainer/SubViewport
 @onready var world : Node2D = $SubViewportContainer/SubViewport/World
+@onready var camera : Camera = $SubViewportContainer/SubViewport/Camera
 
 var current_room : Node2D
 
@@ -21,6 +22,9 @@ func _ready():
 	#create player
 	Game.player = Player.instantiate()
 	add_child(Game.player)
+	
+	#setup camera
+	Game.camera = camera
 	
 	#start default room
 	SceneManager.world = world

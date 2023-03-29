@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://d106rwbh08gta"]
+[gd_scene load_steps=9 format=3 uid="uid://d106rwbh08gta"]
 
 [ext_resource type="Script" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.gd" id="1_xdfnu"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
 [ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_dw4u1"]
-[ext_resource type="PackedScene" uid="uid://l31ck38gimwi" path="res://modules/camera/camera.tscn" id="2_miee2"]
 [ext_resource type="PackedScene" uid="uid://c61di70f3r436" path="res://modules/exit_area/exit_area.tscn" id="4_cljks"]
 [ext_resource type="PackedScene" uid="uid://hcry7ck4q1q8" path="res://modules/rooms/test_area_room_1/test_area_room_1.tscn" id="5_c05qs"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="6_bcltr"]
@@ -41,8 +40,6 @@ position = Vector2(128, 16)
 [node name="PlayerSpawnPoint" parent="Map/SpawnPointContainer" instance=ExtResource("6_bcltr")]
 position = Vector2(0, 16)
 spawn_id = "from_refactor_room"
-
-[node name="Camera" parent="." instance=ExtResource("2_miee2")]
 
 [node name="DefaultUI" parent="." instance=ExtResource("8_oui1y")]
 

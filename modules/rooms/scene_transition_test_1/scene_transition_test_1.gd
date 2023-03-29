@@ -5,13 +5,15 @@ extends Node2D
 
 @onready var map : TileMap = $Map
 @onready var default_ui : DefaultUI = $DefaultUI
-@onready var camera : Camera = $Camera
 @onready var spawn_point_container : Node = $Map/SpawnPointContainer
 @onready var default_spawn_point : PlayerSpawnPoint = $Map/SpawnPointContainer/DefaultSpawnPoint
 
 var player : Player
+var camera : Camera
 
 func _ready():
+	camera = Game.camera
+	player = Game.player
 	start()
 
 func start():
@@ -19,7 +21,6 @@ func start():
 	camera.set_target(player, true)
 
 func spawn_player():
-	player = Game.player
 	var spawn_position = default_spawn_point.position
 	if SceneManager.current_spawn_point:
 		for spawn in spawn_point_container.get_children():
