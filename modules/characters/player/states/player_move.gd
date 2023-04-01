@@ -28,6 +28,15 @@ func physics_update(delta):
 	)
 	
 	if player.direction != Vector2.ZERO:
+		match player.direction:
+			Vector2(1, 0), Vector2(1, 1), Vector2(1, -1):
+				player.sprite.play("RUN_RIGHT")
+			Vector2(-1, 0), Vector2(-1, 1), Vector2(-1, -1):
+				player.sprite.play("RUN_LEFT")
+			Vector2(0, 1):
+				player.sprite.play("RUN_DOWN")
+			Vector2(0, -1):
+				player.sprite.play("RUN_UP")
 		player.interact_ray.rotation = player.direction.angle()
 		player.last_direction = player.direction
 		if player.direction.x != 0 and player.direction.y != 0:
@@ -35,6 +44,15 @@ func physics_update(delta):
 		else:
 			player.velocity = player.direction * player.stats.speed
 	else:
+		match player.last_direction:
+			Vector2(1, 0), Vector2(1, 1), Vector2(1, -1):
+				player.sprite.play("IDLE_RIGHT")
+			Vector2(-1, 0), Vector2(-1, 1), Vector2(-1, -1):
+				player.sprite.play("IDLE_LEFT")
+			Vector2(0, 1):
+				player.sprite.play("IDLE_DOWN")
+			Vector2(0, -1):
+				player.sprite.play("IDLE_UP")
 		player.velocity = Vector2.ZERO
 #		player.velocity.x = move_toward(player.velocity.x, 0, player.stats.speed)
 #		player.velocity.y = move_toward(player.velocity.y, 0, player.stats.speed)

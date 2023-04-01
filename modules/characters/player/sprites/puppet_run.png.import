@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mgiiy41yxl46"
-path="res://.godot/imported/spr_tile_terrain.png-3d504fe51e613c1519dc9e22280fec94.ctex"
+uid="uid://hmii4le8tpet"
+path="res://.godot/imported/puppet_run.png-9745eedf01e029c1d7802c1200bfd1a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/rooms/tiled_importer_test/spr_tile_terrain.png"
-dest_files=["res://.godot/imported/spr_tile_terrain.png-3d504fe51e613c1519dc9e22280fec94.ctex"]
+source_file="res://modules/characters/player/sprites/puppet_run.png"
+dest_files=["res://.godot/imported/puppet_run.png-9745eedf01e029c1d7802c1200bfd1a2.ctex"]
 
 [params]
 

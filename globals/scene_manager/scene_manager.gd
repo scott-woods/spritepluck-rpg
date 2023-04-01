@@ -10,15 +10,20 @@ signal faded_to_black(scene)
 
 var current_spawn_point : String
 var transitioning : bool = false
+var world : Node2D
 
 func change_scene(new_scene : PackedScene, target_spawn : String):
 	transitioning = true
+	var scene = new_scene.instantiate()
 	current_spawn_point = target_spawn
 	transition_animator.play("FADE_TO_BLACK")
-	var scene = new_scene.instantiate()
 	emit_signal("scene_change_started", scene)
 	await transition_animator.animation_finished
-	emit_signal("faded_to_black", scene)
+	Game.player.reparent(scene)
+	for child in world.get_children():
+		child.queue_free()
+	world.add_child(scene)
+	fade_to_normal()
 
 func fade_to_normal():
 	transition_animator.play("FADE_TO_NORMAL")

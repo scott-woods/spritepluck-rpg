@@ -5,7 +5,6 @@
 [node name="ExitArea" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_akjgn")
-target_spawn = null
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 

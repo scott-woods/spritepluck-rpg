@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxe414k4xd1ly"
-path="res://.godot/imported/Stardew-Spring-Outdoors.png-1aa933829a25a2197b00d02db4406544.ctex"
+uid="uid://hau2gly7xp1c"
+path="res://.godot/imported/puppet_idle.png-585c67e71781126fca77febb83ac7967.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/rooms/test_room/Stardew-Spring-Outdoors.png"
-dest_files=["res://.godot/imported/Stardew-Spring-Outdoors.png-1aa933829a25a2197b00d02db4406544.ctex"]
+source_file="res://modules/characters/player/sprites/puppet_idle.png"
+dest_files=["res://.godot/imported/puppet_idle.png-585c67e71781126fca77febb83ac7967.ctex"]
 
 [params]
 

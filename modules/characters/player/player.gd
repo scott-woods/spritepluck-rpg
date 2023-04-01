@@ -17,7 +17,7 @@ const MAX_ACTION_TIME : float = 12
 const FRICTION : float = .36
 
 @onready var collision : CollisionShape2D = $Collision
-@onready var sprite : Sprite2D = $Sprite
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hurtbox : Area2D = $Hurtbox
 @onready var state_machine : StateMachine = $StateMachine
 @onready var action_timer = $ActionTimer
@@ -43,9 +43,7 @@ func _ready():
 	
 	#connect to scene manager
 	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)
-	if SceneManager.transitioning:
-		await SceneManager.scene_change_finished
-	state_machine.change_state("PlayerMove")
+	SceneManager.scene_change_finished.connect(_on_scene_manager_scene_change_finished)
 
 #called once when combat starts
 func enter_combat_state():
@@ -64,6 +62,7 @@ func start_dodge_phase():
 	await get_tree().create_timer(MIN_ACTION_TIME).timeout
 	max_actions_this_turn += 1
 	emit_signal("actions_increased", max_actions_this_turn)
+	SoundPlayer.play_sound(SoundPlayer.DASH_ATTACK)
 	
 	#keep adding max actions until max is reached or start turn is pressed
 	var remaining_time : float = MAX_ACTION_TIME - MIN_ACTION_TIME
@@ -76,6 +75,7 @@ func start_dodge_phase():
 	timer.timeout.connect(func():
 		max_actions_this_turn += 1
 		emit_signal("actions_increased", max_actions_this_turn)
+		SoundPlayer.play_sound(SoundPlayer.DASH_ATTACK)
 		if max_actions_this_turn < stats.max_actions and not action_timer.is_stopped():
 			timer.start()
 	)
@@ -162,3 +162,9 @@ func _on_action_timer_timeout():
 
 func _on_scene_manager_scene_change_started(scene):
 	state_machine.change_state("PlayerIdle")
+	hurtbox.get_node("Collision").set_deferred("disabled", true)
+	collision.set_deferred("disabled", true)
+	
+func _on_scene_manager_scene_change_finished():
+	hurtbox.get_node("Collision").set_deferred("disabled", false)
+	collision.set_deferred("disabled", false)
