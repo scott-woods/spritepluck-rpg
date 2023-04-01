@@ -116,14 +116,14 @@ spawn_id = "from_bottom"
 position = Vector2(312, -64)
 spawn_id = "from_left"
 
-[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner") instance=ExtResource("7_0bpwl")]
+[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("7_0bpwl")]
 enemy_types = Array[PackedScene]([ExtResource("8_vwsee"), ExtResource("9_gsnbc")])
 enemy_spawner = NodePath("../EnemySpawner")
+map = NodePath("../Map")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("map", "spawn_points_container") instance=ExtResource("6_i1t4u")]
 map = NodePath("../Map")
 spawn_points_container = NodePath("../Map/EnemySpawnPoints")
-god_mode = true
 
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("10_won1o")]
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")

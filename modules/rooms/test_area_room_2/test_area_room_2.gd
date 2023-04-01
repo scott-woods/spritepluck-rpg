@@ -12,8 +12,6 @@ func _ready():
 	Game.player.utility_dropped.connect(_on_player_utility_dropped)
 	
 	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
-	combat_manager.action_created.connect(_on_combat_manager_action_created)
-	combat_manager.simulation_player_created.connect(_on_combat_manager_simulation_player_created)
 	
 	Game.camera.set_target(Game.player)
 	
@@ -30,13 +28,10 @@ func _on_player_utility_dropped(utility : Utility):
 	map.add_child(utility)
 
 func _on_combat_manager_combat_ended():
+	#increment rooms cleared
 	RoomsManager.increment_rooms_cleared(self)
+	
+	#open path to next rooms
 	var removable_walls = get_tree().get_nodes_in_group("removable_walls")
 	for wall in removable_walls:
 		wall.collision.set_deferred("disabled", true)
-
-func _on_combat_manager_action_created(action):
-	map.add_child(action)
-
-func _on_combat_manager_simulation_player_created(simulation_player):
-	map.add_child(simulation_player)

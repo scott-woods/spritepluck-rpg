@@ -15,6 +15,7 @@ signal action_setup_canceled
 @export var default_combat_music : AudioStream
 @export var enemy_types : Array[PackedScene]
 @export var enemy_spawner : EnemySpawner
+@export var map : TileMap
 
 @onready var combat_ui : CombatUI = $CombatUI
 
@@ -74,6 +75,7 @@ func end_combat():
 func setup_action(action : CombatAction):
 	action.init(player, camera)
 	action.position = simulation_player.position
+	map.add_child(action)
 	emit_signal("action_created", action)
 	var current_position = simulation_player.position
 	action.setup_finished.connect(func(success):
@@ -99,6 +101,7 @@ func start_turn_phase():
 	MusicPlayer.apply_filter()
 	simulation_player = SimulationPlayer.instantiate()
 	simulation_player.position = player.position
+	map.add_child(simulation_player)
 	emit_signal("simulation_player_created", simulation_player)
 	emit_signal("turn_phase_started", player)
 
