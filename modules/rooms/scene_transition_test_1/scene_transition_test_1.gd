@@ -2,7 +2,7 @@ extends Node2D
 
 
 @export var Player : PackedScene
-@export var test_area_data : Area
+@export var test_area_data : Resource
 
 @onready var map : TileMap = $Map
 @onready var default_ui : DefaultUI = $DefaultUI
@@ -39,4 +39,4 @@ func spawn_player():
 
 func _on_test_area_entrance_body_entered(body):
 	test_area_entrance.get_node("CollisionShape2D").set_deferred("disabled", true)
-	RoomsManager.start(test_area_data, "right")
+	RoomsManager.start(test_area_data, "from_left")

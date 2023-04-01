@@ -22,5 +22,4 @@ func increment_rooms_cleared(room):
 	rooms_cleared += 1
 
 func reset():
-	current_area_data = null
 	rooms_cleared = 0

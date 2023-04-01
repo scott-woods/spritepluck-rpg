@@ -1,21 +1,25 @@
-extends Room
+extends Node2D
 
 
+@onready var enemy_spawner : EnemySpawner = $EnemySpawner
 @onready var combat_manager : CombatManager = $CombatManager
 @onready var player_spawner : PlayerSpawner = $PlayerSpawner
+@onready var map : TileMap = $Map
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	player = Game.player
-	player.utility_dropped.connect(_on_player_utility_dropped)
+	player_spawner.spawn_player()
 	
-	camera = Game.camera
-	super()
+	Game.player.utility_dropped.connect(_on_player_utility_dropped)
+	
+	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
+	combat_manager.action_created.connect(_on_combat_manager_action_created)
+	combat_manager.simulation_player_created.connect(_on_combat_manager_simulation_player_created)
+	
+	Game.camera.set_target(Game.player)
+	
+	start()
 
 func start():
-	player_spawner.spawn_player()
-	camera.set_target(player, true)
-	
 	if SceneManager.transitioning:
 		await SceneManager.scene_change_finished
 

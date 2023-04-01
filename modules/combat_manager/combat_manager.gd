@@ -13,6 +13,8 @@ signal action_setup_canceled
 @export var SimulationPlayer : PackedScene
 @export var UseUtility : PackedScene
 @export var default_combat_music : AudioStream
+@export var enemy_types : Array[PackedScene]
+@export var enemy_spawner : EnemySpawner
 
 @onready var combat_ui : CombatUI = $CombatUI
 
@@ -46,12 +48,12 @@ func _ready():
 #	self.map = map
 
 #called once at the beginning of combat
-func start_combat(enemies : Array):
+func start_combat():
 	combat_ui.setup_player_buttons()
 	combat_ui.connect_to_combat_manager(self)
 	combat_ui.show()
 	player.enter_combat_state()
-	self.enemies = enemies
+	enemies = enemy_spawner.spawn_enemies(enemy_types)
 	for enemy in enemies:
 		enemy = enemy as Enemy
 		enemy.died.connect(_on_enemy_died)
