@@ -1,31 +1,30 @@
 extends Room
 
 
-const MIN_ENEMIES : int = 4
-const MAX_ENEMIES : int = 6
+const MIN_ENEMIES : int = 1
+const MAX_ENEMIES : int = 1
 
 @export var Player : PackedScene
 @export var enemy_types : Array[PackedScene]
 
 @onready var enemy_spawn_points = $Map/EnemySpawnPoints
 @onready var combat_manager : CombatManager = $CombatManager
-@onready var combat_ui : CombatUI = $CombatUI
+@onready var exit_collision : StaticBody2D = $Map/ExitCollision
+@onready var exit : Area2D = $Map/Exit
 
 var enemies : Array
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	player = Game.player
+	player.utility_dropped.connect(_on_player_utility_dropped)
+	
+	camera = Game.camera
 	super()
 
 func start():
 	spawn_player()
 	camera.set_target(player, true)
-	#combat manager setup
-	combat_manager.setup(player, combat_ui, camera, map)
-	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
-	
-	#combat ui setup
-	combat_ui.setup(player, combat_manager)
 	
 	if SceneManager.transitioning:
 		await SceneManager.scene_change_finished
@@ -46,9 +45,22 @@ func spawn_enemies():
 		spawns.erase(spawn)
 
 func start_combat():
-	combat_ui.show()
-	combat_manager.start_combat()
+	combat_manager.start_combat(enemies)
 
+
+func _on_player_utility_dropped(utility : Utility):
+	map.add_child(utility)
 
 func _on_combat_manager_combat_ended():
-	combat_ui.hide()
+	RoomsManager.increment_rooms_cleared(self)
+	exit_collision.get_node("CollisionShape2D").set_deferred("disabled", true)
+
+func _on_combat_manager_action_created(action):
+	map.add_child(action)
+
+func _on_combat_manager_simulation_player_created(simulation_player):
+	map.add_child(simulation_player)
+
+func _on_exit_body_entered(body):
+	exit.get_node("CollisionShape2D").set_deferred("disabled", true)
+	RoomsManager.get_next_room("right")

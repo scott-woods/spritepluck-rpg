@@ -2,9 +2,11 @@ class_name CombatManager
 extends Node
 
 
+signal action_created(action : CombatAction)
 signal action_queued(player : Player)
 signal combat_ended
 signal turn_phase_started(player : Player)
+signal simulation_player_created(simulation_player : SimulationPlayer)
 signal turn_phase_ended
 signal action_setup_canceled
 
@@ -12,39 +14,44 @@ signal action_setup_canceled
 @export var UseUtility : PackedScene
 @export var default_combat_music : AudioStream
 
+@onready var combat_ui : CombatUI = $CombatUI
+
 var player : Player
-var combat_ui : CombatUI
+var enemies : Array
 var simulation_player : SimulationPlayer
 var camera : Camera
-var map : TileMap
 
-var in_combat = false
-
-func setup(player : Player, combat_ui : CombatUI, camera : Camera, map : TileMap):
-	#connect to player
-	self.player = player
+func _ready():
+	player = Game.player
 	player.start_turn_button_pressed.connect(_on_player_start_turn_button_pressed)
 	player.finished_executing_actions.connect(_on_player_finished_executing_actions)
-	player.utility_dropped.connect(_on_player_utility_dropped)
 	
-	#connect to ui signals
-	self.combat_ui = combat_ui
-	combat_ui.action_selected.connect(_on_combat_ui_action_selected)
-	combat_ui.use_utility_selected.connect(_on_combat_ui_use_utility_selected)
-	combat_ui.end_turn_button_pressed.connect(_on_combat_ui_end_turn_button_pressed)
-	
-	self.camera = camera
-	
-	self.map = map
+	camera = Game.camera
+
+#func setup(player : Player, combat_ui : CombatUI, camera : Camera, map : TileMap):
+#	#connect to player
+#	self.player = player
+#	player.start_turn_button_pressed.connect(_on_player_start_turn_button_pressed)
+#	player.finished_executing_actions.connect(_on_player_finished_executing_actions)
+#	player.utility_dropped.connect(_on_player_utility_dropped)
+#
+#	#connect to ui signals
+#	self.combat_ui = combat_ui
+#	combat_ui.action_selected.connect(_on_combat_ui_action_selected)
+#	combat_ui.use_utility_selected.connect(_on_combat_ui_use_utility_selected)
+#	combat_ui.end_turn_button_pressed.connect(_on_combat_ui_end_turn_button_pressed)
+#
+#	self.camera = camera
+#
+#	self.map = map
 
 #called once at the beginning of combat
-func start_combat(combat_music : AudioStream = null):
-	if combat_music == null:
-		combat_music = default_combat_music
-	MusicPlayer.play_music(combat_music)
-	in_combat = true
+func start_combat(enemies : Array):
+	combat_ui.setup_player_buttons()
+	combat_ui.connect_to_combat_manager(self)
+	combat_ui.show()
 	player.enter_combat_state()
-	var enemies = get_tree().get_nodes_in_group("enemies")
+	self.enemies = enemies
 	for enemy in enemies:
 		enemy = enemy as Enemy
 		enemy.died.connect(_on_enemy_died)
@@ -57,16 +64,15 @@ func start_dodge_phase():
 
 #called once to end combat
 func end_combat():
-	in_combat = false
 	player.exit_combat_state()
-	MusicPlayer.stop_music()
+	combat_ui.hide()
 	emit_signal("combat_ended")
 
 #setup a combat action after selection from ui
 func setup_action(action : CombatAction):
 	action.init(player, camera)
 	action.position = simulation_player.position
-	map.add_child(action)
+	emit_signal("action_created", action)
 	var current_position = simulation_player.position
 	action.setup_finished.connect(func(success):
 		await get_tree().process_frame
@@ -91,7 +97,7 @@ func start_turn_phase():
 	MusicPlayer.apply_filter()
 	simulation_player = SimulationPlayer.instantiate()
 	simulation_player.position = player.position
-	map.add_child(simulation_player)
+	emit_signal("simulation_player_created", simulation_player)
 	emit_signal("turn_phase_started", player)
 
 #called when player is done queuing actions
@@ -113,9 +119,6 @@ func _on_player_finished_executing_actions():
 		end_combat()
 	else:
 		start_dodge_phase()
-		
-func _on_player_utility_dropped(utility):
-	map.add_child(utility)
 
 func _on_combat_ui_action_selected(selected_action : CombatActionResource):
 	var action = selected_action.scene.instantiate() as CombatAction

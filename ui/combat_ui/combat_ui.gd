@@ -28,6 +28,17 @@ signal end_turn_button_pressed
 
 var button_press_sequence : Array
 var action_ready_icons : Array
+var player : Player
+
+func _ready():
+	player = Game.player
+	player_hp_label.text = "HP: " + str(player.stats.hp)
+	player.health_changed.connect(_on_player_health_changed)
+	utility_label.text = "Utility: " + str(player.current_utility.utility_label)
+	player.current_utility_changed.connect(_on_player_current_utility_changed)
+	player.action_timer_started.connect(_on_player_action_timer_started)
+	player.action_timer.timeout.connect(_on_player_action_timer_timeout)
+	player.actions_increased.connect(_on_player_actions_increased)
 
 func _input(event):
 	if event.is_action_pressed("cancel"):
@@ -44,6 +55,38 @@ func _input(event):
 					action_button.set_focus_mode(Control.FOCUS_ALL)
 				var button = button_press_sequence.pop_back()
 				button.grab_focus()
+
+func setup_player_buttons():
+	#create action ready icons
+	while action_ready_icons.size() < player.stats.max_actions:
+		var icon = ActionReadyIcon.instantiate()
+		action_ready_icons.append(icon)
+		action_ready_icon_container.add_child(icon)
+	
+	#setup attack buttons from player data
+	if player.attacks:
+		for attack in player.attacks:
+			attack = attack as CombatActionResource
+			var button = CombatButton.instantiate()
+			button.text = attack.label
+			button.pressed.connect(func(): _on_attack_selected(attack))
+			attacks_container.add_child(button)
+	
+	#setup special buttons from player data
+	if player.specials:
+		for special in player.specials:
+			special = special as CombatActionResource
+			var button = CombatButton.instantiate()
+			button.text = special.label
+			button.pressed.connect(func(): _on_special_selected(special))
+			specials_container.add_child(button)
+
+func connect_to_combat_manager(combat_manager : CombatManager):
+	combat_manager.turn_phase_started.connect(_on_combat_manager_turn_phase_started)
+	combat_manager.action_setup_canceled.connect(_on_combat_manager_action_setup_canceled)
+	combat_manager.turn_phase_ended.connect(_on_combat_manager_turn_phase_ended)
+	combat_manager.action_queued.connect(_on_combat_manager_action_queued)
+	combat_manager.combat_ended.connect(_on_combat_manager_combat_ended)
 
 func setup(player : Player, combat_manager : CombatManager):
 	#connect to player signals

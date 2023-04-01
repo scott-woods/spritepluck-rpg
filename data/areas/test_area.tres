@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Area" load_steps=4 format=3 uid="uid://5ojxfst0vr8y"]
+
+[ext_resource type="AudioStream" uid="uid://cfbaq4aibcyt3" path="res://assets/audio/music/spicy.ogg" id="1_kikad"]
+[ext_resource type="PackedScene" uid="uid://hcry7ck4q1q8" path="res://modules/rooms/test_area_room_1/test_area_room_1.tscn" id="2_s152g"]
+[ext_resource type="Script" path="res://data/areas/area.gd" id="3_c2ttl"]
+
+[resource]
+script = ExtResource("3_c2ttl")
+rooms = Array[PackedScene]([ExtResource("2_s152g")])
+music = ExtResource("1_kikad")

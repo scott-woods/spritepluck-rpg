@@ -43,6 +43,7 @@ func _ready():
 	
 	#connect to scene manager
 	SceneManager.scene_change_started.connect(_on_scene_manager_scene_change_started)
+	SceneManager.scene_change_finished.connect(_on_scene_manager_scene_change_finished)
 
 #called once when combat starts
 func enter_combat_state():
@@ -161,3 +162,9 @@ func _on_action_timer_timeout():
 
 func _on_scene_manager_scene_change_started(scene):
 	state_machine.change_state("PlayerIdle")
+	hurtbox.get_node("Collision").set_deferred("disabled", true)
+	collision.set_deferred("disabled", true)
+	
+func _on_scene_manager_scene_change_finished():
+	hurtbox.get_node("Collision").set_deferred("disabled", false)
+	collision.set_deferred("disabled", false)

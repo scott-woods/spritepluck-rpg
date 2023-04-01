@@ -1,12 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d07t8fkd5nupg"]
+[gd_scene load_steps=6 format=3 uid="uid://d07t8fkd5nupg"]
 
 [ext_resource type="Script" path="res://modules/combat_manager/combat_manager.gd" id="1_xid06"]
 [ext_resource type="PackedScene" uid="uid://fd3onkmiknmt" path="res://modules/simulation_player/simulation_player.tscn" id="2_rw036"]
 [ext_resource type="PackedScene" uid="uid://dy3t01lvf4eu6" path="res://modules/characters/player/combat_actions/use_utility/use_utility.tscn" id="3_6qjf3"]
 [ext_resource type="AudioStream" uid="uid://cfbaq4aibcyt3" path="res://assets/audio/music/spicy.ogg" id="4_xlrni"]
+[ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="5_53200"]
 
 [node name="CombatManager" type="Node"]
 script = ExtResource("1_xid06")
 SimulationPlayer = ExtResource("2_rw036")
 UseUtility = ExtResource("3_6qjf3")
 default_combat_music = ExtResource("4_xlrni")
+
+[node name="CombatUI" parent="." instance=ExtResource("5_53200")]
+visible = false
+
+[connection signal="action_selected" from="CombatUI" to="." method="_on_combat_ui_action_selected"]
+[connection signal="end_turn_button_pressed" from="CombatUI" to="." method="_on_combat_ui_end_turn_button_pressed"]
+[connection signal="use_utility_selected" from="CombatUI" to="." method="_on_combat_ui_use_utility_selected"]

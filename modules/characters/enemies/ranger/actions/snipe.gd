@@ -12,5 +12,5 @@ func execute():
 	var bullet = RangerBullet.instantiate()
 	bullet.position = enemy.position
 	add_child(bullet)
-	var direction = enemy.position.direction_to(enemy.player.position).normalized()
+	var direction = enemy.position.direction_to(enemy.player.hurtbox.global_position).normalized()
 	bullet.fire(direction)
