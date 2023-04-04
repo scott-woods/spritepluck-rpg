@@ -116,6 +116,14 @@ spawn_id = "from_bottom"
 position = Vector2(312, -64)
 spawn_id = "from_left"
 
+[node name="ClearColor" type="ColorRect" parent="Map"]
+z_index = -100
+offset_left = -192.0
+offset_top = -176.0
+offset_right = 352.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("7_0bpwl")]
 enemy_types = Array[PackedScene]([ExtResource("8_vwsee"), ExtResource("9_gsnbc")])
 enemy_spawner = NodePath("../EnemySpawner")

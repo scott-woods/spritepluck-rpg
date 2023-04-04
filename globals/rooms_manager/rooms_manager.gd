@@ -11,7 +11,8 @@ func start(area_data : Area, target_spawn : String):
 	var room = area_data.rooms[randi_range(0, area_data.rooms.size() - 1)]
 	SceneManager.change_scene(room, target_spawn)
 	await SceneManager.scene_change_finished
-	MusicPlayer.play_music(area_data.music)
+	if area_data.music:
+		MusicPlayer.play_music(area_data.music)
 
 #pick next room
 func get_next_room(target_spawn : String):

@@ -187,6 +187,14 @@ use_room_manager = true
 [node name="Collision" parent="Map/ExitArea4" index="0"]
 shape = SubResource("RectangleShape2D_au8h0")
 
+[node name="ColorRect" type="ColorRect" parent="Map"]
+z_index = -100
+offset_left = -112.0
+offset_top = -224.0
+offset_right = 336.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("6_ukp74")]
 enemy_types = Array[PackedScene]([ExtResource("7_mhe3m"), ExtResource("8_da234")])
 enemy_spawner = NodePath("../EnemySpawner")
