@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 
 signal action_timer_started(action_timer)
+signal action_timer_timeout
 signal utility_dropped(utility)
 signal health_changed(new_value)
 signal start_turn_button_pressed
@@ -47,6 +48,9 @@ func _ready():
 
 #called once when combat starts
 func enter_combat_state():
+	if utilities.size() > 0:
+		current_utility = utilities[0]
+		emit_signal("current_utility_changed", current_utility)
 	state_machine.change_state("PlayerMove/PlayerCombat")
 
 #called at start of dodge phase
@@ -159,6 +163,7 @@ func _on_hurtbox_area_entered(area):
 #action timer finished
 func _on_action_timer_timeout():
 	SoundPlayer.play_sound(SoundPlayer.ACTION_BAR_READY)
+	emit_signal("action_timer_timeout")
 
 func _on_scene_manager_scene_change_started(scene):
 	state_machine.change_state("PlayerIdle")

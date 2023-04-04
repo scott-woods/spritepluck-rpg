@@ -34,10 +34,9 @@ func _ready():
 	player = Game.player
 	player_hp_label.text = "HP: " + str(player.stats.hp)
 	player.health_changed.connect(_on_player_health_changed)
-	utility_label.text = "Utility: " + str(player.current_utility.utility_label)
 	player.current_utility_changed.connect(_on_player_current_utility_changed)
 	player.action_timer_started.connect(_on_player_action_timer_started)
-	player.action_timer.timeout.connect(_on_player_action_timer_timeout)
+	player.action_timer_timeout.connect(_on_player_action_timer_timeout)
 	player.actions_increased.connect(_on_player_actions_increased)
 
 func _input(event):

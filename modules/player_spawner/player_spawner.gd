@@ -18,4 +18,4 @@ func spawn_player():
 					return
 	
 	print("No valid spawn point found, spawning at default position.")
-	player.postion = Vector2.ZERO
+	player.position = Vector2.ZERO
