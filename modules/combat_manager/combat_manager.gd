@@ -12,12 +12,11 @@ signal action_setup_canceled
 
 @export var SimulationPlayer : PackedScene
 @export var UseUtility : PackedScene
-@export var default_combat_music : AudioStream
+
 @export var enemy_types : Array[PackedScene]
 @export var enemy_spawner : EnemySpawner
 @export var map : TileMap
-
-@onready var combat_ui : CombatUI = $CombatUI
+@export var combat_ui : CombatUI
 
 var player : Player
 var enemies : Array

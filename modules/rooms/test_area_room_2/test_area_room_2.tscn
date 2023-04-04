@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6plyukisxj0j"]
+[gd_scene load_steps=17 format=3 uid="uid://b6plyukisxj0j"]
 
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_ggjqx"]
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_2/test_area_room_2.gd" id="1_n8v4d"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="8_vwsee"]
 [ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="9_gsnbc"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_won1o"]
+[ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="11_nkq3r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmqox"]
 size = Vector2(32, 16)
@@ -124,10 +125,11 @@ offset_right = 352.0
 offset_bottom = 224.0
 color = Color(0, 0, 0, 1)
 
-[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("7_0bpwl")]
+[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map", "combat_ui") instance=ExtResource("7_0bpwl")]
 enemy_types = Array[PackedScene]([ExtResource("8_vwsee"), ExtResource("9_gsnbc")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
+combat_ui = NodePath("../CombatUI")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("map", "spawn_points_container") instance=ExtResource("6_i1t4u")]
 map = NodePath("../Map")
@@ -136,6 +138,9 @@ spawn_points_container = NodePath("../Map/EnemySpawnPoints")
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("10_won1o")]
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")
 map = NodePath("../Map")
+
+[node name="CombatUI" parent="." instance=ExtResource("11_nkq3r")]
+visible = false
 
 [editable path="Map/ExitArea"]
 [editable path="Map/ExitArea2"]

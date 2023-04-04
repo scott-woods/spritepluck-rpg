@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://hcry7ck4q1q8"]
+[gd_scene load_steps=21 format=3 uid="uid://hcry7ck4q1q8"]
 
 [ext_resource type="PackedScene" uid="uid://bieehfxk3a4ab" path="res://modules/rooms/room/room.tscn" id="1_5ywyc"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_j6mkr"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dcpfgoqoaghou" path="res://modules/invisible_wall/invisible_wall.tscn" id="10_lrq1m"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="12_2tuqr"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="12_72ssr"]
+[ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="13_xyfci"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wg3pt"]
 vertices = PackedVector2Array(-240, -176, 128, -176, 128, 0, -96, 0, 304, 0, 304, 176, -96, 176, -240, 0)
@@ -143,10 +144,11 @@ offset_right = 352.0
 offset_bottom = 208.0
 color = Color(0, 0, 0, 1)
 
-[node name="CombatManager" parent="." index="1" node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("9_smbvo")]
+[node name="CombatManager" parent="." index="1" node_paths=PackedStringArray("enemy_spawner", "map", "combat_ui") instance=ExtResource("9_smbvo")]
 enemy_types = Array[PackedScene]([ExtResource("5_uqn8g"), ExtResource("4_h0oaq"), ExtResource("6_6owxe")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
+combat_ui = NodePath("../CombatUI")
 
 [node name="EnemySpawner" parent="." index="2" node_paths=PackedStringArray("map", "spawn_points_container") instance=ExtResource("12_72ssr")]
 map = NodePath("../Map")
@@ -155,6 +157,8 @@ spawn_points_container = NodePath("../Map/EnemySpawnPoints")
 [node name="PlayerSpawner" parent="." index="3" node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("12_2tuqr")]
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")
 map = NodePath("../Map")
+
+[node name="CombatUI" parent="." index="4" instance=ExtResource("13_xyfci")]
 
 [connection signal="action_created" from="CombatManager" to="." method="_on_combat_manager_action_created"]
 [connection signal="combat_ended" from="CombatManager" to="." method="_on_combat_manager_combat_ended"]
