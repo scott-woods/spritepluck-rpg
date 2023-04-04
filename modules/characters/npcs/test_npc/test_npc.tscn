@@ -10,8 +10,9 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0ec2"]
 size = Vector2(16, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tvmy"]
-size = Vector2(16, 16)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5btl7"]
+radius = 8.0
+height = 32.0
 
 [node name="TestNPC" type="StaticBody2D"]
 collision_layer = 32
@@ -20,18 +21,18 @@ Bad = ExtResource("2_nioa8")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 y_sort_enabled = true
-position = Vector2(0, -12)
+position = Vector2(0, -8)
 texture = SubResource("PlaceholderTexture2D_u8low")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_h0ec2")
 
 [node name="Interactable" parent="." groups=["interactables"] instance=ExtResource("3_3bcua")]
-position = Vector2(0, -12)
+position = Vector2(0, -8)
 dialogue = Array[Resource]([ExtResource("2_nioa8")])
 
 [node name="Collision" parent="Interactable" index="0"]
-position = Vector2(0, 8)
-shape = SubResource("RectangleShape2D_5tvmy")
+shape = SubResource("CapsuleShape2D_5btl7")
 
 [editable path="Interactable"]

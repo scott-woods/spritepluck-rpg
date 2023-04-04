@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.gd" id="1_xdfnu"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
-[ext_resource type="PackedScene" uid="uid://407wdynbq2ld" path="res://modules/characters/player/player.tscn" id="2_dw4u1"]
 [ext_resource type="Resource" uid="uid://5ojxfst0vr8y" path="res://data/areas/test_area.tres" id="3_731g7"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="6_bcltr"]
+[ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="7_i10ym"]
 [ext_resource type="PackedScene" uid="uid://eae3uik2yex2" path="res://ui/default_ui/default_ui.tscn" id="8_oui1y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grjm2"]
@@ -12,7 +12,6 @@ size = Vector2(16, 64)
 
 [node name="SceneTransitionTest1" type="Node2D"]
 script = ExtResource("1_xdfnu")
-Player = ExtResource("2_dw4u1")
 test_area_data = ExtResource("3_731g7")
 
 [node name="Map" type="TileMap" parent="."]
@@ -31,7 +30,7 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Map/TestAreaEntrance"]
 shape = SubResource("RectangleShape2D_grjm2")
 
-[node name="SpawnPointContainer" type="Node" parent="Map"]
+[node name="SpawnPointContainer" type="Node2D" parent="Map"]
 
 [node name="DefaultSpawnPoint" parent="Map/SpawnPointContainer" instance=ExtResource("6_bcltr")]
 position = Vector2(128, 16)
@@ -41,5 +40,9 @@ position = Vector2(0, 16)
 spawn_id = "from_refactor_room"
 
 [node name="DefaultUI" parent="." instance=ExtResource("8_oui1y")]
+
+[node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("7_i10ym")]
+spawn_points_container = NodePath("../Map/SpawnPointContainer")
+map = NodePath("../Map")
 
 [connection signal="body_entered" from="Map/TestAreaEntrance" to="." method="_on_test_area_entrance_body_entered"]

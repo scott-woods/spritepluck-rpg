@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dafj2ld6w3ikc"]
 
-[ext_resource type="PackedScene" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
+[ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
 [ext_resource type="Resource" uid="uid://bctvxnahehvnr" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_moving.gd" id="5_eut38"]

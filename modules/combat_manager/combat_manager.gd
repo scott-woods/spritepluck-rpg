@@ -16,7 +16,8 @@ signal action_setup_canceled
 @export var enemy_types : Array[PackedScene]
 @export var enemy_spawner : EnemySpawner
 @export var map : TileMap
-@export var combat_ui : CombatUI
+
+@onready var combat_ui : CombatUI = $CombatUI
 
 var player : Player
 var enemies : Array

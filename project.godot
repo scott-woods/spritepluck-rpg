@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ActionRPG"
-run/main_scene="res://main.tscn"
+run/main_scene="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 run/max_fps=144
 config/icon="res://assets/icon.svg"
@@ -31,7 +31,7 @@ Events="*res://globals/events.gd"
 SceneManager="*res://globals/scene_manager/scene_manager.tscn"
 ViewportManager="*res://globals/viewport_manager.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-Game="*res://globals/game.gd"
+Game="*res://game.gd"
 RoomsManager="*res://globals/rooms_manager/rooms_manager.tscn"
 
 [dialogue_manager]

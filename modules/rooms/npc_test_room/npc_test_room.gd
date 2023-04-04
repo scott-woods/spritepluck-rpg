@@ -2,15 +2,12 @@ class_name NPCTestRoom
 extends Node2D
 
 
-@export var Player : PackedScene
-
 @onready var default_ui : DefaultUI = $DefaultUI
-
-var player : Player
+@onready var player_spawner : PlayerSpawner = $PlayerSpawner
 
 func _ready():
-	player = Player.instantiate()
-	add_child(player)
+	player_spawner.spawn_player()
+	Game.camera.set_target(Game.player)
 	
 	var interactables = get_tree().get_nodes_in_group("interactables")
 	default_ui.setup(interactables)

@@ -1,16 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://dr0fetlktqbbm"]
+[gd_scene load_steps=23 format=3 uid="uid://dr0fetlktqbbm"]
 
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_3/test_area_room_3.gd" id="1_mnoc0"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_y3tu0"]
 [ext_resource type="PackedScene" uid="uid://c61di70f3r436" path="res://modules/exit_area/exit_area.tscn" id="3_vj88i"]
 [ext_resource type="PackedScene" uid="uid://dcpfgoqoaghou" path="res://modules/invisible_wall/invisible_wall.tscn" id="4_lv8ph"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="5_a07k4"]
-[ext_resource type="PackedScene" uid="uid://d07t8fkd5nupg" path="res://modules/combat_manager/combat_manager.tscn" id="6_ukp74"]
+[ext_resource type="PackedScene" uid="uid://bgyfc7skye1bh" path="res://modules/combat_manager/combat_manager.tscn" id="6_ukp74"]
 [ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="7_mhe3m"]
 [ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="8_da234"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="9_rlysr"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_5jnhh"]
-[ext_resource type="PackedScene" uid="uid://b7wc166dmd3bt" path="res://ui/combat_ui/combat_ui.tscn" id="11_35dw5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rsms8"]
 vertices = PackedVector2Array(304, 48, 304, 112, -80, 112, -80, 48)
@@ -196,11 +195,10 @@ offset_right = 336.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
-[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map", "combat_ui") instance=ExtResource("6_ukp74")]
+[node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("6_ukp74")]
 enemy_types = Array[PackedScene]([ExtResource("7_mhe3m"), ExtResource("8_da234")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
-combat_ui = NodePath("../CombatUI")
 
 [node name="EnemySpawner" parent="." node_paths=PackedStringArray("map", "spawn_points_container") instance=ExtResource("9_rlysr")]
 map = NodePath("../Map")
@@ -209,8 +207,6 @@ spawn_points_container = NodePath("../Map/EnemySpawnPoints")
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("10_5jnhh")]
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")
 map = NodePath("../Map")
-
-[node name="CombatUI" parent="." instance=ExtResource("11_35dw5")]
 
 [editable path="Map/InvisibleWall"]
 [editable path="Map/InvisibleWall2"]
