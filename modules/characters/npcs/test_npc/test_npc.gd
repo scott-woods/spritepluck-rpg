@@ -4,6 +4,8 @@ extends StaticBody2D
 
 signal interaction_finished
 
+const Textbox : PackedScene = preload("res://ui/textbox/textbox.tscn")
+
 @export var Bad : DialogueResource
 
 @onready var sprite : Sprite2D = $Sprite
@@ -29,3 +31,7 @@ func on_interact():
 	#read next line, if necessary
 	#when out of lines, emit interaction_finished signal
 	#increment number of interactions (in a resource file)
+
+func _on_interactable_interaction_started():
+	var textbox = Textbox.instantiate()
+	add_child(textbox)

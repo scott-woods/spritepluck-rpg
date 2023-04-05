@@ -35,4 +35,6 @@ dialogue = Array[Resource]([ExtResource("2_nioa8")])
 [node name="Collision" parent="Interactable" index="0"]
 shape = SubResource("CapsuleShape2D_5btl7")
 
+[connection signal="interaction_started" from="Interactable" to="." method="_on_interactable_interaction_started"]
+
 [editable path="Interactable"]
