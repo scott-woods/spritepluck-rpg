@@ -30,7 +30,6 @@ shape = SubResource("RectangleShape2D_h0ec2")
 
 [node name="Interactable" parent="." groups=["interactables"] instance=ExtResource("3_3bcua")]
 position = Vector2(0, -8)
-dialogue = Array[Resource]([ExtResource("2_nioa8")])
 
 [node name="Collision" parent="Interactable" index="0"]
 shape = SubResource("CapsuleShape2D_5btl7")

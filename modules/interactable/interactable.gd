@@ -5,7 +5,8 @@ extends Area2D
 signal interaction_started
 signal interaction_finished
 
-@export var dialogue : Array[Resource]
-
 func interact():
 	emit_signal("interaction_started")
+
+func finish_interaction():
+	emit_signal("interaction_finished")

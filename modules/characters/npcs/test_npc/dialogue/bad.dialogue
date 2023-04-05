@@ -1,10 +1,27 @@
 ~ bad
 
-set sound = TEST_NPC_TEXT
-set portrait = TEST_NPC_BIG
+set sound = SoundPlayer.TEST_NPC_TEXT
+set portrait = Portraits.TEST_NPC_BIG
 Test NPC: My girlfriend thinks I tongue but, but I [shake rate=20 level=10]can't...[/shake]
-set portrait = TEST_NPC_HANDSOME
+set portrait = Portraits.TEST_NPC_HANDSOME
 Test NPC: [wave amp=25 freq=5]not even a little bit.[/wave]
 set portrait = null
-set sound = DEFAULT_TEXT
+set sound = SoundPlayer.DEFAULT_TEXT
 This line should have no sprite.
+
+=> END
+
+
+~ bad_2
+
+set sound = SoundPlayer.TEST_NPC_TEXT
+Big Benis: I have been known to have a big benis, yes.
+
+=> END
+
+
+~ repeating
+
+Don't you have anything better to do?
+
+=> END
