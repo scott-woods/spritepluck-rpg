@@ -2,8 +2,6 @@ class_name TestNPC
 extends StaticBody2D
 
 
-signal interaction_finished
-
 const Textbox : PackedScene = preload("res://ui/textbox/textbox.tscn")
 
 @export var Bad : DialogueResource
@@ -12,26 +10,29 @@ const Textbox : PackedScene = preload("res://ui/textbox/textbox.tscn")
 @onready var collision : CollisionShape2D = $Collision
 @onready var interactable : Interactable = $Interactable
 
-var interactions
-
-#necessary injections
-var default_ui : DefaultUI
-
-func init(default_ui):
-	self.default_ui = default_ui
-
-func on_interact():
-	default_ui.textbox.show()
-	await default_ui.textbox.read(Bad, "bad")
-	default_ui.textbox.hide()
-	emit_signal("interaction_finished")
-	#tell ui to show textbox
-	#read text (optionally pass a sprite and custom sound)
-	#wait until textbox emits finished signal
-	#read next line, if necessary
-	#when out of lines, emit interaction_finished signal
-	#increment number of interactions (in a resource file)
+var times_interacted : int = 0
 
 func _on_interactable_interaction_started():
+	#create textbox
 	var textbox = Textbox.instantiate()
 	add_child(textbox)
+	
+	#determine which part of dialogue to read
+	var dialogue_title : String
+	match times_interacted:
+		0:
+			dialogue_title = "bad"
+		1:
+			dialogue_title = "bad_2"
+		_:
+			dialogue_title = "repeating"
+			
+	#read dialogue
+	await textbox.read(Bad, dialogue_title)
+	
+	#free textbox
+	textbox.queue_free()
+	
+	#finish interaction
+	times_interacted += 1
+	interactable.finish_interaction()

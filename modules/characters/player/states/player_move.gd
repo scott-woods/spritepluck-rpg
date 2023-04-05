@@ -108,6 +108,7 @@ func handle_input(event: InputEvent):
 		var interactable = player.interact_ray.get_collider() as Interactable
 		interactable.interact()
 		await interactable.interaction_finished
+		await get_tree().process_frame
 		state_machine.change_state("PlayerMove")
 
 func end():

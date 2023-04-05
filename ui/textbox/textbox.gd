@@ -1,12 +1,12 @@
 class_name Textbox
-extends PanelContainer
+extends CanvasLayer
 
 
 signal finished_reading
 
-@onready var texture : TextureRect = $Texture
-@onready var sprite : TextureRect = $MarginContainer/HBoxContainer/Sprite
-@onready var dialogue_label : RichTextLabel = $MarginContainer/HBoxContainer/DialogueLabel
+@onready var texture : TextureRect = $MarginContainer/Panel/Texture
+@onready var portrait : TextureRect = $MarginContainer/Panel/MarginContainer/HBoxContainer/Portrait
+@onready var dialogue_label : RichTextLabel = $MarginContainer/Panel/MarginContainer/HBoxContainer/DialogueLabel
 
 var dialogue_resource : Resource
 var text_delay = 0.035

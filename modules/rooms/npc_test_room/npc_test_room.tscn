@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://pf3mhu23mwyi"]
+[gd_scene load_steps=5 format=3 uid="uid://pf3mhu23mwyi"]
 
 [ext_resource type="Script" path="res://modules/rooms/npc_test_room/npc_test_room.gd" id="1_7pqdj"]
 [ext_resource type="PackedScene" uid="uid://bcvev14r5vc33" path="res://modules/characters/npcs/test_npc/test_npc.tscn" id="2_fqp81"]
-[ext_resource type="PackedScene" uid="uid://eae3uik2yex2" path="res://ui/default_ui/default_ui.tscn" id="2_rjdsb"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="4_qxg0v"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="5_aerag"]
 
@@ -21,8 +20,6 @@ layer_0/z_index = -1
 [node name="PlayerSpawnPoints" type="Node2D" parent="TileMap"]
 
 [node name="PlayerSpawnPoint" parent="TileMap/PlayerSpawnPoints" instance=ExtResource("4_qxg0v")]
-
-[node name="DefaultUI" parent="." instance=ExtResource("2_rjdsb")]
 
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("5_aerag")]
 spawn_points_container = NodePath("../TileMap/PlayerSpawnPoints")

@@ -6,11 +6,11 @@ var textbox : Textbox
 var portrait:
 	set(new_portrait):
 		portrait = new_portrait
-		textbox.sprite.texture = portrait
+		textbox.portrait.texture = portrait
 		if portrait:
-			textbox.sprite.show()
+			textbox.portrait.show()
 		else:
-			textbox.sprite.hide()
+			textbox.portrait.hide()
 	get:
 		return portrait
 

@@ -36,7 +36,7 @@ RoomsManager="*res://globals/rooms_manager/rooms_manager.tscn"
 
 [dialogue_manager]
 
-general/states=["Fonts", "TextboxManager", "SoundPlayer", "Portraits", "MusicPlayer"]
+general/states=["TextboxManager"]
 
 [display]
 
