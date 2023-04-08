@@ -12,24 +12,24 @@
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_5jnhh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rsms8"]
-vertices = PackedVector2Array(304, 48, 304, 112, -80, 112, -80, 48)
+vertices = PackedVector2Array(296, 56, 296, 104, -72, 104, -72, 56)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-80, 48, -80, 112, 304, 112, 304, 48)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-72, 56, -72, 104, 296, 104, 296, 56)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_181p7"]
-vertices = PackedVector2Array(80, -96, 80, 48, -80, 48, -80, -96)
+vertices = PackedVector2Array(72, -104, 72, 56, -72, 56, -72, -104)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-80, -96, -80, 48, 80, 48, 80, -96)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-72, -104, -72, 56, 72, 56, 72, -104)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_csb2i"]
-vertices = PackedVector2Array(144, -96, 304, -96, 304, 48, 144, 48)
+vertices = PackedVector2Array(152, -104, 296, -104, 296, 56, 152, 56)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(144, -96, 304, -96, 304, 48, 144, 48)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(152, -104, 296, -104, 296, 56, 152, 56)])
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ppuvj"]
-vertices = PackedVector2Array(304, -160, 304, -96, -80, -96, -80, -160)
+vertices = PackedVector2Array(296, -152, 296, -104, -72, -104, -72, -152)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-80, -160, -80, -96, 304, -96, 304, -160)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-72, -152, -72, -104, 296, -104, 296, -152)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id280"]
 size = Vector2(32, 16)

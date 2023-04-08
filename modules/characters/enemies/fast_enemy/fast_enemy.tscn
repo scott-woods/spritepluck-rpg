@@ -1,23 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dafj2ld6w3ikc"]
+[gd_scene load_steps=13 format=3 uid="uid://dafj2ld6w3ikc"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
-[ext_resource type="Resource" uid="uid://bctvxnahehvnr" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
+[ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="5_0lqyi"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_moving.gd" id="5_eut38"]
-[ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_combat.gd" id="6_667by"]
+[ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="6_iqg1t"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_executing_action.gd" id="6_kaxvg"]
+[ext_resource type="PackedScene" uid="uid://0qrv8vcxm2bm" path="res://modules/state_machine/state.tscn" id="7_bu1nb"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.gd" id="7_oouk3"]
 [ext_resource type="PackedScene" uid="uid://cnwyh247c35yk" path="res://modules/hitbox/hitbox.tscn" id="7_sm3pt"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_np8rf"]
-size = Vector2(10, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae4qh"]
-size = Vector2(10, 7.5)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es8te"]
-radius = 4.0
-height = 20.0
 
 [sub_resource type="Curve2D" id="Curve2D_owbxd"]
 _data = {
@@ -35,39 +26,11 @@ size = Vector2(3, 22)
 position = Vector2(0, -3)
 script = ExtResource("1_tbe72")
 action_cooldown = 1.0
-stats = ExtResource("3_4m0rc")
 
-[node name="Sprite" parent="." index="0"]
-modulate = Color(0.490196, 0.0941176, 0.0941176, 1)
-texture = SubResource("PlaceholderTexture2D_np8rf")
-
-[node name="Collision" parent="." index="1"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_ae4qh")
-
-[node name="Collision" parent="Hurtbox" index="0"]
-shape = SubResource("CapsuleShape2D_es8te")
-
-[node name="EnemyCombat" parent="StateMachine" index="0"]
-script = ExtResource("6_667by")
-
-[node name="EnemyMoving" parent="StateMachine/EnemyCombat" index="0"]
-script = ExtResource("5_eut38")
-
-[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" index="1"]
-script = ExtResource("6_kaxvg")
-
-[node name="MeleeSwipe" type="Node" parent="Actions" index="0"]
+[node name="Actions@MeleeSwipe" type="Node" parent="." index="0"]
 script = ExtResource("7_oouk3")
 
-[node name="HealthBar" parent="." index="5"]
-offset_left = -7.0
-offset_top = -16.0
-offset_right = 7.0
-offset_bottom = -13.0
-metadata/_edit_use_anchors_ = true
-
-[node name="MeleePath" type="Path2D" parent="." index="6"]
+[node name="MeleePath" type="Path2D" parent="." index="1"]
 curve = SubResource("Curve2D_owbxd")
 
 [node name="MeleePathFollow" type="PathFollow2D" parent="MeleePath" index="0"]
@@ -89,5 +52,19 @@ position = Vector2(0, -8.48528)
 shape = SubResource("RectangleShape2D_2kl6b")
 disabled = true
 
-[editable path="Hurtbox"]
+[node name="Sprite" type="Sprite2D" parent="." index="2"]
+
+[node name="Hurtbox" parent="." index="3" instance=ExtResource("5_0lqyi")]
+
+[node name="Collision" type="CollisionShape2D" parent="." index="4"]
+
+[node name="StateMachine" parent="." index="5" instance=ExtResource("6_iqg1t")]
+initial_state = NodePath("FastEnemyMoving")
+
+[node name="FastEnemyMoving" parent="StateMachine" index="0" instance=ExtResource("7_bu1nb")]
+script = ExtResource("5_eut38")
+
+[node name="FastEnemyExecutingAction" parent="StateMachine" index="1" instance=ExtResource("7_bu1nb")]
+script = ExtResource("6_kaxvg")
+
 [editable path="MeleePath/MeleePathFollow/Melee"]
