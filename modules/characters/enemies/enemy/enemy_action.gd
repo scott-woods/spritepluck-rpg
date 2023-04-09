@@ -1,5 +1,5 @@
 class_name EnemyAction
-extends Node
+extends Node2D
 
 
 var enemy : Enemy

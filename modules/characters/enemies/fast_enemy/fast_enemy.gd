@@ -2,18 +2,20 @@ class_name FastEnemy
 extends Enemy
 
 
+const ACTION_COOLDOWN = 1
+
 @onready var sprite : Sprite2D = $Sprite
 @onready var hurtbox : Hurtbox = $Hurtbox
 @onready var collision : CollisionShape2D = $Collision
-@onready var melee_path : Path2D = $MeleePath
-@onready var melee_path_follow : PathFollow2D = $MeleePath/MeleePathFollow
-@onready var melee : Hitbox = $MeleePath/MeleePathFollow/Melee
-@onready var melee_swipe : EnemyAction = $Actions/MeleeSwipe
+@onready var state_machine : StateMachine = $StateMachine
+@onready var velocity_component : VelocityComponent = $VelocityComponent
+@onready var pathfinding_component : PathfindingComponent = $PathfindingComponent
+@onready var melee_swipe : MeleeSwipe = $Actions/MeleeSwipe
 
-@export var action_cooldown : float
+var player : Player
 
-func execute_action():
-	state_machine.change_state("EnemyCombat/EnemyExecutingAction")
-	await melee_swipe.execute()
-	await get_tree().create_timer(action_cooldown).timeout
-	state_machine.change_state("EnemyCombat/EnemyMoving")
+func _ready():
+	player = Game.player
+
+func enter_combat_state():
+	state_machine.change_state("FastEnemyCombat")

@@ -1,0 +1,30 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Godot Mono",
+        "type": "coreclr",
+        "request": "launch",
+        "program": "C:/Users/scott/Desktop/Game-Dev/Godot/4.x/Godot_v4.0.2-stable_mono_win64/Godot_v4.0.2-stable_mono_win64.exe",
+        "console": "internalConsole",
+        "stopAtEntry": false
+      },
+      {
+        "name": "Attach",
+        "type": "coreclr",
+        "request": "attach",
+        "processId": "${command:PickProcess}"
+      },
+      {
+        "name": "Godot GDScript",
+        "type": "godot",
+        "request": "launch",
+        "project": "${workspaceFolder}",
+        "port": 6006,
+        "address": "127.0.0.1",
+        "launch_game_instance": true,
+        "launch_scene": false,
+        "debugServer": 6006
+      }
+    ]
+  }

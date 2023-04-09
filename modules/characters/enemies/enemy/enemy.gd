@@ -4,6 +4,10 @@ extends CharacterBody2D
 
 signal died
 
+func enter_combat_state():
+	print("Missing override of the enter_combat_state method")
+	return false
+
 #func _ready():
 #	stats = stats.copy()
 #	health_bar.max_value = stats.max_hp
