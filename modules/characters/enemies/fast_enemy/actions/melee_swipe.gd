@@ -12,7 +12,7 @@ var speed : float = .1
 
 func execute():
 	melee.show()
-	var dir_to_player = enemy.global_position.direction_to(enemy.player.global_position)
+	var dir_to_player = enemy.global_position.direction_to(enemy.player.hurtbox.global_position)
 	melee_path.rotate(deg_to_rad(rad_to_deg(dir_to_player.angle())))
 	await get_tree().create_timer(DELAY_TIME).timeout
 	melee.enable()

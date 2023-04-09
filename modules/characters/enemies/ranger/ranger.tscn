@@ -1,63 +1,65 @@
-[gd_scene load_steps=11 format=3 uid="uid://d18di0xuv174k"]
+[gd_scene load_steps=14 format=3 uid="uid://d18di0xuv174k"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_aummh"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/ranger.gd" id="2_o8ha1"]
-[ext_resource type="Resource" uid="uid://ckm2in5p2yn1b" path="res://modules/characters/enemies/ranger/ranger.tres" id="3_rgyy8"]
-[ext_resource type="Script" path="res://modules/characters/enemies/enemy/states/ranger_moving.gd" id="5_pn4me"]
-[ext_resource type="Script" path="res://modules/characters/enemies/ranger/states/ranger_combat.gd" id="6_d0k1f"]
+[ext_resource type="PackedScene" uid="uid://wd0vgb7lmm6b" path="res://modules/characters/enemies/ranger/states/ranger_combat.tscn" id="5_rwp5a"]
+[ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="5_yofg3"]
+[ext_resource type="PackedScene" uid="uid://uivtowrggq6d" path="res://modules/velocity_component/velocity_component.tscn" id="6_is73k"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/states/ranger_executing_action.gd" id="7_7s232"]
-[ext_resource type="PackedScene" uid="uid://gsqllo0f7em7" path="res://modules/characters/enemies/ranger/actions/snipe.tscn" id="8_eu2mf"]
+[ext_resource type="PackedScene" uid="uid://dhjcgmsxkkqwo" path="res://modules/pathfinding_component/pathfinding_component.tscn" id="7_tsya4"]
+[ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="8_cisso"]
+[ext_resource type="PackedScene" uid="uid://d1ws6anc4dr22" path="res://modules/characters/enemies/ranger/actions/snipe.tscn" id="8_eu2mf"]
+[ext_resource type="PackedScene" uid="uid://ywprxfxo0gha" path="res://modules/projectiles/ranger_bullet/ranger_bullet.tscn" id="10_gd1hp"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xoatf"]
-size = Vector2(8, 32)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_03us6"]
+size = Vector2(12, 44)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hacm8"]
-size = Vector2(8, 10)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eh5fh"]
+radius = 6.0
+height = 44.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6v86s"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfp41"]
+size = Vector2(12, 8)
 
 [node name="Ranger" instance=ExtResource("1_aummh")]
 script = ExtResource("2_o8ha1")
-min_dist_from_player = 75
-max_dist_from_player = 125
-stats = ExtResource("3_rgyy8")
 
-[node name="Sprite" parent="." index="0"]
-modulate = Color(0.490196, 0.0941176, 0.0941176, 1)
-texture = SubResource("PlaceholderTexture2D_xoatf")
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
+position = Vector2(0, -14)
+texture = SubResource("PlaceholderTexture2D_03us6")
 
-[node name="Collision" parent="." index="1"]
-position = Vector2(0, 11)
-shape = SubResource("RectangleShape2D_hacm8")
+[node name="StateMachine" parent="." index="1" instance=ExtResource("5_yofg3")]
+initial_state = NodePath("RangerCombat")
 
-[node name="Collision" parent="Hurtbox" index="0"]
-shape = SubResource("CapsuleShape2D_6v86s")
-
-[node name="EnemyCombat" parent="StateMachine" index="0"]
-script = ExtResource("6_d0k1f")
-
-[node name="EnemyMoving" parent="StateMachine/EnemyCombat" index="0"]
-script = ExtResource("5_pn4me")
-
-[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" index="1"]
+[node name="RangerExecutingAction" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("7_7s232")
 
+[node name="RangerCombat" parent="StateMachine" index="1" instance=ExtResource("5_rwp5a")]
+
+[node name="VelocityComponent" parent="." index="2" instance=ExtResource("6_is73k")]
+position = Vector2(0, -14)
+speed = 85.0
+
+[node name="PathfindingComponent" parent="." index="3" node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_tsya4")]
+position = Vector2(0, -14)
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("8_cisso")]
+position = Vector2(0, -14)
+collision_layer = 2
+collision_mask = 16
+
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_eh5fh")
+
+[node name="Collision" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_jfp41")
+
+[node name="Actions" type="Node2D" parent="." index="6"]
+position = Vector2(0, -14)
+
 [node name="Snipe" parent="Actions" index="0" instance=ExtResource("8_eu2mf")]
-
-[node name="ActionTimer" type="Timer" parent="." index="5"]
-wait_time = 2.0
-one_shot = true
-
-[node name="HealthBar" parent="." index="6"]
-offset_left = -8.0
-offset_top = -22.0
-offset_right = 8.0
-offset_bottom = -18.0
-
-[node name="SnipeTimer" type="Timer" parent="." index="7"]
-wait_time = 1.5
-
-[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]
+RangerBullet = ExtResource("10_gd1hp")
 
 [editable path="Hurtbox"]

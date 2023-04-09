@@ -7,3 +7,5 @@ process_mode = 3
 script = ExtResource("1_t1rue")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
