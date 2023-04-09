@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b70bm5lkmc140"]
+[gd_scene load_steps=4 format=3 uid="uid://b70bm5lkmc140"]
 
 [ext_resource type="Texture2D" uid="uid://cr6oe3nb0jp8w" path="res://ui/textbox/textbox.png" id="1_ga6dh"]
-[ext_resource type="Theme" uid="uid://caf1bdo0q1br5" path="res://ui/themes/default_theme.tres" id="1_r8mh3"]
 [ext_resource type="Script" path="res://ui/textbox/textbox.gd" id="2_rt6iv"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="4_whxki"]
 
@@ -20,7 +19,6 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme = ExtResource("1_r8mh3")
 
 [node name="Texture" type="TextureRect" parent="MarginContainer/Panel"]
 layout_mode = 2
@@ -53,5 +51,5 @@ visible_characters_behavior = 1
 script = ExtResource("4_whxki")
 seconds_per_step = 0.04
 
-[connection signal="spoke" from="MarginContainer/Panel/MarginContainer/HBoxContainer/DialogueLabel" to="MarginContainer/Panel" method="_on_dialogue_label_spoke"]
 [connection signal="spoke" from="MarginContainer/Panel/MarginContainer/HBoxContainer/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
+[connection signal="spoke" from="MarginContainer/Panel/MarginContainer/HBoxContainer/DialogueLabel" to="MarginContainer/Panel" method="_on_dialogue_label_spoke"]

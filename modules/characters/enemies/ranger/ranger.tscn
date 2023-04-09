@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d18di0xuv174k"]
+[gd_scene load_steps=15 format=3 uid="uid://d18di0xuv174k"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_aummh"]
 [ext_resource type="Script" path="res://modules/characters/enemies/ranger/ranger.gd" id="2_o8ha1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="8_cisso"]
 [ext_resource type="PackedScene" uid="uid://d1ws6anc4dr22" path="res://modules/characters/enemies/ranger/actions/snipe.tscn" id="8_eu2mf"]
 [ext_resource type="PackedScene" uid="uid://ywprxfxo0gha" path="res://modules/projectiles/ranger_bullet/ranger_bullet.tscn" id="10_gd1hp"]
+[ext_resource type="PackedScene" uid="uid://b0mgu5qk45sc5" path="res://modules/health_component/health_component.tscn" id="11_68wq0"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_03us6"]
 size = Vector2(12, 44)
@@ -38,7 +39,7 @@ script = ExtResource("7_7s232")
 
 [node name="VelocityComponent" parent="." index="2" instance=ExtResource("6_is73k")]
 position = Vector2(0, -14)
-speed = 85.0
+speed = 65.0
 
 [node name="PathfindingComponent" parent="." index="3" node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_tsya4")]
 position = Vector2(0, -14)
@@ -61,5 +62,12 @@ position = Vector2(0, -14)
 
 [node name="Snipe" parent="Actions" index="0" instance=ExtResource("8_eu2mf")]
 RangerBullet = ExtResource("10_gd1hp")
+
+[node name="HealthComponent" parent="." index="7" instance=ExtResource("11_68wq0")]
+max_hp = 1
+hp = 1
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
 
 [editable path="Hurtbox"]

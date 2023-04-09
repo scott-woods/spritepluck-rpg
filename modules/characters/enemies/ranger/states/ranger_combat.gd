@@ -3,7 +3,7 @@ extends RangerState
 	
 
 const MIN_DISTANCE_FROM_PLAYER : int = 150
-const MAX_DISTANCE_FROM_PLAYER : int = 200
+const MAX_DISTANCE_FROM_PLAYER : int = 300
 
 @onready var action_timer : Timer = $ActionTimer
 

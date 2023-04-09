@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmcdxiqvkovb"]
+[gd_scene load_steps=15 format=3 uid="uid://bmcdxiqvkovb"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://0qrv8vcxm2bm" path="res://modules/state_machine/state.tscn" id="7_bu1nb"]
 [ext_resource type="PackedScene" uid="uid://uivtowrggq6d" path="res://modules/velocity_component/velocity_component.tscn" id="10_5jrde"]
 [ext_resource type="PackedScene" uid="uid://xum03idvhv3f" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.tscn" id="10_awynu"]
+[ext_resource type="PackedScene" uid="uid://b0mgu5qk45sc5" path="res://modules/health_component/health_component.tscn" id="11_haoru"]
 [ext_resource type="PackedScene" uid="uid://dhjcgmsxkkqwo" path="res://modules/pathfinding_component/pathfinding_component.tscn" id="11_trc23"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kg0ew"]
@@ -61,5 +62,12 @@ shape = SubResource("RectangleShape2D_k5qqr")
 position = Vector2(0, -8)
 
 [node name="MeleeSwipe" parent="Actions" index="0" instance=ExtResource("10_awynu")]
+
+[node name="HealthComponent" parent="." index="7" instance=ExtResource("11_haoru")]
+max_hp = 1
+hp = 1
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
 
 [editable path="Hurtbox"]

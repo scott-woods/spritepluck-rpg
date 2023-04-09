@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwe3sgy585jbd"]
+[gd_scene load_steps=9 format=3 uid="uid://bwe3sgy585jbd"]
 
 [ext_resource type="Script" path="res://modules/rooms/enemy_test_room/enemy_test_room.gd" id="1_lfga5"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_54v63"]
 [ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="2_b2rw7"]
 [ext_resource type="PackedScene" uid="uid://bgyfc7skye1bh" path="res://modules/combat_manager/combat_manager.tscn" id="2_ybtq6"]
-[ext_resource type="PackedScene" uid="uid://c8u56vxjpye0m" path="res://modules/characters/enemies/test_enemy/test_enemy.tscn" id="3_psgre"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="4_qy1up"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="5_ecjen"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="7_3d5fs"]
@@ -59,7 +58,7 @@ spawn_points_container = NodePath("../Map/PlayerSpawns")
 map = NodePath("../Map")
 
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("2_ybtq6")]
-enemy_types = Array[PackedScene]([ExtResource("3_psgre")])
+enemy_types = Array[PackedScene]([ExtResource("2_b2rw7")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
 

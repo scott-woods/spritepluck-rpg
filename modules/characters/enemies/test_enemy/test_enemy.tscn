@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8u56vxjpye0m"]
+[gd_scene load_steps=12 format=3 uid="uid://c8u56vxjpye0m"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_eaksi"]
 [ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/test_enemy.gd" id="1_ir432"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="6_ms8t3"]
 [ext_resource type="PackedScene" uid="uid://d2d7ml3nbpbr4" path="res://modules/characters/enemies/test_enemy/states/test_enemy_executing_action.tscn" id="6_qggqr"]
 [ext_resource type="PackedScene" uid="uid://chsgems0eo4yj" path="res://modules/characters/enemies/test_enemy/actions/radial_shot.tscn" id="7_3fwef"]
+[ext_resource type="PackedScene" uid="uid://b0mgu5qk45sc5" path="res://modules/health_component/health_component.tscn" id="8_obvcd"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_euajo"]
 size = Vector2(32, 54)
@@ -48,5 +49,12 @@ shape = SubResource("CapsuleShape2D_yplot")
 position = Vector2(0, -7)
 
 [node name="RadialShot" parent="Actions" index="0" instance=ExtResource("7_3fwef")]
+
+[node name="HealthComponent" parent="." index="5" instance=ExtResource("8_obvcd")]
+max_hp = 2
+hp = 2
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
 
 [editable path="Hurtbox"]
