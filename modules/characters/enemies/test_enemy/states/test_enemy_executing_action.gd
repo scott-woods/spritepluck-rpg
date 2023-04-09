@@ -1,4 +1,4 @@
-class_name TestenemyExecutingAction
-extends EnemyExecutingAction
+class_name TestEnemyExecutingAction
+extends TestEnemyState
 
 

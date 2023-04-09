@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2d7ml3nbpbr4"]
+
+[ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/states/test_enemy_executing_action.gd" id="1_xkmuc"]
+
+[node name="TestEnemyExecutingAction" type="Node"]
+script = ExtResource("1_xkmuc")

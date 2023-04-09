@@ -2,20 +2,20 @@ class_name TestEnemy
 extends Enemy
 
 
-@onready var action_timer : Timer = $ActionTimer
+const ACTION_COOLDOWN : float = 1
 
-@export var action_delay : float
+@onready var sprite : Sprite2D = $Sprite
+@onready var collision : CollisionShape2D = $Collision
+@onready var hurtbox : Hurtbox = $Hurtbox
+@onready var state_machine : StateMachine = $StateMachine
+
+#actions
+@onready var radial_shot : RadialShot = $Actions/RadialShot
+
+var player : Player
+
+func _ready():
+	player = Game.player
 
 func enter_combat_state():
-	super()
-	action_timer.wait_time = action_delay + randf_range(-.5, .5)
-	action_timer.start()
-
-
-func _on_action_timer_timeout():
-	state_machine.change_state("EnemyCombat/EnemyExecutingAction")
-	var action = actions[randi_range(0, actions.size() -1)]
-	await action.execute()
-	action_timer.wait_time = action_delay + randf_range(-.5, .5)
-	action_timer.start()
-	state_machine.change_state("EnemyCombat")
+	state_machine.change_state("TestEnemyCombat")
