@@ -13,12 +13,16 @@ var active : bool = false
 
 func _physics_process(delta):
 	if active:
-		var enemies = effect_area.get_overlapping_bodies()
-		for enemy in enemies:
-			if not enemy.stats.grounded:
-				var direction = enemy.position.direction_to(position)
-				if enemy.position.distance_to(position) > 0:
-					enemy.position += direction * PULL_SPEED * delta
+		var util_effect_components = effect_area.get_overlapping_areas()
+		for util_effect_component in util_effect_components:
+			util_effect_component = util_effect_component as UtilityEffectsComponent
+			util_effect_component.trigger_gravity_bomb_effect(self, delta)
+#		var enemies = effect_area.get_overlapping_bodies()
+#		for enemy in enemies:
+#			if not enemy.stats.grounded:
+#				var direction = enemy.position.direction_to(position)
+#				if enemy.position.distance_to(position) > 0:
+#					enemy.position += direction * PULL_SPEED * delta
 
 func trigger():
 	active = true

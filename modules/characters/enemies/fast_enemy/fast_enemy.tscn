@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmcdxiqvkovb"]
+[gd_scene load_steps=16 format=3 uid="uid://bmcdxiqvkovb"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://xum03idvhv3f" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.tscn" id="10_awynu"]
 [ext_resource type="PackedScene" uid="uid://b0mgu5qk45sc5" path="res://modules/health_component/health_component.tscn" id="11_haoru"]
 [ext_resource type="PackedScene" uid="uid://dhjcgmsxkkqwo" path="res://modules/pathfinding_component/pathfinding_component.tscn" id="11_trc23"]
+[ext_resource type="PackedScene" uid="uid://btqcd85yeyxbu" path="res://modules/utility_effects_component/utility_effects_component.tscn" id="12_q6ki3"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kg0ew"]
 size = Vector2(16, 32)
@@ -23,6 +24,7 @@ height = 32.0
 size = Vector2(16, 8)
 
 [node name="FastEnemy" instance=ExtResource("1_1ni5u")]
+position = Vector2(0, -8)
 script = ExtResource("1_tbe72")
 
 [node name="StateMachine" parent="." index="0" instance=ExtResource("6_iqg1t")]
@@ -35,19 +37,20 @@ script = ExtResource("6_667by")
 script = ExtResource("6_kaxvg")
 
 [node name="VelocityComponent" parent="." index="1" instance=ExtResource("10_5jrde")]
-position = Vector2(0, -8)
 speed = 125.0
 
 [node name="PathfindingComponent" parent="." index="2" node_paths=PackedStringArray("velocity_component") instance=ExtResource("11_trc23")]
-position = Vector2(0, -8)
 velocity_component = NodePath("../VelocityComponent")
 
+[node name="NavigationAgent2D" parent="PathfindingComponent" index="0"]
+avoidance_enabled = true
+radius = 16.0
+neighbor_distance = 50.0
+
 [node name="Sprite" type="Sprite2D" parent="." index="3"]
-position = Vector2(0, -8)
 texture = SubResource("PlaceholderTexture2D_kg0ew")
 
 [node name="Hurtbox" parent="." index="4" instance=ExtResource("5_0lqyi")]
-position = Vector2(0, -8)
 collision_layer = 2
 collision_mask = 16
 
@@ -55,19 +58,27 @@ collision_mask = 16
 shape = SubResource("CapsuleShape2D_h2qtp")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="5"]
-position = Vector2(0, 4)
+position = Vector2(0, 12)
 shape = SubResource("RectangleShape2D_k5qqr")
 
 [node name="Actions" type="Node2D" parent="." index="6"]
-position = Vector2(0, -8)
 
 [node name="MeleeSwipe" parent="Actions" index="0" instance=ExtResource("10_awynu")]
 
 [node name="HealthComponent" parent="." index="7" instance=ExtResource("11_haoru")]
+position = Vector2(0, 8)
 max_hp = 1
 hp = 1
+
+[node name="UtilityEffectsComponent" parent="." index="8" node_paths=PackedStringArray("character") instance=ExtResource("12_q6ki3")]
+character = NodePath("..")
+
+[node name="Collision" parent="UtilityEffectsComponent" index="0"]
+shape = SubResource("CapsuleShape2D_h2qtp")
 
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
 
+[editable path="PathfindingComponent"]
 [editable path="Hurtbox"]
+[editable path="UtilityEffectsComponent"]
