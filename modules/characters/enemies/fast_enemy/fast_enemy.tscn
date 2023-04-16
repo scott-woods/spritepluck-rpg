@@ -20,11 +20,10 @@ size = Vector2(16, 32)
 radius = 8.0
 height = 32.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k5qqr"]
-size = Vector2(16, 8)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5fqi"]
+size = Vector2(8, 16)
 
 [node name="FastEnemy" instance=ExtResource("1_1ni5u")]
-position = Vector2(0, -8)
 script = ExtResource("1_tbe72")
 
 [node name="StateMachine" parent="." index="0" instance=ExtResource("6_iqg1t")]
@@ -37,20 +36,27 @@ script = ExtResource("6_667by")
 script = ExtResource("6_kaxvg")
 
 [node name="VelocityComponent" parent="." index="1" instance=ExtResource("10_5jrde")]
+position = Vector2(0, 4)
 speed = 125.0
+steering_factor = 5.5
 
 [node name="PathfindingComponent" parent="." index="2" node_paths=PackedStringArray("velocity_component") instance=ExtResource("11_trc23")]
+position = Vector2(0, 4)
 velocity_component = NodePath("../VelocityComponent")
+raycast_radius = 20
 
 [node name="NavigationAgent2D" parent="PathfindingComponent" index="0"]
 avoidance_enabled = true
 radius = 16.0
 neighbor_distance = 50.0
+time_horizon = 5.0
 
 [node name="Sprite" type="Sprite2D" parent="." index="3"]
+position = Vector2(0, -8)
 texture = SubResource("PlaceholderTexture2D_kg0ew")
 
 [node name="Hurtbox" parent="." index="4" instance=ExtResource("5_0lqyi")]
+position = Vector2(0, -8)
 collision_layer = 2
 collision_mask = 16
 
@@ -58,19 +64,21 @@ collision_mask = 16
 shape = SubResource("CapsuleShape2D_h2qtp")
 
 [node name="Collision" type="CollisionShape2D" parent="." index="5"]
-position = Vector2(0, 12)
-shape = SubResource("RectangleShape2D_k5qqr")
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e5fqi")
 
 [node name="Actions" type="Node2D" parent="." index="6"]
+position = Vector2(0, -8)
 
 [node name="MeleeSwipe" parent="Actions" index="0" instance=ExtResource("10_awynu")]
 
 [node name="HealthComponent" parent="." index="7" instance=ExtResource("11_haoru")]
-position = Vector2(0, 8)
 max_hp = 1
 hp = 1
 
 [node name="UtilityEffectsComponent" parent="." index="8" node_paths=PackedStringArray("character") instance=ExtResource("12_q6ki3")]
+position = Vector2(0, -8)
 character = NodePath("..")
 
 [node name="Collision" parent="UtilityEffectsComponent" index="0"]
@@ -79,6 +87,7 @@ shape = SubResource("CapsuleShape2D_h2qtp")
 [connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
 [connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
 
+[editable path="VelocityComponent"]
 [editable path="PathfindingComponent"]
 [editable path="Hurtbox"]
 [editable path="UtilityEffectsComponent"]

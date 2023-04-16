@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="5_a07k4"]
 [ext_resource type="PackedScene" uid="uid://bgyfc7skye1bh" path="res://modules/combat_manager/combat_manager.tscn" id="6_ukp74"]
 [ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="7_mhe3m"]
-[ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="8_da234"]
+[ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="8_da234"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="9_rlysr"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_5jnhh"]
 
@@ -196,7 +196,7 @@ offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("6_ukp74")]
-enemy_types = Array[PackedScene]([ExtResource("7_mhe3m"), ExtResource("8_da234")])
+enemy_types = Array[PackedScene]([ExtResource("8_da234"), ExtResource("7_mhe3m")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
 
