@@ -1,93 +1,93 @@
-[gd_scene load_steps=15 format=3 uid="uid://dafj2ld6w3ikc"]
+[gd_scene load_steps=16 format=3 uid="uid://bmcdxiqvkovb"]
 
 [ext_resource type="PackedScene" uid="uid://cqcebwwics8qm" path="res://modules/characters/enemies/enemy/enemy.tscn" id="1_1ni5u"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/fast_enemy.gd" id="1_tbe72"]
-[ext_resource type="Resource" uid="uid://bctvxnahehvnr" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tres" id="3_4m0rc"]
-[ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_moving.gd" id="5_eut38"]
+[ext_resource type="PackedScene" uid="uid://cjylxrxyexj0d" path="res://modules/hurtbox/hurtbox.tscn" id="5_0lqyi"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_combat.gd" id="6_667by"]
+[ext_resource type="PackedScene" uid="uid://deblu3dukpv2r" path="res://modules/state_machine/state_machine.tscn" id="6_iqg1t"]
 [ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/states/fast_enemy_executing_action.gd" id="6_kaxvg"]
-[ext_resource type="Script" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.gd" id="7_oouk3"]
-[ext_resource type="PackedScene" uid="uid://cnwyh247c35yk" path="res://modules/hitbox/hitbox.tscn" id="7_sm3pt"]
+[ext_resource type="PackedScene" uid="uid://0qrv8vcxm2bm" path="res://modules/state_machine/state.tscn" id="7_bu1nb"]
+[ext_resource type="PackedScene" uid="uid://uivtowrggq6d" path="res://modules/velocity_component/velocity_component.tscn" id="10_5jrde"]
+[ext_resource type="PackedScene" uid="uid://xum03idvhv3f" path="res://modules/characters/enemies/fast_enemy/actions/melee_swipe.tscn" id="10_awynu"]
+[ext_resource type="PackedScene" uid="uid://b0mgu5qk45sc5" path="res://modules/health_component/health_component.tscn" id="11_haoru"]
+[ext_resource type="PackedScene" uid="uid://dhjcgmsxkkqwo" path="res://modules/pathfinding_component/pathfinding_component.tscn" id="11_trc23"]
+[ext_resource type="PackedScene" uid="uid://btqcd85yeyxbu" path="res://modules/utility_effects_component/utility_effects_component.tscn" id="12_q6ki3"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_np8rf"]
-size = Vector2(10, 22)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kg0ew"]
+size = Vector2(16, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ae4qh"]
-size = Vector2(10, 7.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2qtp"]
+radius = 8.0
+height = 32.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_es8te"]
-radius = 4.0
-height = 20.0
-
-[sub_resource type="Curve2D" id="Curve2D_owbxd"]
-_data = {
-"points": PackedVector2Array(-5.47389, 2.2955, 5.47389, -2.2955, 8, -10, 0.176576, -4.06127, -0.176576, 4.06127, 15, 0, 5.20903, -1.58919, -5.20903, 1.58919, 8, 10)
-}
-point_count = 3
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7unar"]
-size = Vector2(6, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kl6b"]
-size = Vector2(3, 22)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5fqi"]
+size = Vector2(8, 16)
 
 [node name="FastEnemy" instance=ExtResource("1_1ni5u")]
-position = Vector2(0, -3)
 script = ExtResource("1_tbe72")
-action_cooldown = 1.0
-stats = ExtResource("3_4m0rc")
 
-[node name="Sprite" parent="." index="0"]
-modulate = Color(0.490196, 0.0941176, 0.0941176, 1)
-texture = SubResource("PlaceholderTexture2D_np8rf")
+[node name="StateMachine" parent="." index="0" instance=ExtResource("6_iqg1t")]
+initial_state = NodePath("FastEnemyCombat")
 
-[node name="Collision" parent="." index="1"]
-position = Vector2(0, 7)
-shape = SubResource("RectangleShape2D_ae4qh")
-
-[node name="Collision" parent="Hurtbox" index="0"]
-shape = SubResource("CapsuleShape2D_es8te")
-
-[node name="EnemyCombat" parent="StateMachine" index="0"]
+[node name="FastEnemyCombat" parent="StateMachine" index="0" instance=ExtResource("7_bu1nb")]
 script = ExtResource("6_667by")
 
-[node name="EnemyMoving" parent="StateMachine/EnemyCombat" index="0"]
-script = ExtResource("5_eut38")
-
-[node name="EnemyExecutingAction" parent="StateMachine/EnemyCombat" index="1"]
+[node name="FastEnemyExecutingAction" parent="StateMachine" index="1" instance=ExtResource("7_bu1nb")]
 script = ExtResource("6_kaxvg")
 
-[node name="MeleeSwipe" type="Node" parent="Actions" index="0"]
-script = ExtResource("7_oouk3")
+[node name="VelocityComponent" parent="." index="1" instance=ExtResource("10_5jrde")]
+position = Vector2(0, 4)
+speed = 125.0
+steering_factor = 5.5
 
-[node name="HealthBar" parent="." index="5"]
-offset_left = -7.0
-offset_top = -16.0
-offset_right = 7.0
-offset_bottom = -13.0
-metadata/_edit_use_anchors_ = true
+[node name="PathfindingComponent" parent="." index="2" node_paths=PackedStringArray("velocity_component") instance=ExtResource("11_trc23")]
+position = Vector2(0, 4)
+velocity_component = NodePath("../VelocityComponent")
+raycast_radius = 20
 
-[node name="MeleePath" type="Path2D" parent="." index="6"]
-curve = SubResource("Curve2D_owbxd")
+[node name="NavigationAgent2D" parent="PathfindingComponent" index="0"]
+avoidance_enabled = true
+radius = 16.0
+neighbor_distance = 50.0
+time_horizon = 5.0
 
-[node name="MeleePathFollow" type="PathFollow2D" parent="MeleePath" index="0"]
-position = Vector2(8, -10)
-rotation = -0.397079
+[node name="Sprite" type="Sprite2D" parent="." index="3"]
+position = Vector2(0, -8)
+texture = SubResource("PlaceholderTexture2D_kg0ew")
 
-[node name="Melee" parent="MeleePath/MeleePathFollow" index="0" instance=ExtResource("7_sm3pt")]
-visible = false
-collision_layer = 8
-damage = 1
+[node name="Hurtbox" parent="." index="4" instance=ExtResource("5_0lqyi")]
+position = Vector2(0, -8)
+collision_layer = 2
+collision_mask = 16
 
-[node name="Sprite2D" type="Sprite2D" parent="MeleePath/MeleePathFollow/Melee" index="0"]
-modulate = Color(0.141176, 0.176471, 0.258824, 1)
-position = Vector2(-2.98023e-08, -8.48528)
-texture = SubResource("PlaceholderTexture2D_7unar")
+[node name="Collision" parent="Hurtbox" index="0"]
+shape = SubResource("CapsuleShape2D_h2qtp")
 
-[node name="Collision" parent="MeleePath/MeleePathFollow/Melee" index="1"]
-position = Vector2(0, -8.48528)
-shape = SubResource("RectangleShape2D_2kl6b")
-disabled = true
+[node name="Collision" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, 4)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_e5fqi")
 
+[node name="Actions" type="Node2D" parent="." index="6"]
+position = Vector2(0, -8)
+
+[node name="MeleeSwipe" parent="Actions" index="0" instance=ExtResource("10_awynu")]
+
+[node name="HealthComponent" parent="." index="7" instance=ExtResource("11_haoru")]
+max_hp = 1
+hp = 1
+
+[node name="UtilityEffectsComponent" parent="." index="8" node_paths=PackedStringArray("character") instance=ExtResource("12_q6ki3")]
+position = Vector2(0, -8)
+character = NodePath("..")
+
+[node name="Collision" parent="UtilityEffectsComponent" index="0"]
+shape = SubResource("CapsuleShape2D_h2qtp")
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hp_depleted" from="HealthComponent" to="." method="_on_health_component_hp_depleted"]
+
+[editable path="VelocityComponent"]
+[editable path="PathfindingComponent"]
 [editable path="Hurtbox"]
-[editable path="MeleePath/MeleePathFollow/Melee"]
+[editable path="UtilityEffectsComponent"]

@@ -23,6 +23,7 @@ func change_scene(new_scene : PackedScene, target_spawn : String):
 	if (Game.player.get_parent()):
 		Game.player.get_parent().remove_child(Game.player)
 	current_scene.queue_free()
+	current_scene = scene
 	world.add_child(scene)
 	fade_to_normal()
 

@@ -1,3 +1,3 @@
 class_name RangerExecutingAction
-extends EnemyExecutingAction
+extends RangerState
 

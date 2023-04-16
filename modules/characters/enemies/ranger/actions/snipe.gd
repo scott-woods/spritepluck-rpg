@@ -1,5 +1,5 @@
 class_name Snipe
-extends EnemyAction
+extends RangerAction
 
 
 @export var RangerBullet : PackedScene
@@ -10,7 +10,6 @@ func execute():
 	delay_timer.start()
 	await delay_timer.timeout
 	var bullet = RangerBullet.instantiate()
-	bullet.position = enemy.position
 	add_child(bullet)
-	var direction = enemy.position.direction_to(enemy.player.hurtbox.global_position).normalized()
+	var direction = ranger.global_position.direction_to(ranger.player.hurtbox.global_position).normalized()
 	bullet.fire(direction)

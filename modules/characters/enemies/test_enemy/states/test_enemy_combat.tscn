@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch3ul6i7atdfe"]
+
+[ext_resource type="Script" path="res://modules/characters/enemies/test_enemy/states/test_enemy_combat.gd" id="1_uvg27"]
+
+[node name="TestEnemyCombat" type="Node"]
+script = ExtResource("1_uvg27")
+
+[node name="ActionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]

@@ -1,12 +1,12 @@
-class_name EnemyAction
+class_name RangerAction
 extends Node2D
 
 
-var enemy : Enemy
+var ranger : Ranger
 
 func _ready():
 	await owner.ready
-	enemy = owner as Enemy
+	ranger = owner as Ranger
 
 func execute():
 	print("Missing override of execute method, idiot")

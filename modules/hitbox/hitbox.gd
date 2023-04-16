@@ -6,5 +6,11 @@ extends Area2D
 
 @export var damage : int
 
+func enable():
+	collision.disabled = false
+
+func disable():
+	collision.disabled = true
+
 func reflect():
 	pass
