@@ -24,6 +24,7 @@ func enter_combat_state():
 
 
 func _on_hurtbox_hit(hitbox):
+	SoundPlayer.play_sound(SoundPlayer.ENEMY_HURT)
 	hurtbox.disable()
 	health_component.damage(hitbox.damage)
 	if health_component.hp > 0:
@@ -32,6 +33,5 @@ func _on_hurtbox_hit(hitbox):
 
 
 func _on_health_component_hp_depleted():
-	SoundPlayer.play_sound(SoundPlayer.ENEMY_HURT)
 	emit_signal("died")
 	queue_free()

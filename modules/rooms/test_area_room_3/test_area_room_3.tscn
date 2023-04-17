@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dr0fetlktqbbm"]
+[gd_scene load_steps=24 format=3 uid="uid://dr0fetlktqbbm"]
 
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_3/test_area_room_3.gd" id="1_mnoc0"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_y3tu0"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="8_da234"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="9_rlysr"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_5jnhh"]
+[ext_resource type="PackedScene" uid="uid://dlppasf4dvwif" path="res://modules/camera_limiter/camera_limiter.tscn" id="11_1lmdp"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_rsms8"]
 vertices = PackedVector2Array(296, 56, 296, 104, -72, 104, -72, 56)
@@ -195,6 +196,14 @@ offset_right = 336.0
 offset_bottom = 144.0
 color = Color(0, 0, 0, 1)
 
+[node name="CameraLimiter" parent="Map" instance=ExtResource("11_1lmdp")]
+
+[node name="TopLeft" parent="Map/CameraLimiter" index="0"]
+position = Vector2(-112, -240)
+
+[node name="BottomRight" parent="Map/CameraLimiter" index="1"]
+position = Vector2(344, 144)
+
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("6_ukp74")]
 enemy_types = Array[PackedScene]([ExtResource("8_da234"), ExtResource("7_mhe3m")])
 enemy_spawner = NodePath("../EnemySpawner")
@@ -216,3 +225,4 @@ map = NodePath("../Map")
 [editable path="Map/ExitArea2"]
 [editable path="Map/ExitArea3"]
 [editable path="Map/ExitArea4"]
+[editable path="Map/CameraLimiter"]

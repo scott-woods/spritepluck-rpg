@@ -7,7 +7,6 @@ script = ExtResource("1_kgnhw")
 raycast_radius = 16
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Raycasts" type="Node2D" parent="."]
 

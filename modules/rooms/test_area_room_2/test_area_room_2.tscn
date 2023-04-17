@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6plyukisxj0j"]
+[gd_scene load_steps=17 format=3 uid="uid://b6plyukisxj0j"]
 
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_ggjqx"]
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_2/test_area_room_2.gd" id="1_n8v4d"]
 [ext_resource type="PackedScene" uid="uid://c61di70f3r436" path="res://modules/exit_area/exit_area.tscn" id="2_ee688"]
 [ext_resource type="PackedScene" uid="uid://dcpfgoqoaghou" path="res://modules/invisible_wall/invisible_wall.tscn" id="3_u016a"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="4_cl3j1"]
+[ext_resource type="PackedScene" uid="uid://dlppasf4dvwif" path="res://modules/camera_limiter/camera_limiter.tscn" id="6_cfapn"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="6_i1t4u"]
 [ext_resource type="PackedScene" uid="uid://bgyfc7skye1bh" path="res://modules/combat_manager/combat_manager.tscn" id="7_0bpwl"]
 [ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="8_vwsee"]
-[ext_resource type="PackedScene" uid="uid://dafj2ld6w3ikc" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="9_gsnbc"]
+[ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="9_gsnbc"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_won1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmqox"]
@@ -124,6 +125,14 @@ offset_right = 352.0
 offset_bottom = 224.0
 color = Color(0, 0, 0, 1)
 
+[node name="CameraLimiter" parent="Map" instance=ExtResource("6_cfapn")]
+
+[node name="TopLeft" parent="Map/CameraLimiter" index="0"]
+position = Vector2(-192, -176)
+
+[node name="BottomRight" parent="Map/CameraLimiter" index="1"]
+position = Vector2(352, 224)
+
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("7_0bpwl")]
 enemy_types = Array[PackedScene]([ExtResource("8_vwsee"), ExtResource("9_gsnbc")])
 enemy_spawner = NodePath("../EnemySpawner")
@@ -141,3 +150,4 @@ map = NodePath("../Map")
 [editable path="Map/ExitArea2"]
 [editable path="Map/InvisibleWall"]
 [editable path="Map/InvisibleWall2"]
+[editable path="Map/CameraLimiter"]
