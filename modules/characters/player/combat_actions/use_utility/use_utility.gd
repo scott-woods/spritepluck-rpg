@@ -36,11 +36,12 @@ func setup(simulation_player):
 	
 	#get only utils that haven't already been queued
 	var utils = get_tree().get_nodes_in_group("utilities")
+	var unqueued_utils : Array
 	for util in utils:
-		if util.queued:
-			utils.erase(util)
+		if not util.queued:
+			unqueued_utils.append(util)
 	
-	selector.init(utils, player, camera)
+	selector.init(unqueued_utils, player, camera)
 	add_child(selector)
 	selected_utility = await selector.utility_selected
 	selected_utility.queued = true

@@ -3,7 +3,7 @@ extends Node
 
 @export var SPICY : AudioStream
 @export var THE_BAY : AudioStream
-@export var TECHNO_AREA_THEME : AudioStream
+@export var BABBULON : AudioStream
 
 const MIN_FILTER_CUTOFF_HZ := 2500
 const MAX_FILTER_CUTOFF_HZ := 8000
