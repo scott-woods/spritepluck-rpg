@@ -19,15 +19,6 @@ vertices = PackedVector2Array(-240, -176, 128, -176, 128, 0, -96, 0, 304, 0, 304
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(2, 4, 5, 6), PackedInt32Array(2, 6, 3), PackedInt32Array(0, 3, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-240, -176, -240, 0, -96, 0, -96, 176, 304, 176, 304, 0, 128, 0, 128, -176)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugnu"]
-size = Vector2(32, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_acq1u"]
-size = Vector2(32, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_51a1j"]
-size = Vector2(16, 32)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dojjk"]
 size = Vector2(32, 16)
 
@@ -35,6 +26,15 @@ size = Vector2(32, 16)
 size = Vector2(16, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_217xe"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeqwn"]
+size = Vector2(32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy6lr"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_on4u4"]
 size = Vector2(32, 16)
 
 [node name="TestAreaRoom1" instance=ExtResource("1_5ywyc")]
@@ -63,49 +63,25 @@ layer_2/tile_data = PackedInt32Array(720910, 131072, 3, 720911, 131072, 3, 72091
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" index="1"]
 navigation_polygon = SubResource("NavigationPolygon_wg3pt")
 
-[node name="ExitArea" parent="Map" index="2" instance=ExtResource("9_g3brb")]
-position = Vector2(-64, -200)
-target_spawn = "from_top"
-use_room_manager = true
-
-[node name="Collision" parent="Map/ExitArea" index="0"]
-shape = SubResource("RectangleShape2D_sugnu")
-
-[node name="ExitArea2" parent="Map" index="3" instance=ExtResource("9_g3brb")]
-position = Vector2(0, 200)
-target_spawn = "from_bottom"
-use_room_manager = true
-
-[node name="Collision" parent="Map/ExitArea2" index="0"]
-shape = SubResource("RectangleShape2D_acq1u")
-
-[node name="ExitArea3" parent="Map" index="4" instance=ExtResource("9_g3brb")]
-position = Vector2(328, 80)
-target_spawn = "from_right"
-use_room_manager = true
-
-[node name="Collision" parent="Map/ExitArea3" index="0"]
-shape = SubResource("RectangleShape2D_51a1j")
-
-[node name="InvisibleWall" parent="Map" index="5" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall" parent="Map" index="2" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
 position = Vector2(-64, -184)
 
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
 shape = SubResource("RectangleShape2D_dojjk")
 
-[node name="InvisibleWall2" parent="Map" index="6" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall2" parent="Map" index="3" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
 position = Vector2(312, 80)
 
 [node name="Collision" parent="Map/InvisibleWall2" index="0"]
 shape = SubResource("RectangleShape2D_w0j6m")
 
-[node name="InvisibleWall3" parent="Map" index="7" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall3" parent="Map" index="4" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
 position = Vector2(0, 184)
 
 [node name="Collision" parent="Map/InvisibleWall3" index="0"]
 shape = SubResource("RectangleShape2D_217xe")
 
-[node name="EnemySpawnPoints" type="Node2D" parent="Map" index="8"]
+[node name="EnemySpawnPoints" type="Node2D" parent="Map" index="5"]
 
 [node name="Marker2D" type="Marker2D" parent="Map/EnemySpawnPoints" index="0"]
 position = Vector2(128, 48)
@@ -122,7 +98,7 @@ position = Vector2(16, -88)
 [node name="Marker2D5" type="Marker2D" parent="Map/EnemySpawnPoints" index="4"]
 position = Vector2(-152, -96)
 
-[node name="PlayerSpawnPoints" type="Node2D" parent="Map" index="9"]
+[node name="PlayerSpawnPoints" type="Node2D" parent="Map" index="6"]
 
 [node name="PlayerSpawnPoint" parent="Map/PlayerSpawnPoints" index="0" instance=ExtResource("3_vdbph")]
 position = Vector2(296, 80)
@@ -136,7 +112,7 @@ spawn_id = "from_bottom"
 position = Vector2(0, 168)
 spawn_id = "from_top"
 
-[node name="ClearColor" type="ColorRect" parent="Map" index="10"]
+[node name="ClearColor" type="ColorRect" parent="Map" index="7"]
 z_index = -100
 offset_left = -256.0
 offset_top = -240.0
@@ -144,13 +120,34 @@ offset_right = 352.0
 offset_bottom = 208.0
 color = Color(0, 0, 0, 1)
 
-[node name="CameraLimiter" parent="Map" index="11" instance=ExtResource("7_h5ve0")]
+[node name="CameraLimiter" parent="Map" index="8" instance=ExtResource("7_h5ve0")]
 
 [node name="TopLeft" parent="Map/CameraLimiter" index="0"]
 position = Vector2(-256, -240)
 
 [node name="BottomRight" parent="Map/CameraLimiter" index="1"]
 position = Vector2(352, 208)
+
+[node name="ExitArea" parent="Map" index="9" instance=ExtResource("9_g3brb")]
+position = Vector2(-64, -200)
+target_spawn = "from_top"
+
+[node name="Collision" parent="Map/ExitArea" index="0"]
+shape = SubResource("RectangleShape2D_eeqwn")
+
+[node name="ExitArea2" parent="Map" index="10" instance=ExtResource("9_g3brb")]
+position = Vector2(328, 80)
+target_spawn = "from_right"
+
+[node name="Collision" parent="Map/ExitArea2" index="0"]
+shape = SubResource("RectangleShape2D_vy6lr")
+
+[node name="ExitArea3" parent="Map" index="11" instance=ExtResource("9_g3brb")]
+position = Vector2(0, 200)
+target_spawn = "from_bottom"
+
+[node name="Collision" parent="Map/ExitArea3" index="0"]
+shape = SubResource("RectangleShape2D_on4u4")
 
 [node name="CombatManager" parent="." index="1" node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("9_smbvo")]
 enemy_types = Array[PackedScene]([ExtResource("5_uqn8g"), ExtResource("4_h0oaq"), ExtResource("6_6owxe")])
@@ -169,10 +166,10 @@ map = NodePath("../Map")
 [connection signal="combat_ended" from="CombatManager" to="." method="_on_combat_manager_combat_ended"]
 [connection signal="simulation_player_created" from="CombatManager" to="." method="_on_combat_manager_simulation_player_created"]
 
-[editable path="Map/ExitArea"]
-[editable path="Map/ExitArea2"]
-[editable path="Map/ExitArea3"]
 [editable path="Map/InvisibleWall"]
 [editable path="Map/InvisibleWall2"]
 [editable path="Map/InvisibleWall3"]
 [editable path="Map/CameraLimiter"]
+[editable path="Map/ExitArea"]
+[editable path="Map/ExitArea2"]
+[editable path="Map/ExitArea3"]

@@ -29,3 +29,7 @@ func spawn_player():
 		player.state_machine.change_state("PlayerIdle")
 		await SceneManager.scene_change_finished
 	player.state_machine.change_state("PlayerMove")
+	
+	
+func _on_player_utility_dropped(utility : Utility):
+	map.add_child(utility)

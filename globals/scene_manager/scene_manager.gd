@@ -13,18 +13,17 @@ var transitioning : bool = false
 var world : Node2D
 var current_scene : Node
 
-func change_scene(new_scene : PackedScene, target_spawn : String):
+func change_scene(new_scene : Node2D, target_spawn : String):
 	transitioning = true
-	var scene = new_scene.instantiate()
 	current_spawn_point = target_spawn
 	transition_animator.play("FADE_TO_BLACK")
-	emit_signal("scene_change_started", scene)
+	emit_signal("scene_change_started", new_scene)
 	await transition_animator.animation_finished
 	if (Game.player.get_parent()):
 		Game.player.get_parent().remove_child(Game.player)
 	current_scene.queue_free()
-	current_scene = scene
-	world.add_child(scene)
+	current_scene = new_scene
+	world.add_child(new_scene)
 	fade_to_normal()
 
 func fade_to_normal():

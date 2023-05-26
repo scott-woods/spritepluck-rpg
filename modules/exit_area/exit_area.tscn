@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/exit_area/exit_area.gd" id="1_akjgn"]
 
-[node name="ExitArea" type="Area2D"]
+[node name="ExitArea" type="Area2D" groups=["exit_areas"]]
 collision_layer = 0
 script = ExtResource("1_akjgn")
 

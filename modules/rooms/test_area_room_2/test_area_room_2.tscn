@@ -55,10 +55,17 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = -1
 layer_2/tile_data = PackedInt32Array(851956, 131072, 3, 851957, 131072, 3, 851958, 131072, 3, 851959, 131072, 3, 851960, 131072, 3, 851961, 131072, 3, 851962, 131072, 3, 851963, 131072, 3, 786432, 131072, 3, 786433, 131072, 3, 786434, 131072, 3, 786435, 131072, 3, 786436, 131072, 3, 786437, 131072, 3, 786438, 131072, 3, 786439, 131072, 3, 589832, 131072, 3, 589833, 131072, 3, 458763, 131072, 3, 458764, 131072, 3, 458765, 131072, 3, 458766, 131072, 3, 458767, 131072, 3, 458768, 131072, 3, 17, 131072, 3, 18, 131072, 3, 19, 131072, 3, 20, 131072, 3, -196587, 131072, 3, -393195, 131072, 3, 589834, 131072, 3)
 
+[node name="ClearColor" type="ColorRect" parent="Map"]
+z_index = -100
+offset_left = -192.0
+offset_top = -176.0
+offset_right = 352.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+
 [node name="ExitArea" parent="Map" instance=ExtResource("2_ee688")]
 position = Vector2(144, -136)
 target_spawn = "from_top"
-use_room_manager = true
 
 [node name="Collision" parent="Map/ExitArea" index="0"]
 shape = SubResource("RectangleShape2D_nmqox")
@@ -66,7 +73,6 @@ shape = SubResource("RectangleShape2D_nmqox")
 [node name="ExitArea2" parent="Map" instance=ExtResource("2_ee688")]
 position = Vector2(344, -64)
 target_spawn = "from_right"
-use_room_manager = true
 
 [node name="Collision" parent="Map/ExitArea2" index="0"]
 shape = SubResource("RectangleShape2D_1gmng")
@@ -116,14 +122,6 @@ spawn_id = "from_bottom"
 [node name="PlayerSpawnPoint3" parent="Map/PlayerSpawnPoints" instance=ExtResource("4_cl3j1")]
 position = Vector2(312, -64)
 spawn_id = "from_left"
-
-[node name="ClearColor" type="ColorRect" parent="Map"]
-z_index = -100
-offset_left = -192.0
-offset_top = -176.0
-offset_right = 352.0
-offset_bottom = 224.0
-color = Color(0, 0, 0, 1)
 
 [node name="CameraLimiter" parent="Map" instance=ExtResource("6_cfapn")]
 

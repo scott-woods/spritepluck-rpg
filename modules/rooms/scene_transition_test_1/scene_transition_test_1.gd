@@ -1,6 +1,8 @@
 extends Node2D
 
 
+const RoomsManager = preload("res://modules/rooms_manager/rooms_manager.tscn")
+
 @export var test_area_data : Resource
 
 @onready var map : TileMap = $Map
@@ -17,4 +19,6 @@ func _ready():
 
 func _on_test_area_entrance_body_entered(body):
 	test_area_entrance.get_node("CollisionShape2D").set_deferred("disabled", true)
-	RoomsManager.start(test_area_data, "from_left")
+	var rooms_manager = RoomsManager.instantiate()
+	get_tree().root.add_child(rooms_manager)
+	rooms_manager.start(test_area_data, "from_left")

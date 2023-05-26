@@ -29,9 +29,6 @@ func _on_player_utility_dropped(utility : Utility):
 	map.add_child(utility)
 
 func _on_combat_manager_combat_ended():
-	#increment rooms cleared
-	RoomsManager.increment_rooms_cleared(self)
-	
 	#open path to next rooms
 	var removable_walls = get_tree().get_nodes_in_group("removable_walls")
 	for wall in removable_walls:
