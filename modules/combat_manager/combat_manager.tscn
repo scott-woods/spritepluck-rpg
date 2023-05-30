@@ -9,6 +9,7 @@
 script = ExtResource("1_xid06")
 SimulationPlayer = ExtResource("2_rw036")
 UseUtility = ExtResource("3_6qjf3")
+enemy_types = null
 
 [node name="CombatUI" parent="." instance=ExtResource("5_53200")]
 visible = false

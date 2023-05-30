@@ -7,3 +7,4 @@
 script = ExtResource("1_mlc34")
 scene = ExtResource("1_o178k")
 label = "Dash"
+ap_cost = 2

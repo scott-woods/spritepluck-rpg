@@ -116,8 +116,9 @@ func toggle_utility():
 		current_utility = utilities[index + 1]
 	emit_signal("current_utility_changed", current_utility)
 
-func queue_action(action : CombatAction):
+func queue_action(action : CombatAction, ap_cost : int):
 	queued_actions.append(action)
+	max_actions_this_turn -= ap_cost
 
 func execute_actions():
 	state_machine.change_state("PlayerExecutingActions")
