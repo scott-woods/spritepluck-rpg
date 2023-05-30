@@ -47,3 +47,7 @@ func _deferred_ready(root : Window):
 	root.add_child(game)
 	#add default scene to world
 	world.add_child(current_scene)
+
+func _input(event):
+	if event.is_action_pressed("esc"):
+		get_tree().quit()
