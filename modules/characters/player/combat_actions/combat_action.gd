@@ -2,12 +2,12 @@ class_name CombatAction
 extends Node2D
 
 
-signal setup_finished(can_continue)
+signal setup_finished(can_continue : bool)
 
 var player : Player
 var camera : Camera
-var enabled
-var in_setup = false
+var enabled : bool
+var in_setup : bool = false
 
 func init(init_player : Player, camera):
 	player = init_player

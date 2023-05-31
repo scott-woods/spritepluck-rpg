@@ -15,6 +15,9 @@ var camera : Camera = Camera.instantiate()
 var current_scene : Node
 
 func _ready():
+	#set process mode to always
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	
 	#get random seed
 	randomize()
 	

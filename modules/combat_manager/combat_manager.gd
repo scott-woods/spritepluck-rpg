@@ -72,7 +72,7 @@ func end_combat():
 	emit_signal("combat_ended")
 
 #setup a combat action after selection from ui
-func setup_action(action : CombatAction):
+func setup_action(action : CombatAction, ap_cost : int):
 	action.init(player, camera)
 	action.position = simulation_player.position
 	map.add_child(action)
@@ -81,8 +81,8 @@ func setup_action(action : CombatAction):
 	action.setup_finished.connect(func(success):
 		await get_tree().process_frame
 		if success:
-			player.queue_action(action)
-			if player.queued_actions.size() == player.max_actions_this_turn:
+			player.queue_action(action, ap_cost)
+			if player.max_actions_this_turn <= 0:
 				end_turn_phase()
 			else:
 				camera.set_target(simulation_player)
@@ -127,11 +127,11 @@ func _on_player_finished_executing_actions():
 
 func _on_combat_ui_action_selected(selected_action : CombatActionResource):
 	var action = selected_action.scene.instantiate() as CombatAction
-	setup_action(action)
+	setup_action(action, selected_action.ap_cost)
 	
 func _on_combat_ui_use_utility_selected():
 	var action = UseUtility.instantiate() as CombatAction
-	setup_action(action)
+	setup_action(action, 1)
 
 func _on_combat_ui_item_selected(item):
 	pass

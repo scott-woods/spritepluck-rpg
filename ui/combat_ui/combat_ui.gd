@@ -44,14 +44,12 @@ func _input(event):
 		if action_menu.visible:
 			if attacks_container.visible == true:
 				attacks_container.hide()
-				for action_button in actions_container.get_children():
-					action_button.set_focus_mode(Control.FOCUS_ALL)
+				update_buttons(player)
 				var button = button_press_sequence.pop_back()
 				button.grab_focus()
 			if specials_container.visible == true:
 				specials_container.hide()
-				for action_button in actions_container.get_children():
-					action_button.set_focus_mode(Control.FOCUS_ALL)
+				update_buttons(player)
 				var button = button_press_sequence.pop_back()
 				button.grab_focus()
 
@@ -67,7 +65,8 @@ func setup_player_buttons():
 		for attack in player.attacks:
 			attack = attack as CombatActionResource
 			var button = CombatButton.instantiate()
-			button.text = attack.label
+			button.ap_cost = attack.ap_cost
+			button.text = attack.label + ": " + str(attack.ap_cost) + " AP"
 			button.pressed.connect(func(): _on_attack_selected(attack))
 			attacks_container.add_child(button)
 	
@@ -195,7 +194,16 @@ func _on_attack_button_pressed():
 	for button in actions_container.get_children():
 		button.set_focus_mode(Control.FOCUS_NONE)
 	attacks_container.show()
-	attacks_container.get_children()[0].grab_focus()
+	var valid_attacks : Array
+	for attack_button in attacks_container.get_children():
+		if attack_button.ap_cost > player.max_actions_this_turn:
+			attack_button.disabled = true
+			attack_button.set_focus_mode(Control.FOCUS_NONE)
+		else:
+			attack_button.disabled = false
+			attack_button.set_focus_mode(Control.FOCUS_ALL)
+			valid_attacks.append(attack_button)
+	valid_attacks[0].grab_focus()
 
 func _on_utility_button_pressed():
 	SoundPlayer.play_sound(SoundPlayer.MENU_SELECT)
@@ -262,8 +270,12 @@ func _on_combat_manager_turn_phase_ended():
 	
 #called after queuing action but not ending turn
 func _on_combat_manager_action_queued(player : Player):
-	var icon = action_ready_icons[player.max_actions_this_turn - player.queued_actions.size()]
-	icon.deactivate()
+	for i in player.stats.max_actions:
+		var icon = action_ready_icons[i]
+		if i > player.max_actions_this_turn - 1:
+			icon.deactivate()
+		else:
+			icon.activate()
 	update_buttons(player)
 	action_menu.show()
 	button_press_sequence.clear()
