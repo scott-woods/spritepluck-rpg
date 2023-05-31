@@ -5,8 +5,8 @@
 
 [node name="SimulationPlayer" type="Sprite2D"]
 modulate = Color(1, 1, 1, 0.27451)
-position = Vector2(0, -26)
 texture = ExtResource("1_23676")
+offset = Vector2(0, -26)
 vframes = 4
 frame = 1
 script = ExtResource("1_muhmk")

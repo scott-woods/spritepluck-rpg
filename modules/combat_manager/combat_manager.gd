@@ -100,8 +100,8 @@ func start_turn_phase():
 	get_tree().paused = true
 	MusicPlayer.apply_filter()
 	simulation_player = SimulationPlayer.instantiate()
-	simulation_player.position = player.position
 	map.add_child(simulation_player)
+	simulation_player.position = player.position
 	emit_signal("simulation_player_created", simulation_player)
 	emit_signal("turn_phase_started", player)
 
