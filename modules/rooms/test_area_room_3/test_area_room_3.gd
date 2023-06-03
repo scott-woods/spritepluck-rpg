@@ -2,6 +2,11 @@ class_name TestAreaRoom3
 extends Node2D
 
 
+@export var top_door : DungeonRoomDoor
+@export var bottom_door : DungeonRoomDoor
+@export var left_door : DungeonRoomDoor
+@export var right_door : DungeonRoomDoor
+
 @onready var enemy_spawner : EnemySpawner = $EnemySpawner
 @onready var combat_manager : CombatManager = $CombatManager
 @onready var player_spawner : PlayerSpawner = $PlayerSpawner

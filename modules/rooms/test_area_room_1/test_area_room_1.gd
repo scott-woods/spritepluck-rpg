@@ -1,8 +1,15 @@
 extends Room
 
 
+@export var top_door : DungeonRoomDoor
+@export var bottom_door : DungeonRoomDoor
+@export var left_door : DungeonRoomDoor
+@export var right_door : DungeonRoomDoor
+
 @onready var combat_manager : CombatManager = $CombatManager
 @onready var player_spawner : PlayerSpawner = $PlayerSpawner
+
+var room_cleared : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,6 +30,7 @@ func start():
 
 
 func _on_combat_manager_combat_ended():
+	room_cleared = true
 	var removable_walls = get_tree().get_nodes_in_group("removable_walls")
 	for wall in removable_walls:
 		wall.collision.set_deferred("disabled", true)

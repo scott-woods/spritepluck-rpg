@@ -1,0 +1,156 @@
+class_name Dungenerator
+extends Node
+
+
+var dungeon_map : Array[DungeonMapNode]
+var max_rooms : int = 20
+
+func _ready():
+	pass
+	
+func generate_dungeon(area_data : Resource, incoming_direction : String):	
+	var depth = 0
+	var coordinates = Vector2.ZERO
+	get_next_node(area_data, incoming_direction, depth, coordinates)
+	return dungeon_map
+
+func get_next_node(area_data : Resource, incoming_direction : String, depth : int, coordinates : Vector2):
+	#create new map node
+	var node = DungeonMapNode.new()
+	node.depth = depth
+	node.coordinates = coordinates
+	
+	#chances dictionary
+	var chances : Dictionary = {
+		"encounter": 1,
+		"event": 0,
+		"puzzle": 0,
+		"shop": 0,
+		"mini_boss": 0,
+		"boss": 0
+	}
+	
+	#get chances for room type by depth and other factors
+	match depth:
+		0:
+			chances.encounter = 1
+		1:
+			chances.encounter = 1
+			chances.puzzle = 0
+		2:
+			for chance in chances:
+				chances[chance] = 0
+			chances.boss = 1
+			
+	#get room type based on percent chance
+	var rand = randf()
+	var prob = 1
+	var room_type : DungeonRoom.ROOM_TYPE
+	for chance in chances:
+		prob = prob - chances[chance]
+		if rand >= prob:
+			match chance:
+				"encounter":
+					room_type = DungeonRoom.ROOM_TYPE.ENCOUNTER
+				"event":
+					room_type = DungeonRoom.ROOM_TYPE.EVENT
+				"puzzle":
+					room_type = DungeonRoom.ROOM_TYPE.PUZZLE
+				"shop":
+					room_type = DungeonRoom.ROOM_TYPE.SHOP
+				"mini_boss":
+					room_type = DungeonRoom.ROOM_TYPE.MINI_BOSS
+				"boss":
+					room_type = DungeonRoom.ROOM_TYPE.BOSS
+			break
+	
+	#pick random room by type
+	var filtered_rooms = area_data.dungeon_rooms.filter(func(r): return r.room_type == room_type)
+	var is_valid = false
+	while is_valid == false:
+		if filtered_rooms.size() < 1:
+			var room = area_data.dungeon_rooms.filter(func(r): return r.room_type == DungeonRoom.ROOM_TYPE.BOSS)[0]
+			var scene = room.room_scene.instantiate()
+			node.room = scene
+			node.room_type = room.room_type
+			is_valid = true
+		else:
+			var room = filtered_rooms.pick_random()
+			var scene = room.room_scene.instantiate()
+			node.room = scene
+			node.room_type = room.room_type
+			is_valid = validate_node(node, incoming_direction)
+			if is_valid == false:
+				scene.queue_free()
+				filtered_rooms.erase(room)
+	
+	#add to dungeon map
+	dungeon_map.append(node)
+	
+	#get nodes for the exits in the new node
+	if node.room_type != DungeonRoom.ROOM_TYPE.BOSS:
+		if node.room.bottom_door != null and incoming_direction != "from_top":
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
+			if matched_nodes.is_empty():
+				node.room.bottom_door.move_to_coordinates = node.coordinates + Vector2(0, 1)
+				get_next_node(area_data, "from_bottom", node.depth + 1, node.coordinates + Vector2(0, 1))
+		if node.room.top_door != null and incoming_direction != "from_bottom":
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
+			if matched_nodes.is_empty():
+				node.room.top_door.move_to_coordinates = node.coordinates + Vector2(0, -1)
+				get_next_node(area_data, "from_top", node.depth + 1, node.coordinates + Vector2(0, -1))
+		if node.room.left_door != null and incoming_direction != "from_right":
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
+			if matched_nodes.is_empty():
+				node.room.left_door.move_to_coordinates = node.coordinates + Vector2(-1, 0)
+				get_next_node(area_data, "from_left", node.depth + 1, node.coordinates + Vector2(-1, 0))
+		if node.room.right_door != null and incoming_direction != "from_left":
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
+			if matched_nodes.is_empty():
+				node.room.right_door.move_to_coordinates = node.coordinates + Vector2(1, 0)
+				get_next_node(area_data, "from_right", node.depth + 1, node.coordinates + Vector2(1, 0))
+
+func validate_node(node : DungeonMapNode, incoming_direction : String):
+	#if no matching door to incoming direction, room is invalid
+	match incoming_direction:
+		"from_top":
+			if node.room.bottom_door == null:
+				return false
+		"from_bottom":
+			if node.room.top_door == null:
+				return false
+		"from_left":
+			if node.room.right_door == null:
+				return false
+		"from_right":
+			if node.room.left_door == null:
+				return false
+				
+	#if door exists to coordinates without a matching door, room is invalid
+	if node.room.bottom_door:
+		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
+		if matched_nodes:
+			var matched_node = matched_nodes[0]
+			if matched_node.room.top_door == null:
+				return false
+	if node.room.top_door:
+		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
+		if matched_nodes:
+			var matched_node = matched_nodes[0]
+			if matched_node.room.bottom_door == null:
+				return false
+	if node.room.left_door:
+		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
+		if matched_nodes:
+			var matched_node = matched_nodes[0]
+			if matched_node.room.right_door == null:
+				return false
+	if node.room.right_door:
+		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
+		if matched_nodes:
+			var matched_node = matched_nodes[0]
+			if matched_node.room.left_door == null:
+				return false
+	
+	#nothing was invalid, return true			
+	return true
