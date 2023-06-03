@@ -7,3 +7,7 @@
 script = ExtResource("1_hfish")
 room_type = 0
 room_scene = ExtResource("1_60ev7")
+has_top_door = true
+has_bottom_door = true
+has_left_door = true
+has_right_door = true

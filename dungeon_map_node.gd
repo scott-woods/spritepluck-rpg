@@ -4,5 +4,5 @@ extends Node
 
 var coordinates : Vector2
 var depth : int
-var room : Node2D
-var room_type : DungeonRoom.ROOM_TYPE
+var dungeon_room : DungeonRoom
+var dungeon_room_data : DungeonRoomData

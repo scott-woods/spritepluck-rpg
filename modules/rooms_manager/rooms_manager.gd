@@ -34,8 +34,9 @@ func start(area_data : Resource, target_spawn : String):
 
 func move_to_room(coordinates : Vector2, target_spawn : String):
 	var node = dungeon_map.filter(func(n): return n.coordinates == coordinates)[0]
-	var room = node.room
-	SceneManager.change_scene(room, target_spawn, false)
+	var scene = node.dungeon_room.room_scene.instantiate()
+	scene.init(node.dungeon_room_data)
+	SceneManager.change_scene(scene, target_spawn)
 	await SceneManager.scene_change_finished
 	connect_to_doors()
 

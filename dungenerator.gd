@@ -4,9 +4,6 @@ extends Node
 
 var dungeon_map : Array[DungeonMapNode]
 var max_rooms : int = 20
-
-func _ready():
-	pass
 	
 func generate_dungeon(area_data : Resource, incoming_direction : String):	
 	var depth = 0
@@ -70,86 +67,123 @@ func get_next_node(area_data : Resource, incoming_direction : String, depth : in
 	while is_valid == false:
 		if filtered_rooms.size() < 1:
 			var room = area_data.dungeon_rooms.filter(func(r): return r.room_type == DungeonRoom.ROOM_TYPE.BOSS)[0]
-			var scene = room.room_scene.instantiate()
-			node.room = scene
-			node.room_type = room.room_type
+			node.dungeon_room = room
 			is_valid = true
+			var scene = node.dungeon_room.room_scene.instantiate()
+			node.dungeon_room_data = scene.room_data
+			scene.queue_free()
 		else:
 			var room = filtered_rooms.pick_random()
 			var scene = room.room_scene.instantiate()
-			node.room = scene
-			node.room_type = room.room_type
-			is_valid = validate_node(node, incoming_direction)
+			node.dungeon_room = room
+			is_valid = validate_node(node, incoming_direction, scene)
 			if is_valid == false:
-				scene.queue_free()
 				filtered_rooms.erase(room)
+			node.dungeon_room_data = scene.room_data
+			scene.queue_free()
 	
 	#add to dungeon map
 	dungeon_map.append(node)
 	
 	#get nodes for the exits in the new node
-	if node.room_type != DungeonRoom.ROOM_TYPE.BOSS:
-		if node.room.bottom_door != null and incoming_direction != "from_top":
-			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
+	if node.dungeon_room.room_type == DungeonRoom.ROOM_TYPE.BOSS:
+		var new_coords : Vector2
+		match incoming_direction:
+			"from_top":
+				new_coords = node.coordinates + Vector2(0, 1)
+			"from_bottom":
+				new_coords = node.coordinates + Vector2(0, -1)
+			"from_left":
+				new_coords = node.coordinates + Vector2(1, 0)
+			"from_right":
+				new_coords = node.coordinates + Vector2(-1, 0)
+		node.dungeon_room_data.bottom_door_coordinates = new_coords
+	if node.dungeon_room.room_type != DungeonRoom.ROOM_TYPE.BOSS:
+		if node.dungeon_room.has_bottom_door:
+			var new_coords = node.coordinates + Vector2(0, 1)
+			node.dungeon_room_data.bottom_door_coordinates = new_coords
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 			if matched_nodes.is_empty():
-				node.room.bottom_door.move_to_coordinates = node.coordinates + Vector2(0, 1)
-				get_next_node(area_data, "from_bottom", node.depth + 1, node.coordinates + Vector2(0, 1))
-		if node.room.top_door != null and incoming_direction != "from_bottom":
-			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
+				get_next_node(area_data, "from_bottom", node.depth + 1, new_coords)
+		if node.dungeon_room.has_top_door:
+			var new_coords = node.coordinates + Vector2(0, -1)
+			node.dungeon_room_data.top_door_coordinates = new_coords
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 			if matched_nodes.is_empty():
-				node.room.top_door.move_to_coordinates = node.coordinates + Vector2(0, -1)
-				get_next_node(area_data, "from_top", node.depth + 1, node.coordinates + Vector2(0, -1))
-		if node.room.left_door != null and incoming_direction != "from_right":
-			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
+				get_next_node(area_data, "from_top", node.depth + 1, new_coords)
+		if node.dungeon_room.has_left_door:
+			var new_coords = node.coordinates + Vector2(-1, 0)
+			node.dungeon_room_data.left_door_coordinates = new_coords
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 			if matched_nodes.is_empty():
-				node.room.left_door.move_to_coordinates = node.coordinates + Vector2(-1, 0)
-				get_next_node(area_data, "from_left", node.depth + 1, node.coordinates + Vector2(-1, 0))
-		if node.room.right_door != null and incoming_direction != "from_left":
-			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
+				get_next_node(area_data, "from_left", node.depth + 1, new_coords)
+		if node.dungeon_room.has_right_door:
+			var new_coords = node.coordinates + Vector2(1, 0)
+			node.dungeon_room_data.right_door_coordinates = new_coords
+			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 			if matched_nodes.is_empty():
-				node.room.right_door.move_to_coordinates = node.coordinates + Vector2(1, 0)
-				get_next_node(area_data, "from_right", node.depth + 1, node.coordinates + Vector2(1, 0))
+				get_next_node(area_data, "from_right", node.depth + 1, new_coords)
+#		if node.dungeon_room.has_bottom_door and incoming_direction != "from_top":
+#			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
+#			if matched_nodes.is_empty():
+#				node.dungeon_room_data.bottom_door_coordinates = node.coordinates + Vector2(0, 1)
+#				get_next_node(area_data, "from_bottom", node.depth + 1, node.coordinates + Vector2(0, 1))
+#		if node.dungeon_room.has_top_door and incoming_direction != "from_bottom":
+#			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
+#			if matched_nodes.is_empty():
+#				node.dungeon_room_data.top_door_coordinates = node.coordinates + Vector2(0, -1)
+#				get_next_node(area_data, "from_top", node.depth + 1, node.coordinates + Vector2(0, -1))
+#		if node.dungeon_room.has_left_door and incoming_direction != "from_right":
+#			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
+#			if matched_nodes.is_empty():
+#				node.dungeon_room_data.left_door_coordinates = node.coordinates + Vector2(-1, 0)
+#				get_next_node(area_data, "from_left", node.depth + 1, node.coordinates + Vector2(-1, 0))
+#		if node.dungeon_room.has_right_door and incoming_direction != "from_left":
+#			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
+#			if matched_nodes.is_empty():
+#				node.dungeon_room_data.right_door_coordinates = node.coordinates + Vector2(1, 0)
+#				get_next_node(area_data, "from_right", node.depth + 1, node.coordinates + Vector2(1, 0))
 
-func validate_node(node : DungeonMapNode, incoming_direction : String):
+func validate_node(node : DungeonMapNode, incoming_direction : String, scene : Node2D):
 	#if no matching door to incoming direction, room is invalid
 	match incoming_direction:
 		"from_top":
-			if node.room.bottom_door == null:
+			if scene.bottom_door == null:
 				return false
 		"from_bottom":
-			if node.room.top_door == null:
+			if scene.top_door == null:
 				return false
 		"from_left":
-			if node.room.right_door == null:
+			if scene.right_door == null:
 				return false
 		"from_right":
-			if node.room.left_door == null:
+			if scene.left_door == null:
 				return false
 				
 	#if door exists to coordinates without a matching door, room is invalid
-	if node.room.bottom_door:
+	if scene.bottom_door:
 		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
 		if matched_nodes:
 			var matched_node = matched_nodes[0]
-			if matched_node.room.top_door == null:
+			if matched_node.dungeon_room.has_top_door == null:
 				return false
-	if node.room.top_door:
+	if scene.top_door:
 		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
 		if matched_nodes:
 			var matched_node = matched_nodes[0]
-			if matched_node.room.bottom_door == null:
+			if matched_node.dungeon_room.has_bottom_door == null:
 				return false
-	if node.room.left_door:
+	if scene.left_door:
 		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
 		if matched_nodes:
 			var matched_node = matched_nodes[0]
-			if matched_node.room.right_door == null:
+			if matched_node.dungeon_room.has_right_door == null:
 				return false
-	if node.room.right_door:
+	if scene.right_door:
 		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
 		if matched_nodes:
 			var matched_node = matched_nodes[0]
-			if matched_node.room.left_door == null:
+			if matched_node.dungeon_room.has_left_door == null:
 				return false
 	
 	#nothing was invalid, return true			
