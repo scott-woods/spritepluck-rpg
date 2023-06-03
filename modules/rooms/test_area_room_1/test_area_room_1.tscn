@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://hcry7ck4q1q8"]
+[gd_scene load_steps=22 format=3 uid="uid://hcry7ck4q1q8"]
 
 [ext_resource type="PackedScene" uid="uid://bieehfxk3a4ab" path="res://modules/rooms/room/room.tscn" id="1_5ywyc"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_j6mkr"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dcpfgoqoaghou" path="res://modules/invisible_wall/invisible_wall.tscn" id="10_lrq1m"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="12_2tuqr"]
 [ext_resource type="PackedScene" uid="uid://c8ua2uil50vnq" path="res://modules/enemy_spawner/enemy_spawner.tscn" id="12_72ssr"]
+[ext_resource type="PackedScene" uid="uid://djt80b6b1c278" path="res://modules/dungeon_room_component/dungeon_room_component.tscn" id="14_2pgsw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wg3pt"]
 vertices = PackedVector2Array(-240, -176, 128, -176, 128, 0, -96, 0, 304, 0, 304, 176, -96, 176, -240, 0)
@@ -37,11 +38,8 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_402m4"]
 size = Vector2(32, 16)
 
-[node name="TestAreaRoom1" node_paths=PackedStringArray("top_door", "bottom_door", "right_door") instance=ExtResource("1_5ywyc")]
+[node name="TestAreaRoom1" instance=ExtResource("1_5ywyc")]
 script = ExtResource("2_vgapo")
-top_door = NodePath("Map/TopDoor")
-bottom_door = NodePath("Map/BottomDoor")
-right_door = NodePath("Map/RightDoor")
 
 [node name="Map" parent="." index="0"]
 tile_set = ExtResource("2_j6mkr")
@@ -164,6 +162,11 @@ spawn_points_container = NodePath("../Map/EnemySpawnPoints")
 [node name="PlayerSpawner" parent="." index="3" node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("12_2tuqr")]
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")
 map = NodePath("../Map")
+
+[node name="DungeonRoomComponent" parent="." index="4" node_paths=PackedStringArray("top_door", "bottom_door", "right_door") instance=ExtResource("14_2pgsw")]
+top_door = NodePath("../Map/TopDoor")
+bottom_door = NodePath("../Map/BottomDoor")
+right_door = NodePath("../Map/RightDoor")
 
 [connection signal="action_created" from="CombatManager" to="." method="_on_combat_manager_action_created"]
 [connection signal="combat_ended" from="CombatManager" to="." method="_on_combat_manager_combat_ended"]

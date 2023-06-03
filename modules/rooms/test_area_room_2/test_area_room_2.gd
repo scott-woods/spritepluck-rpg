@@ -1,11 +1,6 @@
 extends Node2D
 
 
-@export var top_door : DungeonRoomDoor
-@export var bottom_door : DungeonRoomDoor
-@export var left_door : DungeonRoomDoor
-@export var right_door : DungeonRoomDoor
-
 @onready var enemy_spawner : EnemySpawner = $EnemySpawner
 @onready var combat_manager : CombatManager = $CombatManager
 @onready var player_spawner : PlayerSpawner = $PlayerSpawner
@@ -17,16 +12,7 @@ func init(data : DungeonRoomData):
 	if data:
 		room_data = data
 
-func _ready():
-	if top_door:
-		top_door.move_to_coordinates = room_data.top_door_coordinates
-	if bottom_door:
-		bottom_door.move_to_coordinates = room_data.bottom_door_coordinates
-	if left_door:
-		left_door.move_to_coordinates = room_data.left_door_coordinates
-	if right_door:
-		right_door.move_to_coordinates = room_data.right_door_coordinates
-	
+func _ready():	
 	player_spawner.spawn_player()
 	
 	Game.player.utility_dropped.connect(_on_player_utility_dropped)
