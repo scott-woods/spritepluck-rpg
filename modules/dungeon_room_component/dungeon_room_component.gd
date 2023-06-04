@@ -14,12 +14,16 @@ func _ready():
 	var owner = get_parent()
 	room_data = owner.room_data
 	if top_door:
+		top_door.target_scene = room_data.top_door_scene
 		top_door.move_to_coordinates = room_data.top_door_coordinates
 	if bottom_door:
+		bottom_door.target_scene = room_data.bottom_door_scene
 		bottom_door.move_to_coordinates = room_data.bottom_door_coordinates
 	if left_door:
+		left_door.target_scene = room_data.left_door_scene
 		left_door.move_to_coordinates = room_data.left_door_coordinates
 	if right_door:
+		right_door.target_scene = room_data.right_door_scene
 		right_door.move_to_coordinates = room_data.right_door_coordinates
 
 	#disable walls if room is already cleared
