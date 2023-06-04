@@ -1,9 +1,10 @@
+class_name SceneTransitionTest1
 extends Node2D
 
 
 const RoomsManager = preload("res://modules/rooms_manager/rooms_manager.tscn")
 
-@export var test_area_data : Resource
+@export var test_area_data : Area
 
 @onready var map : TileMap = $Map
 @onready var default_ui : DefaultUI = $DefaultUI
@@ -21,4 +22,4 @@ func _on_test_area_entrance_body_entered(body):
 	test_area_entrance.get_node("CollisionShape2D").set_deferred("disabled", true)
 	var rooms_manager = RoomsManager.instantiate()
 	get_tree().root.add_child(rooms_manager)
-	rooms_manager.start(test_area_data, "from_left")
+	rooms_manager.start(test_area_data, "from_left", scene_file_path)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cisv8heyvmvbb"]
+
+[ext_resource type="Script" path="res://modules/dungeon_room_door/dungeon_room_door.gd" id="1_vl6jt"]
+
+[node name="DungeonRoomDoor" type="Node2D" groups=["dungeon_doors"]]
+script = ExtResource("1_vl6jt")
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="Collision" type="CollisionShape2D" parent="Area"]
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

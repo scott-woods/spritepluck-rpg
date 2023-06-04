@@ -28,3 +28,9 @@ func _ready():
 	Game.camera.limit_left = top_left.position.x
 	Game.camera.limit_bottom = bottom_right.position.y
 	Game.camera.limit_right = bottom_right.position.x
+
+func _exit_tree():
+	Game.camera.limit_top = -10000000
+	Game.camera.limit_left = -10000000
+	Game.camera.limit_bottom = 10000000
+	Game.camera.limit_right = 10000000

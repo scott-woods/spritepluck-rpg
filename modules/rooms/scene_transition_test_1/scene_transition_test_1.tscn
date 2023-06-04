@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.gd" id="1_xdfnu"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
-[ext_resource type="Resource" uid="uid://5ojxfst0vr8y" path="res://data/areas/test_area.tres" id="3_731g7"]
+[ext_resource type="Resource" uid="uid://bljtn6a38lcq5" path="res://data/areas/test_area.tres" id="3_731g7"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="6_bcltr"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="7_i10ym"]
 [ext_resource type="PackedScene" uid="uid://eae3uik2yex2" path="res://ui/default_ui/default_ui.tscn" id="8_oui1y"]

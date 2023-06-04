@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://djt80b6b1c278"]
+
+[ext_resource type="Script" path="res://modules/dungeon_room_component/dungeon_room_component.gd" id="1_sfqx0"]
+
+[node name="DungeonRoomComponent" type="Node"]
+script = ExtResource("1_sfqx0")
