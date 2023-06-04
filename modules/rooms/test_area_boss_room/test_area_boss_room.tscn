@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dajdccbomra6t"]
+[gd_scene load_steps=13 format=3 uid="uid://dajdccbomra6t"]
 
 [ext_resource type="PackedScene" uid="uid://bieehfxk3a4ab" path="res://modules/rooms/room/room.tscn" id="1_pnd6i"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="2_ocbm8"]
@@ -12,6 +12,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r1xc"]
 size = Vector2(32, 16)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0g5qp"]
+resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8yl5v"]
 size = Vector2(32, 16)
@@ -45,11 +48,14 @@ position = Vector2(192, 216)
 spawn_id = "from_top"
 
 [node name="InvisibleWall" parent="Map" index="2" instance=ExtResource("4_dy724")]
+position = Vector2(192, 232)
 
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
-position = Vector2(192, 232)
 shape = SubResource("RectangleShape2D_0r1xc")
 disabled = true
+
+[node name="Sprite" parent="Map/InvisibleWall" index="1"]
+texture = SubResource("PlaceholderTexture2D_0g5qp")
 
 [node name="BottomDoor" parent="Map" index="3" instance=ExtResource("5_syuc1")]
 position = Vector2(192, 248)

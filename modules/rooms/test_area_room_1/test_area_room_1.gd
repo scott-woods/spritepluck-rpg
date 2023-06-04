@@ -28,15 +28,3 @@ func start():
 
 	if room_data.room_cleared == false:
 		combat_manager.start_combat()
-	else:
-		remove_walls()
-
-func remove_walls():
-	var removable_walls = get_tree().get_nodes_in_group("removable_walls")
-	for wall in removable_walls:
-		wall.collision.set_deferred("disabled", true)
-
-
-func _on_combat_manager_combat_ended():
-	room_data.room_cleared = true
-	remove_walls()

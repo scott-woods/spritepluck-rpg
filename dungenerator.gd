@@ -164,33 +164,3 @@ func get_next_node(area_data : Resource, incoming_direction : String, depth : in
 			var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 			if matched_nodes.is_empty():
 				get_next_node(area_data, "from_right", node.depth + 1, new_coords)
-
-#func validate_node(node : DungeonMapNode, incoming_direction : String, scene : Node2D):				
-#	#if door exists to coordinates without a matching door, room is invalid
-#	if scene.bottom_door:
-#		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, 1))
-#		if matched_nodes:
-#			var matched_node = matched_nodes[0]
-#			if matched_node.dungeon_room.has_top_door == null:
-#				return false
-#	if scene.top_door:
-#		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(0, -1))
-#		if matched_nodes:
-#			var matched_node = matched_nodes[0]
-#			if matched_node.dungeon_room.has_bottom_door == null:
-#				return false
-#	if scene.left_door:
-#		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(-1, 0))
-#		if matched_nodes:
-#			var matched_node = matched_nodes[0]
-#			if matched_node.dungeon_room.has_right_door == null:
-#				return false
-#	if scene.right_door:
-#		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == node.coordinates + Vector2(1, 0))
-#		if matched_nodes:
-#			var matched_node = matched_nodes[0]
-#			if matched_node.dungeon_room.has_left_door == null:
-#				return false
-	
-	#nothing was invalid, return true			
-	return true

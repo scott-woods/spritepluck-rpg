@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dr0fetlktqbbm"]
+[gd_scene load_steps=29 format=3 uid="uid://dr0fetlktqbbm"]
 
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_3/test_area_room_3.gd" id="1_mnoc0"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_y3tu0"]
@@ -36,14 +36,26 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-72, -152, -72, -104, 2
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_id280"]
 size = Vector2(32, 16)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_rxsn5"]
+resource_local_to_scene = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwal4"]
 size = Vector2(32, 16)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p62ht"]
+resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4btp4"]
 size = Vector2(16, 32)
 
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jep18"]
+resource_local_to_scene = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_osqym"]
 size = Vector2(16, 32)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fgk2y"]
+resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6s8y4"]
 size = Vector2(32, 16)
@@ -139,11 +151,17 @@ position = Vector2(112, 120)
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
 shape = SubResource("RectangleShape2D_id280")
 
+[node name="Sprite" parent="Map/InvisibleWall" index="1"]
+texture = SubResource("PlaceholderTexture2D_rxsn5")
+
 [node name="InvisibleWall2" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
 position = Vector2(112, -168)
 
 [node name="Collision" parent="Map/InvisibleWall2" index="0"]
 shape = SubResource("RectangleShape2D_hwal4")
+
+[node name="Sprite" parent="Map/InvisibleWall2" index="1"]
+texture = SubResource("PlaceholderTexture2D_p62ht")
 
 [node name="InvisibleWall3" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
 position = Vector2(-88, -32)
@@ -151,11 +169,17 @@ position = Vector2(-88, -32)
 [node name="Collision" parent="Map/InvisibleWall3" index="0"]
 shape = SubResource("RectangleShape2D_4btp4")
 
+[node name="Sprite" parent="Map/InvisibleWall3" index="1"]
+texture = SubResource("PlaceholderTexture2D_jep18")
+
 [node name="InvisibleWall4" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
 position = Vector2(312, -32)
 
 [node name="Collision" parent="Map/InvisibleWall4" index="0"]
 shape = SubResource("RectangleShape2D_osqym")
+
+[node name="Sprite" parent="Map/InvisibleWall4" index="1"]
+texture = SubResource("PlaceholderTexture2D_fgk2y")
 
 [node name="ColorRect" type="ColorRect" parent="Map"]
 z_index = -100
@@ -214,11 +238,12 @@ spawn_points_container = NodePath("../Map/EnemySpawnPoints")
 spawn_points_container = NodePath("../Map/PlayerSpawnPoints")
 map = NodePath("../Map")
 
-[node name="DungeonRoomComponent" parent="." node_paths=PackedStringArray("top_door", "bottom_door", "left_door", "right_door") instance=ExtResource("12_nsu7v")]
+[node name="DungeonRoomComponent" parent="." node_paths=PackedStringArray("top_door", "bottom_door", "left_door", "right_door", "combat_manager") instance=ExtResource("12_nsu7v")]
 top_door = NodePath("../Map/TopDoor")
 bottom_door = NodePath("../Map/BottomDoor")
 left_door = NodePath("../Map/LeftDoor")
 right_door = NodePath("../Map/RightDoor")
+combat_manager = NodePath("../CombatManager")
 
 [editable path="Map/InvisibleWall"]
 [editable path="Map/InvisibleWall2"]
