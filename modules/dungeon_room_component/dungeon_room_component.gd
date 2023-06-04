@@ -14,17 +14,21 @@ func _ready():
 	var owner = get_parent()
 	room_data = owner.room_data
 	if top_door:
+		top_door.node = room_data.top_door_node
 		top_door.target_scene = room_data.top_door_scene
-		top_door.move_to_coordinates = room_data.top_door_coordinates
+		top_door.is_dungeon_exit = room_data.top_door_is_exit
 	if bottom_door:
+		bottom_door.node = room_data.bottom_door_node
 		bottom_door.target_scene = room_data.bottom_door_scene
-		bottom_door.move_to_coordinates = room_data.bottom_door_coordinates
+		bottom_door.is_dungeon_exit = room_data.bottom_door_is_exit
 	if left_door:
+		left_door.node = room_data.left_door_node
 		left_door.target_scene = room_data.left_door_scene
-		left_door.move_to_coordinates = room_data.left_door_coordinates
+		left_door.is_dungeon_exit = room_data.left_door_is_exit
 	if right_door:
+		right_door.node = room_data.right_door_node
 		right_door.target_scene = room_data.right_door_scene
-		right_door.move_to_coordinates = room_data.right_door_coordinates
+		right_door.is_dungeon_exit = room_data.right_door_is_exit
 
 	#disable walls if room is already cleared
 	if room_data.room_cleared:

@@ -62,6 +62,18 @@ func get_next_node(area_data : Resource, incoming_direction : String, depth : in
 		2:
 			for chance in chances:
 				chances[chance] = 0
+			chances.encounter = 1
+		3:
+			for chance in chances:
+				chances[chance] = 0
+			chances.encounter = 1
+		4:
+			for chance in chances:
+				chances[chance] = 0
+			chances.encounter = 1
+		5:
+			for chance in chances:
+				chances[chance] = 0
 			chances.boss = 1
 			
 	#get room type based on percent chance
@@ -163,41 +175,65 @@ func get_next_node(area_data : Resource, incoming_direction : String, depth : in
 				new_coords = node.coordinates + Vector2(1, 0)
 			"from_right":
 				new_coords = node.coordinates + Vector2(-1, 0)
-		node.dungeon_room_data.bottom_door_coordinates = new_coords
+		var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
+		node.dungeon_room_data.bottom_door_node = matched_nodes[0]
 	if node.dungeon_room.room_type != DungeonRoom.ROOM_TYPE.BOSS:
 		if node.dungeon_room.has_bottom_door:
 			if node.coordinates == Vector2.ZERO and incoming_direction == "from_top":
 				node.dungeon_room_data.bottom_door_scene = incoming_scene
+				node.dungeon_room_data.bottom_door_is_exit = true
 			else:
+				var bottom_node : DungeonMapNode
 				var new_coords = node.coordinates + Vector2(0, 1)
-				node.dungeon_room_data.bottom_door_coordinates = new_coords
 				var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 				if matched_nodes.is_empty():
-					get_next_node(area_data, "from_bottom", node.depth + 1, new_coords)
+					bottom_node = get_next_node(area_data, "from_bottom", node.depth + 1, new_coords)
+				else:
+					bottom_node = matched_nodes[0]
+				node.dungeon_room_data.bottom_door_node = bottom_node
+				node.dungeon_room_data.bottom_door_scene = bottom_node.dungeon_room.room_scene
 		if node.dungeon_room.has_top_door:
 			if node.coordinates == Vector2.ZERO and incoming_direction == "from_bottom":
 				node.dungeon_room_data.top_door_scene = incoming_scene
+				node.dungeon_room_data.top_door_is_exit = true
 			else:
+				var top_node : DungeonMapNode
 				var new_coords = node.coordinates + Vector2(0, -1)
-				node.dungeon_room_data.top_door_coordinates = new_coords
 				var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 				if matched_nodes.is_empty():
-					get_next_node(area_data, "from_top", node.depth + 1, new_coords)
+					top_node = get_next_node(area_data, "from_top", node.depth + 1, new_coords)
+				else:
+					top_node = matched_nodes[0]
+				node.dungeon_room_data.top_door_node = top_node
+				node.dungeon_room_data.bottom_door_scene = top_node.dungeon_room.room_scene
 		if node.dungeon_room.has_left_door:
 			if node.coordinates == Vector2.ZERO and incoming_direction == "from_right":
 				node.dungeon_room_data.left_door_scene = incoming_scene
+				node.dungeon_room_data.left_door_is_exit = true
 			else:
+				var left_node : DungeonMapNode
 				var new_coords = node.coordinates + Vector2(-1, 0)
-				node.dungeon_room_data.left_door_coordinates = new_coords
 				var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 				if matched_nodes.is_empty():
-					get_next_node(area_data, "from_left", node.depth + 1, new_coords)
+					left_node = get_next_node(area_data, "from_left", node.depth + 1, new_coords)
+				else:
+					left_node = matched_nodes[0]
+				node.dungeon_room_data.left_door_node = left_node
+				node.dungeon_room_data.left_door_scene = left_node.dungeon_room.room_scene
 		if node.dungeon_room.has_right_door:
 			if node.coordinates == Vector2.ZERO and incoming_direction == "from_left":
 				node.dungeon_room_data.right_door_scene = incoming_scene
+				node.dungeon_room_data.right_door_is_exit = true
 			else:
+				var right_node : DungeonMapNode
 				var new_coords = node.coordinates + Vector2(1, 0)
-				node.dungeon_room_data.right_door_coordinates = new_coords
 				var matched_nodes = dungeon_map.filter(func(n): return n.coordinates == new_coords)
 				if matched_nodes.is_empty():
-					get_next_node(area_data, "from_right", node.depth + 1, new_coords)
+					right_node = get_next_node(area_data, "from_right", node.depth + 1, new_coords)
+				else:
+					right_node = matched_nodes[0]
+				node.dungeon_room_data.right_door_node = right_node
+				node.dungeon_room_data.right_door_scene = right_node.dungeon_room.room_scene
+		
+	#return the created node
+	return node
