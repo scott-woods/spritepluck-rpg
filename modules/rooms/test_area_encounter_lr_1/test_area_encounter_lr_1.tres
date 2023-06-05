@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="DungeonRoom" load_steps=3 format=3 uid="uid://dgwone7x0xre8"]
+[gd_resource type="Resource" script_class="DungeonRoom" load_steps=3 format=3 uid="uid://c2b4x1me1unbh"]
 
 [ext_resource type="PackedScene" uid="uid://beyyy8qy21078" path="res://modules/rooms/test_area_encounter_lr_1/test_area_encounter_lr_1.tscn" id="1_1jj0v"]
-[ext_resource type="Script" path="res://dungeon_room.gd" id="1_hif03"]
+[ext_resource type="Script" path="res://modules/dungeon_room/dungeon_room.gd" id="2_niamt"]
 
 [resource]
-script = ExtResource("1_hif03")
+script = ExtResource("2_niamt")
 room_type = 0
 room_scene = ExtResource("1_1jj0v")
 has_top_door = false

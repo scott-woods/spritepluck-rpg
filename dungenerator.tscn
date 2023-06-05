@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwg6v3a5710se"]
-
-[ext_resource type="Script" path="res://dungenerator.gd" id="1_hfory"]
-
-[node name="Dungenerator" type="Node"]
-script = ExtResource("1_hfory")

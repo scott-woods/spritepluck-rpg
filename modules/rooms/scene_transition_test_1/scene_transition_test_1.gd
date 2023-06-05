@@ -2,7 +2,7 @@ class_name SceneTransitionTest1
 extends Node2D
 
 
-const RoomsManager = preload("res://modules/rooms_manager/rooms_manager.tscn")
+@export var RoomsManager : PackedScene
 
 @export var test_area_data : Area
 

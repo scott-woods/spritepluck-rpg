@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://d106rwbh08gta"]
+[gd_scene load_steps=9 format=3 uid="uid://d106rwbh08gta"]
 
 [ext_resource type="Script" path="res://modules/rooms/scene_transition_test_1/scene_transition_test_1.gd" id="1_xdfnu"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_yupo4"]
+[ext_resource type="PackedScene" path="res://modules/rooms_manager/rooms_manager.tscn" id="2_csj02"]
 [ext_resource type="Resource" uid="uid://bljtn6a38lcq5" path="res://data/areas/test_area.tres" id="3_731g7"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="6_bcltr"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="7_i10ym"]
@@ -12,6 +13,7 @@ size = Vector2(16, 64)
 
 [node name="SceneTransitionTest1" type="Node2D"]
 script = ExtResource("1_xdfnu")
+RoomsManager = ExtResource("2_csj02")
 test_area_data = ExtResource("3_731g7")
 
 [node name="Map" type="TileMap" parent="."]

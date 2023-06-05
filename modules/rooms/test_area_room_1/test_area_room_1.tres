@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="DungeonRoom" load_steps=3 format=3 uid="uid://bmy807ny0ehiu"]
+[gd_resource type="Resource" script_class="DungeonRoom" load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://hcry7ck4q1q8" path="res://modules/rooms/test_area_room_1/test_area_room_1.tscn" id="1_iajc0"]
-[ext_resource type="Script" path="res://dungeon_room.gd" id="1_ksbva"]
+[ext_resource type="Script" path="res://modules/dungeon_room/dungeon_room.gd" id="1_ksbva"]
+
 
 [resource]
 script = ExtResource("1_ksbva")

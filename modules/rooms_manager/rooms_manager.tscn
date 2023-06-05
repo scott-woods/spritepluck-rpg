@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtaqmc4bne4g"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://modules/rooms_manager/rooms_manager.gd" id="1_vutr8"]
-[ext_resource type="PackedScene" uid="uid://bwg6v3a5710se" path="res://dungenerator.tscn" id="2_yerrv"]
+[ext_resource type="PackedScene" uid="uid://bwg6v3a5710se" path="res://modules/dungenerator/dungenerator.tscn" id="2_yerrv"]
+
 
 [node name="RoomsManager" type="Node"]
 script = ExtResource("1_vutr8")
