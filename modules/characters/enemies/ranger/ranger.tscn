@@ -43,7 +43,7 @@ position = Vector2(0, -14)
 speed = 85.0
 
 [node name="PathfindingComponent" parent="." index="3" node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_tsya4")]
-position = Vector2(0, -14)
+position = Vector2(0, 4)
 velocity_component = NodePath("../VelocityComponent")
 
 [node name="NavigationAgent2D" parent="PathfindingComponent" index="0"]
