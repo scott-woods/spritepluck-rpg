@@ -4,4 +4,3 @@
 
 [node name="EnemySpawner" type="Node"]
 script = ExtResource("1_mua5r")
-single_enemy_mode = true

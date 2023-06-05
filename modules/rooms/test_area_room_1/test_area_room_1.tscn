@@ -70,10 +70,10 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = -1
 layer_2/tile_data = PackedInt32Array(720910, 131072, 3, 720911, 131072, 3, 720912, 131072, 3, 720913, 131072, 3, 720914, 131072, 3, 720915, 131072, 3, 720904, 131072, 3, 720903, 131072, 3, 720902, 131072, 3, 720901, 131072, 3, 720900, 131072, 3, 720899, 131072, 3, 720898, 131072, 3, 786429, 131072, 3, 786428, 131072, 3, 786427, 131072, 3, 786426, 131072, 3, 786425, 131072, 3, 65528, 131072, 3, 65527, 131072, 3, 65526, 131072, 3, 65525, 131072, 3, 65524, 131072, 3, 65523, 131072, 3, 65522, 131072, 3, 65521, 131072, 3, -131064, 131072, 3, -196600, 131072, 3, -262136, 131072, 3, 720905, 131072, 3, 720906, 131072, 3, 720907, 131072, 3, 720908, 131072, 3, 720909, 131072, 3, 65520, 131072, 3, 393236, 131072, 3, 393237, 131072, 3)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" index="1"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" index="1" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_wg3pt")
 
-[node name="InvisibleWall" parent="Map" index="2" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall" parent="Map" index="2" instance=ExtResource("10_lrq1m")]
 position = Vector2(-64, -184)
 
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
@@ -82,7 +82,7 @@ shape = SubResource("RectangleShape2D_dojjk")
 [node name="Sprite" parent="Map/InvisibleWall" index="1"]
 texture = SubResource("PlaceholderTexture2D_io5ah")
 
-[node name="InvisibleWall2" parent="Map" index="3" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall2" parent="Map" index="3" instance=ExtResource("10_lrq1m")]
 position = Vector2(312, 80)
 
 [node name="Collision" parent="Map/InvisibleWall2" index="0"]
@@ -91,7 +91,7 @@ shape = SubResource("RectangleShape2D_w0j6m")
 [node name="Sprite" parent="Map/InvisibleWall2" index="1"]
 texture = SubResource("PlaceholderTexture2D_3u2m5")
 
-[node name="InvisibleWall3" parent="Map" index="4" groups=["removable_walls"] instance=ExtResource("10_lrq1m")]
+[node name="InvisibleWall3" parent="Map" index="4" instance=ExtResource("10_lrq1m")]
 position = Vector2(0, 184)
 
 [node name="Collision" parent="Map/InvisibleWall3" index="0"]

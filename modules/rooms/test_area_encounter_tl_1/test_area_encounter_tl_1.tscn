@@ -129,13 +129,13 @@ position = Vector2(31, 104)
 [node name="Marker2D4" type="Marker2D" parent="Map/EnemySpawnPoints"]
 position = Vector2(31, 208)
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_0hrqa")
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_kpbom")
 
-[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_4xysb")
 
 [node name="PlayerSpawner" parent="." node_paths=PackedStringArray("spawn_points_container", "map") instance=ExtResource("11_g6mrj")]

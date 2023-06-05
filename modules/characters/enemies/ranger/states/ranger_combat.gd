@@ -2,8 +2,8 @@ class_name RangerCombat
 extends RangerState
 	
 
-const MIN_DISTANCE_FROM_PLAYER : int = 150
-const MAX_DISTANCE_FROM_PLAYER : int = 225
+const MIN_DISTANCE_FROM_PLAYER : int = 125
+const MAX_DISTANCE_FROM_PLAYER : int = 250
 const DIRECTIONS : Array = [
 	Vector2(0, -1), Vector2(1, -1), Vector2(1, 0), Vector2(1, 1),
 	Vector2(0, 1), Vector2(-1, 1), Vector2(-1, 0), Vector2(-1, -1)

@@ -124,7 +124,7 @@ shape = SubResource("RectangleShape2D_nwm2u")
 [node name="Sprite" parent="Map/InvisibleWall2" index="1"]
 texture = SubResource("PlaceholderTexture2D_3vish")
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_eknev")
 
 [node name="EncounterRoomComponent" parent="." node_paths=PackedStringArray("player_spawner", "combat_manager") instance=ExtResource("1_o8a0q")]

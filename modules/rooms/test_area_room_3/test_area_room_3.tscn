@@ -133,19 +133,19 @@ spawn_id = "from_right"
 position = Vector2(296, -32)
 spawn_id = "from_left"
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_rsms8")
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_181p7")
 
-[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D3" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_csb2i")
 
-[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Map"]
+[node name="NavigationRegion2D4" type="NavigationRegion2D" parent="Map" groups=["nav_regions"]]
 navigation_polygon = SubResource("NavigationPolygon_ppuvj")
 
-[node name="InvisibleWall" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
+[node name="InvisibleWall" parent="Map" instance=ExtResource("4_lv8ph")]
 position = Vector2(112, 120)
 
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
@@ -154,7 +154,7 @@ shape = SubResource("RectangleShape2D_id280")
 [node name="Sprite" parent="Map/InvisibleWall" index="1"]
 texture = SubResource("PlaceholderTexture2D_rxsn5")
 
-[node name="InvisibleWall2" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
+[node name="InvisibleWall2" parent="Map" instance=ExtResource("4_lv8ph")]
 position = Vector2(112, -168)
 
 [node name="Collision" parent="Map/InvisibleWall2" index="0"]
@@ -163,7 +163,7 @@ shape = SubResource("RectangleShape2D_hwal4")
 [node name="Sprite" parent="Map/InvisibleWall2" index="1"]
 texture = SubResource("PlaceholderTexture2D_p62ht")
 
-[node name="InvisibleWall3" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
+[node name="InvisibleWall3" parent="Map" instance=ExtResource("4_lv8ph")]
 position = Vector2(-88, -32)
 
 [node name="Collision" parent="Map/InvisibleWall3" index="0"]
@@ -172,7 +172,7 @@ shape = SubResource("RectangleShape2D_4btp4")
 [node name="Sprite" parent="Map/InvisibleWall3" index="1"]
 texture = SubResource("PlaceholderTexture2D_jep18")
 
-[node name="InvisibleWall4" parent="Map" groups=["removable_walls"] instance=ExtResource("4_lv8ph")]
+[node name="InvisibleWall4" parent="Map" instance=ExtResource("4_lv8ph")]
 position = Vector2(312, -32)
 
 [node name="Collision" parent="Map/InvisibleWall4" index="0"]
