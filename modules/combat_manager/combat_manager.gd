@@ -28,6 +28,7 @@ func _ready():
 	player = Game.player
 	player.start_turn_button_pressed.connect(_on_player_start_turn_button_pressed)
 	player.finished_executing_actions.connect(_on_player_finished_executing_actions)
+	player.utility_dropped.connect(_on_player_utility_dropped)
 	
 	camera = Game.camera
 
@@ -124,6 +125,9 @@ func _on_player_finished_executing_actions():
 		end_combat()
 	else:
 		start_dodge_phase()
+		
+func _on_player_utility_dropped(utility : Utility):
+	map.add_child(utility)
 
 func _on_combat_ui_action_selected(selected_action : CombatActionResource):
 	var action = selected_action.scene.instantiate() as CombatAction

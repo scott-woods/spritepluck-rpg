@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fo57yu4bv178"]
+
+[ext_resource type="Script" path="res://modules/encounter_room_component/encounter_room_component.gd" id="1_edwrv"]
+
+[node name="EncounterRoomComponent" type="Node"]
+script = ExtResource("1_edwrv")

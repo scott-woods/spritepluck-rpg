@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6plyukisxj0j"]
+[gd_scene load_steps=23 format=3 uid="uid://b6plyukisxj0j"]
 
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="1_ggjqx"]
 [ext_resource type="Script" path="res://modules/rooms/test_area_room_2/test_area_room_2.gd" id="1_n8v4d"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="9_gsnbc"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="10_won1o"]
 [ext_resource type="PackedScene" uid="uid://djt80b6b1c278" path="res://modules/dungeon_room_component/dungeon_room_component.tscn" id="12_5j7ag"]
+[ext_resource type="PackedScene" uid="uid://fo57yu4bv178" path="res://modules/encounter_room_component/encounter_room_component.tscn" id="13_pc3n3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_8ea7i"]
 vertices = PackedVector2Array(112, 192, -176, 192, -176, 64, -144, 64, 112, 144, -144, 0, -64, 0, -64, -80, 64, -80, 256, 0, 160, 112, 64, -112, 320, -112, 320, 0, 256, 112, 160, 144)
@@ -79,7 +80,7 @@ color = Color(0, 0, 0, 1)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Map"]
 navigation_polygon = SubResource("NavigationPolygon_8ea7i")
 
-[node name="InvisibleWall" parent="Map" groups=["removable_walls"] instance=ExtResource("3_u016a")]
+[node name="InvisibleWall" parent="Map" instance=ExtResource("3_u016a")]
 position = Vector2(328, -64)
 
 [node name="Collision" parent="Map/InvisibleWall" index="0"]
@@ -88,7 +89,7 @@ shape = SubResource("RectangleShape2D_js1wo")
 [node name="Sprite" parent="Map/InvisibleWall" index="1"]
 texture = SubResource("PlaceholderTexture2D_0l3qx")
 
-[node name="InvisibleWall2" parent="Map" groups=["removable_walls"] instance=ExtResource("3_u016a")]
+[node name="InvisibleWall2" parent="Map" instance=ExtResource("3_u016a")]
 position = Vector2(144, -120)
 
 [node name="Collision" parent="Map/InvisibleWall2" index="0"]
@@ -97,7 +98,7 @@ shape = SubResource("RectangleShape2D_52ctl")
 [node name="Sprite" parent="Map/InvisibleWall2" index="1"]
 texture = SubResource("PlaceholderTexture2D_vtdty")
 
-[node name="InvisibleWall3" parent="Map" groups=["removable_walls"] instance=ExtResource("3_u016a")]
+[node name="InvisibleWall3" parent="Map" instance=ExtResource("3_u016a")]
 position = Vector2(-32, 200)
 
 [node name="Collision" parent="Map/InvisibleWall3" index="0"]
@@ -183,6 +184,10 @@ map = NodePath("../Map")
 top_door = NodePath("../Map/TopDoor")
 bottom_door = NodePath("../Map/BottomDoor")
 right_door = NodePath("../Map/RightDoor")
+combat_manager = NodePath("../CombatManager")
+
+[node name="EncounterRoomComponent" parent="." node_paths=PackedStringArray("player_spawner", "combat_manager") instance=ExtResource("13_pc3n3")]
+player_spawner = NodePath("../PlayerSpawner")
 combat_manager = NodePath("../CombatManager")
 
 [editable path="Map/InvisibleWall"]

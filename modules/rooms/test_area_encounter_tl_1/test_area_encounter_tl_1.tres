@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DungeonRoom" load_steps=3 format=3 uid="uid://0aerie6erf8t"]
+
+[ext_resource type="PackedScene" uid="uid://bkxmh2odtqcht" path="res://modules/rooms/test_area_encounter_tl_1/test_area_encounter_tl_1.tscn" id="1_8xtyc"]
+[ext_resource type="Script" path="res://dungeon_room.gd" id="1_k42hr"]
+
+[resource]
+script = ExtResource("1_k42hr")
+room_type = 0
+room_scene = ExtResource("1_8xtyc")
+has_top_door = true
+has_bottom_door = false
+has_left_door = true
+has_right_door = false
