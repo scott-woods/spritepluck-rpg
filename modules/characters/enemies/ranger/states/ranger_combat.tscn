@@ -6,6 +6,7 @@
 script = ExtResource("1_ldfuo")
 
 [node name="ActionTimer" type="Timer" parent="."]
+wait_time = 1.75
 one_shot = true
 
 [connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://modules/rooms/enemy_test_room/enemy_test_room.gd" id="1_lfga5"]
 [ext_resource type="TileSet" uid="uid://dj1l5fgk0wftn" path="res://assets/tilesets/test_action_tileset.tres" id="2_54v63"]
-[ext_resource type="PackedScene" uid="uid://bmcdxiqvkovb" path="res://modules/characters/enemies/fast_enemy/fast_enemy.tscn" id="2_b2rw7"]
+[ext_resource type="PackedScene" uid="uid://d18di0xuv174k" path="res://modules/characters/enemies/ranger/ranger.tscn" id="2_lohdn"]
 [ext_resource type="PackedScene" uid="uid://bgyfc7skye1bh" path="res://modules/combat_manager/combat_manager.tscn" id="2_ybtq6"]
 [ext_resource type="PackedScene" uid="uid://drlx3u2mngfq0" path="res://modules/player_spawner/player_spawner.tscn" id="4_qy1up"]
 [ext_resource type="PackedScene" uid="uid://fy55thn23ao5" path="res://modules/player_spawn_point/player_spawn_point.tscn" id="5_ecjen"]
@@ -15,7 +15,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(0, 0, 416, 0, 416, 272,
 
 [node name="EnemyTestRoom" type="Node2D"]
 script = ExtResource("1_lfga5")
-enemy_scene = ExtResource("2_b2rw7")
+enemy_scene = ExtResource("2_lohdn")
 
 [node name="Map" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -58,7 +58,7 @@ spawn_points_container = NodePath("../Map/PlayerSpawns")
 map = NodePath("../Map")
 
 [node name="CombatManager" parent="." node_paths=PackedStringArray("enemy_spawner", "map") instance=ExtResource("2_ybtq6")]
-enemy_types = Array[PackedScene]([ExtResource("2_b2rw7")])
+enemy_types = Array[PackedScene]([ExtResource("2_lohdn")])
 enemy_spawner = NodePath("../EnemySpawner")
 map = NodePath("../Map")
 

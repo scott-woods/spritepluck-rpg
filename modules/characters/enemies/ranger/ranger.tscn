@@ -33,14 +33,14 @@ texture = SubResource("PlaceholderTexture2D_03us6")
 [node name="StateMachine" parent="." index="1" instance=ExtResource("5_yofg3")]
 initial_state = NodePath("RangerCombat")
 
-[node name="RangerExecutingAction" type="Node" parent="StateMachine" index="0"]
+[node name="RangerExecutingAction" type="Node" parent="StateMachine" index="0" groups=["enemies", "ranged_enemies", "rangers"]]
 script = ExtResource("7_7s232")
 
 [node name="RangerCombat" parent="StateMachine" index="1" instance=ExtResource("5_rwp5a")]
 
 [node name="VelocityComponent" parent="." index="2" instance=ExtResource("6_is73k")]
 position = Vector2(0, -14)
-speed = 65.0
+speed = 85.0
 
 [node name="PathfindingComponent" parent="." index="3" node_paths=PackedStringArray("velocity_component") instance=ExtResource("7_tsya4")]
 position = Vector2(0, -14)
