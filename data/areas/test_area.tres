@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Area" load_steps=7 format=3 uid="uid://bljtn6a38lcq5"]
+[gd_resource type="Resource" script_class="Area" load_steps=9 format=3 uid="uid://bljtn6a38lcq5"]
 
 [ext_resource type="AudioStream" uid="uid://dbiymi4h8napy" path="res://assets/audio/music/babbulon.ogg" id="1_p26o1"]
 [ext_resource type="Resource" uid="uid://bmy807ny0ehiu" path="res://modules/rooms/test_area_room_1/test_area_room_1.tres" id="1_poduw"]
@@ -6,8 +6,10 @@
 [ext_resource type="Resource" uid="uid://cecxtecrv3dfu" path="res://modules/rooms/test_area_room_3/test_area_room_3.tres" id="3_8ctx4"]
 [ext_resource type="Script" path="res://data/areas/area.gd" id="3_c2ttl"]
 [ext_resource type="Resource" uid="uid://cbrnvtl2pr3gs" path="res://modules/rooms/test_area_boss_room/test_area_boss_room.tres" id="4_mcnlo"]
+[ext_resource type="Resource" uid="uid://0aerie6erf8t" path="res://modules/rooms/test_area_encounter_tl_1/test_area_encounter_tl_1.tres" id="5_u20ll"]
+[ext_resource type="Resource" uid="uid://dgwone7x0xre8" path="res://modules/rooms/test_area_encounter_lr_1/test_area_encounter_lr_1.tres" id="6_077y6"]
 
 [resource]
 script = ExtResource("3_c2ttl")
 music = ExtResource("1_p26o1")
-dungeon_rooms = Array[Resource("res://dungeon_room.gd")]([ExtResource("1_poduw"), ExtResource("2_rnuwm"), ExtResource("3_8ctx4"), ExtResource("4_mcnlo")])
+dungeon_rooms = Array[Resource("res://dungeon_room.gd")]([ExtResource("1_poduw"), ExtResource("2_rnuwm"), ExtResource("3_8ctx4"), ExtResource("4_mcnlo"), ExtResource("5_u20ll"), ExtResource("6_077y6")])

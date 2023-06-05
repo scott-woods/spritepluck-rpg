@@ -14,8 +14,6 @@ func init(data : DungeonRoomData):
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	player = Game.player
-	player.utility_dropped.connect(_on_player_utility_dropped)
-	
 	camera = Game.camera
 	super()
 
